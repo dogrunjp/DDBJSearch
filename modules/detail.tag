@@ -2,7 +2,7 @@
     <div class="details">
         <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={target_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
         <table show="{visible.bioproject}">
-            <thead><tr class="table-header"><th colspan="2">BioProject: {uid}</th></tr></thead>
+            <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
             <tbody>
                 <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
                 <tr if={description}><td width="180" class="atrb">Description</td><td>{description}</td></tr>
@@ -11,7 +11,8 @@
                 <tr if={archive}><td width="180" class="atrb">Archive</td><td>{ archive }</td></tr>
                 <tr if={locus_tag_prefix}><td width="180" class="atrb">LocusTagPrefix</td><td> { locus_tag_prefix }</td></tr>
                 <tr if={organization}><td width="180" class="atrb">Organization name</td><td>{ organization}</td></tr>
-                <tr if={submitted}><td width="180" class="atrb">Submitted</td><td>{ submitted }</td></tr>
+                <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
+                <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
                 <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
             </tbody>
         </table>
@@ -61,7 +62,7 @@
                 </tr>
             </thead>
         </table>
-        <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
+        <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
                 <tbody each={bs_items}>
                     <tr class="sub-header"><th colspan="2">{uid}</th></tr>
@@ -70,6 +71,25 @@
                     <tr if={taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{taxonomy_name}</td></tr>
                     <tr if={package}><td width="180" class="atrb">Package</td><td>{package}</td></tr>
                     <tr if={env_package}><td width="180" class="atrb">Env Package</td><td>{env_package}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table show="{visible.SAMPLE}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">SAMPLE</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#s_table" aria-expanded="true" aria-controls="s_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
+            <table show="{visible.SAMPLE}" >
+                <tbody each={bs_items}>
+                <tr class="sub-header"><th colspan="2">{uid}</th></tr>
+                <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
+                <tr if={scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{scientific_name}</td></tr>
+                <tr if={taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{taxon_id}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -155,7 +175,7 @@
                 };
 
                 bpval = new default_val("bioproject");
-                self.uid = bpval.get("uid");
+                self.bioproject = bpval.get("uid");
                 self.title = bpval.get("title");
                 self.description = bpval.get("description");
                 self.organism_name = bpval.get("organism_name");
@@ -163,6 +183,9 @@
                 self.archive = bpval.get("archive");
                 self.locus_tag_prefix = bpval.get( "locus_tag_prefix");
                 self.organization = bpval.get("organization_name");
+                self.xref_id = bpval.get("xref_id");
+                self.external_db = bpval.get("external_db");
+                self.bp_submitted = bpval.get("submitted");
 
                 sval = new default_val("STUDY");
                 self.study = sval.get("uid");
@@ -195,6 +218,9 @@
 
                 self.bs_items = d.biosample;
                 a2str_obj(self.bs_items);
+
+                self.s_items = d.SAMPLE;
+                a2str_obj(self.s_items);
 
 
                 self.update();

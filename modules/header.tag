@@ -16,7 +16,7 @@
                     <li><a href="http://trace.ddbj.nig.ac.jp/dra/index_e.html">DRA Home</a></li>
                     <li class="target" data-target="biosample">BioSample</li>
                     <li class="target" data-target="bioproject">BioProject</li>
-                    <li class="target" data-target="sra">SRA</li>
+                    <li class="target focused" data-target="sra">SRA</li>
                 </ul>
             </div>
         </div>

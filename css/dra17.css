@@ -118,6 +118,11 @@ div#header{
 #header .target.focused:before{
     content:"\f00c";
     font-family:FontAwesome;
+    color: #EB6238;
+    margin-right: 2px;
+}
+#header li.target{
+    cursor: pointer;
 }
 
 /*main section*/
