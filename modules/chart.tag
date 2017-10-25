@@ -9,7 +9,7 @@
         <div class="box tob" id="organism_ranking" data-field="organism_name" data-target="bioproject">
             <h3>Organism Name</h3>
         </div>
-        <div class="box" id="study_type_ranking" data-field="study_type" data-target="study">
+        <div class="box" id="study_type_ranking" data-field="study_type" data-target="sra">
             <h3>Study Type</h3>
         </div>
 

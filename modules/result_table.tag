@@ -1,7 +1,11 @@
 <result-table>
-    <h3>Search Results : {founds} {target} <!-- ex. --></h3>
-    <div id="bptable"></div>
+    <h3>Search Results for {query_params}, {founds} {target} <!-- ex. --></h3>
+    <div id="rslt-table"></div>
+
+    <div id="data-container"></div>
+
     <script type="text/javascript">
+
         var self = this;
         var base_url = "http://localhost:8080/search?";
         var arg = {};
@@ -10,11 +14,12 @@
             var kv = q[i].split('=');
             arg[kv[0]]=kv[1];
         };
-        var search_ops = ["target_db", "rows", "sort_key"];
+        var search_ops = ["target_db", "rows", "sort"];
         var search_option = [];
         var search_keys = [];
         var targetdb = arg["target_db"];
-        var rows = arg["rows"] ?  arg["rows"] : 20;
+        var rows = arg["rows"] ? arg["rows"] : 20;
+        var sort = arg["sort"] ? arg["sort"] + "%20desc" : "uid%20desc";
         this.founds = "";
 
         Object.keys(arg)
@@ -34,51 +39,53 @@
                 k + "=" + arg[k]
             )});
 
-        var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&rows=" + rows;
-        console.log(q)
+        var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+        //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
 
         var table_conf = {
             sra:{
                 columns:[
-                    {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.location.href = "detail.html?accession=" + cell.getValue()}},
-                    {title:"TITLE", field:"study_title", width: 350, align:"left"},
-                    {title:"ABSTRACT", field:"abstract", width: 420},
-                    {title:"STUDY TYPE", field:"study_type", width: 135}
+                    {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.location.href = "detail.html?db=sra&accession=" + cell.getValue()}},
+                    {title:"TITLE", field:"study_title", width: 350, align:"left", headerSort:false},
+                    {title:"ABSTRACT", field:"abstract", width: 420, headerSort:false},
+                    {title:"STUDY TYPE", field:"study_type", width: 135, headerSort:false}
                 ]},
             bioproject:{
                 columns:[
-                    {title:"BioProject", field:"uid", width:100, cellClick:function(e, cell){ window.location.href = "detail.html?accession=" + cell.getValue()}},
-                    {title:"TITLE", field:"title", width: 300, align:"left"},
-                    {title:"ORGANISM NAME", field:"organism_name", width: 160},
-                    {title:"ORGANIZATION NAME", field:"organization_name", width: 160},
-                    {title:"PROJECT DATATYPE", field:"project_datatype", width: 150},
-                    {title:"SUBMISSION DATE", field: "submitted"}
+                    {title:"BioProject", field:"uid", width:100, cellClick:function(e, cell){ window.location.href = "detail.html?db=bioproject&accession=" + cell.getValue()}},
+                    {title:"TITLE", field:"title", width: 300, align:"left", headerSort:false},
+                    {title:"ORGANISM NAME", field:"organism_name", width: 160, sorter:"string"},
+                    {title:"ORGANIZATION NAME", field:"organization_name", width: 160, sorter:"string"},
+                    {title:"PROJECT DATATYPE", field:"project_datatype", width: 150, sorter:"string"},
+                    {title:"SUBMISSION DATE", field: "submitted", sorterParams:{format:"DD-MM-YYThh:mm:ssZ"}}
                 ]},
             biosample:{
                 columns:[
-                    {title:"BioSample", field:"uid", width:120, cellClick:function(e, cell){ window.location.href = "detail.html?accession=" + cell.getValue()}},
-                    {title:"TITLE", field:"title", width: 340, align:"left"},
-                    {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180},
-                    {title:"TAXONOMY ID", field:"taxonomy_id", width: 120},
-                    {title:"PACKAGE", field:"package", width: 120},
-                    {title:"SUBMISSION DATE", field: "submission_date"}
+                    {title:"BioSample", field:"uid", width:120, cellClick:function(e, cell){ window.location.href = "detail.html?db=biosample&accession=" + cell.getValue()}},
+                    {title:"TITLE", field:"title", width: 340, align:"left", sorter:"string"},
+                    {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
+                    {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
+                    {title:"PACKAGE", field:"package", width: 110, sorter:"string"},
+                    {title:"SUBMISSION DATE", field: "submission_date", sorter:"date", sorterParams:{format:"DD-MM-YY"}}
                 ]
             }
         };
 
-        function get_list() {
-            return $.getJSON(q);
-        }
-
-        get_list()
-            .done(function (datas) {
-                self.founds = datas["numFound"];
-                self.target = targetdb + " entries";
-                self.update();
-                $("#bptable").tabulator(table_conf[targetdb]);
-                $("#bptable").tabulator("setData", datas["docs"]);
+        this.on("mount", function(){
+            $("#rslt-table").tabulator({
+                pagination:"remote",
+                ajaxURL: q,
+                timeout: 5000,
+                paginationSize: rows,
+                columns:table_conf[targetdb]["columns"],
+                dataLoaded: function (datas) {
+                    self.update();
+                    self.founds = datas["numFound"];
+                    self.target = targetdb + " entries";
+                    self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
+                }
             });
-
+        });
 
         function get_name(v) {
             if (is_array(v)){
@@ -105,6 +112,16 @@
         function is_string(v){
             var res = typeof v["Name"] == 'string';
             return res
+        }
+
+        //pagenation
+        function showPasger() {
+            var pg_total = Math.ceil(self.founds / rows)
+            self.page_head = 1;
+            self.page_prev
+            self.page_current
+            self.page_next
+            self.page_end = pg_total;
         }
 
         //-->

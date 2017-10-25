@@ -417,6 +417,36 @@
   color: #d00;
 }
 
+
+.tabulator .tabulator-footer {
+  padding: 5px 10px;
+  border-top: 1px solid #ffffff;
+  background-color: #f6bb6f;
+  text-align: right;
+  color: #555;
+  font-weight: bold;
+  white-space: nowrap;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.tabulator .tabulator-footer .tabulator-page {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 2px 5px;
+  border: 1px solid #f7ecd8;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #555;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+/*
 .tabulator .tabulator-footer {
   padding: 5px 10px;
   border-top: 1px solid #999;
@@ -432,7 +462,19 @@
   -webkit-user-select: none;
   -o-user-select: none;
 }
-
+.tabulator .tabulator-footer .tabulator-page {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 2px 5px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #555;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+*/
 .tabulator .tabulator-footer .tabulator-calcs-holder {
   box-sizing: border-box;
   width: calc(100% + 20px);
@@ -461,18 +503,7 @@
   margin: 0 7px;
 }
 
-.tabulator .tabulator-footer .tabulator-page {
-  display: inline-block;
-  margin: 0 2px;
-  padding: 2px 5px;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #555;
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-}
+
 
 .tabulator .tabulator-footer .tabulator-page.active {
   color: #d00;

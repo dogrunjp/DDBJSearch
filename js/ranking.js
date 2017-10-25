@@ -21,8 +21,6 @@
         var target_url = base_url + conf[t]["params"];
 
         d3.json(target_url, function(e, d){
-            // confs
-
             //リスト描画領域を作成
             svg_list = d3.select("#" + t + "_ranking").append("svg")
                 .attr("width", 505).attr("height", 115);
@@ -37,8 +35,6 @@
             bars1 = svg_bar1.append("g").attr("class", "bars").attr("transform", "translate(0,10)");
             bars3 = svg_bar1.append("g").attr("class", "vals").attr("transform", "translate(0,10)");
             bars4 = svg_bar1.append("g").attr("class", "arrows").attr("transform", "translate(0,10)");
-
-            // confs end
 
             // get data
             var data = d["val"];
@@ -64,7 +60,7 @@
 
             if (update_isempty) {
                 // solrのlast updateを取得
-                var last_updated = "";
+                var last_updated = "..";
                 d3.select("#last_update .date").text(last_updated);
             }
         }
@@ -80,7 +76,8 @@
                 .attr("fill", "#444444")
                 .attr("class", "lists")
                 .on("click", function (d) {
-                    var type = $(this).parents()[3].getAttribute('data-field');
+                    var type = $(this).parents()[1].getAttribute('data-field');
+                    console.log($(this).parents());
                     showList({key: type, value: d.name})
                 });
 
@@ -192,7 +189,8 @@
                 })
                 .attr("text-anchor", "start")
                 .on("click", function (d) {
-                    showList(d.name)
+                    var type = $(this).parents()[3].getAttribute('data-field');
+                    showList({key: type, value: d.name})
                 });
 
         }

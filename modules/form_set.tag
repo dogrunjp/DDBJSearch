@@ -6,7 +6,6 @@
                     <input type="text" class="input-box1" id="uid" name="uid" size="50" value=""/>
                 </div>
 
-
                 <div show='{visible.sra}'>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
@@ -44,11 +43,7 @@
                     </div>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="locus_tag_prefix">Locus Tag Prefex :</label></span>
-                        <input type="text" class="input-box1"
-                               name="locus_tag_prefix"
-                               id="locus_tag_prefix"
-                               size="40"
-                               value=""/>
+                        <input type="text" class="input-box1" name="locus_tag_prefix" id="locus_tag_prefix" size="40" value=""/>
                     </div>
                 </div>
 
@@ -76,36 +71,39 @@
                 <div id="keyword">
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
                     <input type="text" id="term" class="input-box1" name="term" size="50" value=""/></div>
-                <div class="float_clear"></div>
                 </div>
-                <div class="float_clear"></div>
 
+                <div>
+                    <label for="view_count">Show
+                        <select id="view_count" class="select-box1" name="rows">
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                         records
+                    </label>
 
-                <div id="condition">
+                    <label show='{visible.sra}' for="sra_sort_key">Sort by
+                        <select id="sra_sort_key" class="select-box1" name="sort">
+                            <option value="uid">ACCESSION</option>
 
-                    <div class="conditions">
+                        </select>
+                    </label>
 
-                        <label for="view_count">Show
-                            <select id="view_count" class="select-box1" name="rows">
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                             records
-                        </label>
+                    <label show='{visible.bioproject}' for="bp_sort_key">Sort by
+                        <select id="bp_sort_key" class="select-box1" name="sort">
+                            <option value="uid">ACCESSION</option>
+                        </select>
+                    </label>
 
-                        <label for="sort_key">Sort by
-                            <select id="sort_key" class="select-box1" name="sort_key">
-                                <option value="Study">ACCESSION</option>
-                                <option value="Study Title">TITLE</option>
-                                <option value="Study Type">DESCRIPTION</option>
-                                <option value="Organism">ORGANIZATION</option>
-                                <option value="Center Name">SUBMITTED</option>
-                            </select>
-                        </label>
-                        <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
-                        <input type="button" id="clear" class="input-box1" value="Clear"/>
-                    </div>
+                    <label show='{visible.biosample}' for="bs_sort_key">Sort by
+                        <select id="bs_sort_key" class="select-box1" name="sort">
+                            <option value="uid">ACCESSION</option>
+                        </select>
+                    </label>
+
+                    <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
+                    <input type="button" id="clear" class="input-box1" value="Clear"/>
                 </div>
         </form>
     </div>
@@ -120,9 +118,13 @@
         var focused = "sra";
 
         $("#header li.target").click(function(){
+            $("#header li.target").removeClass("focused");
             focused = this.dataset.target;
             self.visible.sra = self.visible.bioproject = self.visible.biosample = false;
             self.visible[focused] = true;
+            //css変更
+            $("#header [data-target="+ focused +"]").addClass("focused");
+
             self.update()
         });
         keywordsearch()
