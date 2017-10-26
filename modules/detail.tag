@@ -140,7 +140,8 @@
         var uid = arg["accession"];
         // BioProjectに変換する必要有り
         this.accession = uid;
-        var base_url = "http://localhost:8080/details?db=";
+        //var base_url = "http://localhost:8080/details?db=";
+        var base_url = "http://52.193.211.138/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         var target_url = base_url + db + "&id=" + uid;
         self.target_url = target_url;

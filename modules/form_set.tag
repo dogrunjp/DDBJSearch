@@ -1,6 +1,11 @@
 <form_set>
         <form method="get" id="queryform" name="queryform">
             <div id="query">
+                <div id="keyword">
+                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
+                    <input type="text" id="term" class="input-box1" name="term" size="50" value=""/>
+                </div>
+
                 <div id="accession">
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="uid">Accession :</label></span>
                     <input type="text" class="input-box1" id="uid" name="uid" size="50" value=""/>
@@ -33,7 +38,6 @@
                         <option>Other</option>
                     </select>
 
-                    <div class="float_clear"></div>
                 </div>
 
                 <div id="bioproject_form" data-target="bioproject" show="{visible.bioproject}">
@@ -67,12 +71,6 @@
 
                 </div>
 
-
-                <div id="keyword">
-                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
-                    <input type="text" id="term" class="input-box1" name="term" size="50" value=""/></div>
-                </div>
-
                 <div>
                     <label for="view_count">Show
                         <select id="view_count" class="select-box1" name="rows">
@@ -93,6 +91,7 @@
                     <label show='{visible.bioproject}' for="bp_sort_key">Sort by
                         <select id="bp_sort_key" class="select-box1" name="sort">
                             <option value="uid">ACCESSION</option>
+                            <option value="submitted">SUBMITTED</option>
                         </select>
                     </label>
 
@@ -105,6 +104,7 @@
                     <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
                     <input type="button" id="clear" class="input-box1" value="Clear"/>
                 </div>
+            </div>
         </form>
     </div>
     <script>
