@@ -35,7 +35,10 @@
 <script type="riot/tag" src="modules/form_set.tag"></script>
 <script type="riot/tag" src="modules/detail.tag"></script>
 <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
-<script>riot.mount('*')</script>
+<script>
+    var obs = riot.observable();
+    riot.mount('*')
+</script>
 </body>
 
 </html>

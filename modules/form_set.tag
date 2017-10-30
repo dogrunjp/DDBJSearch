@@ -90,8 +90,8 @@
 
                     <label show='{visible.bioproject}' for="bp_sort_key">Sort by
                         <select id="bp_sort_key" class="select-box1" name="sort">
-                            <option value="uid">ACCESSION</option>
                             <option value="submitted">SUBMITTED</option>
+                            <option value="uid">ACCESSION</option>
                         </select>
                     </label>
 

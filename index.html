@@ -19,7 +19,6 @@
             <h2></h2>
             <form_set></form_set>
             <chart></chart>
-
         </div>
     </div>
     <footer></footer>
@@ -29,7 +28,10 @@
 <script type="riot/tag" src="modules/form_set.tag"></script>
 <script type="riot/tag" src="modules/chart.tag"></script>
 <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
-<script>riot.mount('*')</script>
+<script>
+    var obs = riot.observable();
+    riot.mount('*')
+</script>
 <script src="js/ranking.js"></script>
 </body>
 

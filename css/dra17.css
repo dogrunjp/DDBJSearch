@@ -84,7 +84,7 @@ div#header{
     color: #EB6238;
 }
 #header.sub div.box1 a{
-    width: 250px;
+    width: 400px;
     display: flex;
 }
 #header.sub div.box2{
@@ -492,9 +492,12 @@ input{
     width: 1.2rem;
     margin-left: -1.2rem;
 }
+.trends svg text{
+    font-size: 0.75rem;
+}
 
 #main .pagination li a{
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #488EC4;
 }
 #main .pagination li a:hover, .pagination li a:visited{

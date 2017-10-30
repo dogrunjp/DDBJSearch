@@ -16,7 +16,7 @@
         var conf = {statistic:{params: "sra/type/"},
             organism: {params: "bioproject/organism_name/"},
             study_type: {params: "sra/study_type/"},
-            center_name:{params: "sra/center_name/"}
+            project_datatype:{params: "bioproject/project_datatype/"}
         };
         var target_url = base_url + conf[t]["params"];
 
@@ -51,19 +51,7 @@
             // call draw method
             drawBar(data_f);
             drawRanking(data_f);
-            show_update();
         });
-
-        // last updateを表示
-        function show_update(){
-            var update_isempty = true;
-
-            if (update_isempty) {
-                // solrのlast updateを取得
-                var last_updated = "..";
-                d3.select("#last_update .date").text(last_updated);
-            }
-        }
 
         // ランキングを表示
         function drawRanking(d) {
@@ -81,7 +69,7 @@
                     showList({key: type, value: d.name})
                 });
 
-            //ランキング表の背景画像をまず作る
+            //ランキング表の背景画像を作る
             list.append("rect");
 
             list.append("text")

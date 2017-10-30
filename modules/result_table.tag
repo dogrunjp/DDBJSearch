@@ -23,6 +23,8 @@
         var sort = arg["sort"] ? arg["sort"] + "%20desc" : "uid%20desc";
         this.founds = "";
 
+        obs.trigger("targetSelected", targetdb);
+
         Object.keys(arg)
             .filter((function (k) {return search_ops.indexOf(k) != -1}))
             .forEach(function (k){
@@ -46,14 +48,14 @@
         var table_conf = {
             sra:{
                 columns:[
-                    {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.location.href = "detail.html?db=sra&accession=" + cell.getValue()}},
+                    {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.open("details.html?db=sra&accession=" + cell.getValue())}},
                     {title:"TITLE", field:"study_title", width: 350, align:"left", headerSort:false},
                     {title:"ABSTRACT", field:"abstract", width: 420, headerSort:false},
                     {title:"STUDY TYPE", field:"study_type", width: 135, headerSort:false}
                 ]},
             bioproject:{
                 columns:[
-                    {title:"BioProject", field:"uid", width:100, cellClick:function(e, cell){ window.location.href = "detail.html?db=bioproject&accession=" + cell.getValue()}},
+                    {title:"BioProject", field:"uid", width:100, cellClick:function(e, cell){ window.open("details.html?db=bioproject&accession=" + cell.getValue())}},
                     {title:"TITLE", field:"title", width: 300, align:"left", headerSort:false},
                     {title:"ORGANISM NAME", field:"organism_name", width: 160, sorter:"string"},
                     {title:"ORGANIZATION NAME", field:"organization_name", width: 160, sorter:"string"},
@@ -62,7 +64,7 @@
                 ]},
             biosample:{
                 columns:[
-                    {title:"BioSample", field:"uid", width:120, cellClick:function(e, cell){ window.location.href = "detail.html?db=biosample&accession=" + cell.getValue()}},
+                    {title:"BioSample", field:"uid", width:120, cellClick:function(e, cell){ window.open("details.html?db=biosample&accession=" + cell.getValue())}},
                     {title:"TITLE", field:"title", width: 340, align:"left", sorter:"string"},
                     {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
                     {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
