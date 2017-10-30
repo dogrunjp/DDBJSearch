@@ -16,6 +16,7 @@
                 <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
             </tbody>
         </table>
+        <h2  show="{visible.related}">Related entries</h2>
         <table show="{visible.STUDY}">
             <thead><tr class="table-header"><th colspan="2">Study: {study}</th></tr></thead>
             <tbody>
@@ -127,7 +128,8 @@
             STUDY: false,
             RUN:false,
             EXPERIMENT: false,
-            SAMPLE: false
+            SAMPLE: false,
+            related: false
         };
         var self = this;
         var arg = {};
@@ -140,7 +142,6 @@
         var uid = arg["accession"];
         // BioProjectに変換する必要有り
         this.accession = uid;
-        //var base_url = "http://localhost:8080/details?db=";
         var base_url = "http://52.193.211.138/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         var target_url = base_url + db + "&id=" + uid;
@@ -234,6 +235,10 @@
             l.forEach(function(x){
                 self.visible[x] = true;
             });
+            if (self.visible.bioproject && self.visible.STUDY) {
+                self.visible.related = true;
+            }
+
             self.update()
 
         }
