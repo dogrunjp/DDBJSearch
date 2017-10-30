@@ -3,7 +3,7 @@
         <div class="content">
 
             <!-- Footer section-->
-            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/80x15.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">DBCLS DDBJ Search</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+            Copyright © 2017 <a href="http://dbcls.rois.ac.jp/">DBCLS.</a> DDBJ Search <a rel="license" href="http://www.insdc.org/policy.html">Website Policy.</a>
 
         </div>
     </div>
