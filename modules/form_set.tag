@@ -102,7 +102,7 @@
                     </label>
 
                     <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
-                    <input type="button" id="clear" class="input-box1" value="Clear"/>
+                    <input type="button" id="clear" class="input-box1" value="Clear" onclick={formrst} />
                 </div>
             </div>
         </form>
@@ -124,7 +124,7 @@
             self.visible[focused] = true;
             //css変更
             $("#header [data-target="+ focused +"]").addClass("focused");
-
+            document.queryform.reset()
             self.update()
         });
         keywordsearch()
@@ -149,6 +149,10 @@
             });
             var qs = q.join("&");
             window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;
+        }
+        formrst()
+        {
+            document.queryform.reset()
         }
     </script>
 </form_set>

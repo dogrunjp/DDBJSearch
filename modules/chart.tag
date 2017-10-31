@@ -35,12 +35,9 @@
 
         get_data()
             .done(function(d) {
-                console.log(d);
                 self.lupd = d["sra"];
                 self.update();
-
             });
-
 
     </script>
 
