@@ -31,97 +31,121 @@ h1,h2,h3{
     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
 /*header section*/
-div#header{
+div#header-menu{
     width: 100%;
     height: 200px;
     border-top: solid 6px #EB6238;
 }
-#header h1{
+/* navbar */
+
+#header-link.navbar-inverse.nav-upper {
+    height: 20px;
+    line-height: 1.2;
+    background-color: #EB6238;
+}
+#header-link.navbar-inverse.nav-upper ul {
+    float: left;
+    display: table;
+}
+#header-link.navbar-inverse.nav-upper .navbar-upper > li {
+    display: table-cell;
+
+}
+#header-link.navbar-inverse.nav-upper .navbar-upper > li > a {
+    color: #ffffff;
+
+    font-size: 0.75rem;
+    margin-right:8px;
+    text-decoration: none;
+}
+
+#header-menu h1{
     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-weight: lighter;
     font-size: 3rem;
 }
-#header h1 .or{
+#header-menu h1 .or{
     color: #EB6238;
 }
-#header div.box1{
+#header-menu div.box1{
     margin-top: 30px;
     width: 440px;
 }
-#header div.box1 img{
+#header-menu div.box1 img{
     height:30px;
     margin-right:8px;
 }
-#header div.box2{
+#header-menu div.box2{
     margin-top: 30px;
     width: 280px;
 }
-#header div.box3{
+#header-menu div.box3{
     float: right;
-    width: 450px;
+    width: 500px;
     margin-top: 38px;
+    font-size: 1rem;
 }
-#header p{
+#header-menu p{
     font-size: 1rem; /* 16px */
 }
-#header p .em{
+#header-menu p .em{
     font-size: 1.25rem; /* 20px */
     line-height: 1.8;
 }
 
 /* For header section out the top page  */
-#header.sub{
+#header-menu.sub{
     width: 100%;
     height: 60px;
-    border-top: solid 6px #EB6238;
+    border-top: solid 1px #EB6238;
 }
-#header.sub h1{
+#header-menu.sub h1{
     font-weight: bold;
     font-size: 1.5rem;
 }
-#header.sub h1 .or{
+#header-menu.sub h1 .or{
     /* for orange "SRA" */
     color: #EB6238;
 }
-#header.sub div.box1 a{
+#header-menu.sub div.box1 a{
     width: 400px;
     display: flex;
 }
-#header.sub div.box2{
+#header-menu.sub div.box2{
     margin-top: 75px;
     width: 630px;
 }
-#header.sub p{
+#header-menu.sub p{
     font-size: 1rem; /* 16px */
 }
-#header.sub p .em{
+#header-menu.sub p .em{
     font-size: 1.25rem; /* 20px */
     line-height: 1.8;
 }
-#header.sub .box3 ul{
+#header-menu.sub .box3 ul{
     clear: both;
     list-style-position: outside;
     list-style-type: none;
 }
-#header.sub .box3 li{
+#header-menu.sub .box3 li{
     float: right;
     margin-left: 35px;
 }
-#header.sub a{
+#header-menu.sub a{
     color: #3e3a3a;
     text-decoration: none;
 }
-#header.sub a:hover{
+#header-menu.sub a:hover{
     color: #766f6f;
     text-decoration: none;
 }
-#header .target.focused:before{
+#header-menu .target.focused:before{
     content:"\f00c";
     font-family:FontAwesome;
     color: #EB6238;
     margin-right: 2px;
 }
-#header li.target{
+#header-menu li.target{
     cursor: pointer;
 }
 

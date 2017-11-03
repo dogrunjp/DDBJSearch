@@ -117,14 +117,14 @@
         var self = this;
         var focused = "sra";
 
-        $("#header li.target").click(function(){
-            $("#header li.target").removeClass("focused");
+        $("#header-menu li.target").click(function(){
+            $("#header-menu li.target").removeClass("focused");
             focused = this.dataset.target;
             self.visible.sra = self.visible.bioproject = self.visible.biosample = false;
             self.visible[focused] = true;
             //css変更
-            $("#header [data-target="+ focused +"]").addClass("focused");
-            document.queryform.reset()
+            $("#header-menu [data-target="+ focused +"]").addClass("focused");
+            self.formrst();
             self.update()
         });
         keywordsearch()

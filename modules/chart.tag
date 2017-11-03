@@ -23,7 +23,7 @@
             }
         });
 
-        var target_url = "http://localhost:8080/updated";
+        var target_url = "http://52.193.211.138/updated";
         var self = this;
         function get_data() {
             return $.ajax({
