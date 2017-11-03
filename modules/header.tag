@@ -2,8 +2,8 @@
     <div id="header-link" class="navbar-inverse nav-upper">
         <div class="container-fluid content">
             <ul class="nav navbar-upper">
-                <li><a href="#"><i class="fa fa-external-link" aria-hidden="true"></i> DRA Home </a></li>
-                <li><a href="#"><i class="fa fa-external-link" aria-hidden="true"></i> DDBJ flat file search</a></li>
+                <li><a href="http://trace.ddbj.nig.ac.jp/dra/index.html"><i class="fa fa-external-link" aria-hidden="true"></i> DRA Home </a></li>
+                <li><a href="http://getentry.ddbj.nig.ac.jp/top-e.html"><i class="fa fa-external-link" aria-hidden="true"></i> DDBJ flat file search</a></li>
             </ul>
         </div>
     </div>
