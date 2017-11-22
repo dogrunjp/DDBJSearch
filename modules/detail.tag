@@ -18,22 +18,24 @@
         </table>
         <h2  show="{visible.related}">Related entries</h2>
         <table show="{visible.STUDY}">
-            <thead><tr class="table-header"><th colspan="2">Study: {study}</th></tr></thead>
-            <tbody>
-                <tr if={study_title}><td width="180" class="atrb">Study Title</td><td>{study_title}</td></tr>
-                <tr if={abstract}><td width="180" class="atrb">Abstract</td><td>{abstract}</td></tr>
-                <tr if={study_type}><td width="180" class="atrb">Study Type</td><td>{study_type}</td></tr>
-                <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
-                <tr if={center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{center_project_name}</td></tr>
-                <tr if={study_link_url}><td width="180" class="atrb">URL Link</td><td>{study_link_url}</td></tr>
-                <tr if={publication_id}><td width="180" class="atrb">XREF ID</td><td>{publication_id}</td></tr>
-            </tbody>
+
+                <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
+                <tbody each={st_items}>
+                    <tr class="sub-header"><th colspan="2">{uid}</th></tr>
+                    <tr if={study_title}><td width="180" class="atrb">Study Title</td><td>{study_title}</td></tr>
+                    <tr if={abstract}><td width="180" class="atrb">Abstract</td><td>{abstract}</td></tr>
+                    <tr if={study_type}><td width="180" class="atrb">Study Type</td><td>{study_type}</td></tr>
+                    <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
+                    <tr if={center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{center_project_name}</td></tr>
+                    <tr if={study_link_url}><td width="180" class="atrb">URL Link</td><td>{study_link_url}</td></tr>
+                    <tr if={publication_id}><td width="180" class="atrb">XREF ID</td><td>{publication_id}</td></tr>
+                </tbody>
         </table>
 
         <table show="{visible.EXPERIMENT}">
             <thead>
                 <tr class="table-header">
-                    <th width="110">Experiment</th>
+                    <th width="110">EXPERIMENT</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ex_table" aria-expanded="true" aria-controls="ex_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
             </thead>
@@ -44,13 +46,13 @@
                     <tr class="sub-header"><th colspan="2">{uid}</th></tr>
                     <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
                     <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
-                    <tr if={instrumental_model}><td width="180" class="atrb">Instrumental Model</td><td>{instrumental_model}</td></tr>
                     <tr if={design_description}><td width="180" class="atrb">Design Description</td><td>{design_description}</td></tr>
                     <tr if={library_layout}><td width="180" class="atrb">Library Layout</td><td>{library_layout}</td></tr>
                     <tr if={library_name}><td width="180" class="atrb">Library Name</td><td>{library_name}</td></tr>
                     <tr if={program}><td width="180" class="atrb">Program</td><td>{program}</td></tr>
                     <tr if={platform}><td width="180" class="atrb">Platform</td><td>{platform}</td></tr>
                     <tr if={protocol}><td width="180" class="atrb">Protocol</td><td>{protocol}</td></tr>
+                    <tr if={instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{instrument_model}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -143,6 +145,7 @@
         // BioProjectに変換する必要有り
         this.accession = uid;
         var base_url = "http://52.193.211.138/details?db=";
+        //var base_url = "http://localhost:8080/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         var target_url = base_url + db + "&id=" + uid;
         self.target_url = target_url;
@@ -157,8 +160,7 @@
 
         get_data(db, uid)
             .done(function(d){
-                //console.log(d);
-                set_show(Object.keys(d));
+                set_show(d);
                 function default_val(k) {
                     this.k = k;
                 }
@@ -189,16 +191,6 @@
                 self.external_db = bpval.get("external_db");
                 self.bp_submitted = bpval.get("submitted");
 
-                sval = new default_val("STUDY");
-                self.study = sval.get("uid");
-                self.study_title = sval.get("study_title");
-                self.abstract = sval.get("abstract");
-                self.study_type = sval.get("study_type");
-                self.study_link_url = sval.get("study_link_url");
-                self.publication_id = sval.get("publication_id");
-                self.prefex = sval.get("prefix");
-                self.center_name = sval.get("center_name");
-                self.center_project_name = sval.get("center_project_name");
 
                 function a2str_obj(obj) {
                     try{
@@ -211,6 +203,10 @@
                         });
                     }catch (d){}
                 }
+                console.log(d)
+
+                self.st_items = d.STUDY;
+                a2str_obj(self.st_items);
 
                 self.ex_items = d.EXPERIMENT;
                 a2str_obj(self.ex_items);
@@ -221,29 +217,28 @@
                 self.bs_items = d.biosample;
                 a2str_obj(self.bs_items);
 
-                self.s_items = d.SAMPLE;
-                a2str_obj(self.s_items);
-
+                self.smp_items = d.SAMPLE;
+                a2str_obj(self.smp_items);
 
                 self.update();
 
             });
 
-        function set_show(l) {
+        function set_show(d) {
             // visible.kの値を変更しタグをupdateする
             //self.visible.bioproject = self.visible.study = self.visible.experiment = true;
-            l.forEach(function(x){
-                self.visible[x] = true;
+            var types = Object.keys(d);
+            types.forEach(function(x){
+                if(d[x].length > 0){
+                    self.visible[x] = true;
+                }
             });
-            if (self.visible.bioproject && self.visible.STUDY) {
+            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN) {
                 self.visible.related = true;
             }
 
             self.update()
-
         }
-
-
 
     </script>
 </detail>

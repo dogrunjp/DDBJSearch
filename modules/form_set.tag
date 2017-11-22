@@ -1,26 +1,35 @@
 <form_set>
-        <form method="get" id="queryform" name="queryform">
-            <div id="query">
-                <div id="keyword">
-                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
-                    <input type="text" id="term" class="input-box1" name="term" size="50" value=""/>
+        <form id="queryform" name="queryform">
+            <div id="keyword">
+                <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
+                <input type="text" id="term" class="input-box1" name="term" size="50" value=""/>
+            </div>
+
+            <div id="accession">
+                <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="uid">Accession :</label></span>
+                <input type="text" class="input-box1" id="uid" name="uid" size="50" value=""/>
+            </div>
+
+            <div id="sra_form" show='{visible.sra}'>
+                <div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="organism_name">Organism :</label></span>
+                        <input type="text" class="input-box1" name="organism_name" id="organism_name" size="50" value=""/>
+                    </div>
                 </div>
 
-                <div id="accession">
-                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="uid">Accession :</label></span>
-                    <input type="text" class="input-box1" id="uid" name="uid" size="50" value=""/>
-                </div>
+                <div class="show_more"><a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
 
-                <div show='{visible.sra}'>
+                <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
                         <input type="text" class="input-box1" id="study_title" name="study_title" size="50" value=""/>
                     </div>
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="organism_name">Organism :</label></span>
-                        <input type="text" class="input-box1" name="organism_name" id="organism_name" size="50" value=""/>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="instrument_model">Instrument model :</label></span>
+                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" size="50" value=""/>
                     </div>
-
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
                     <select id="study_type" class="select-box1" name="study_type">
                         <option></option>
@@ -39,19 +48,35 @@
                     </select>
 
                 </div>
+            </div>
 
-                <div id="bioproject_form" data-target="bioproject" show="{visible.bioproject}">
+            <div id="bioproject_form" data-target="bioproject" show="{visible.bioproject}">
+                <div class="show_more"><a href="#" data-target="bp_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
+                <div  id="bp_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bp_title">Title :</label></span>
                         <input type="text" class="input-box1" id="bp_title" name="title" size="50" value=""/>
                     </div>
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="locus_tag_prefix">Locus Tag Prefex :</label></span>
-                        <input type="text" class="input-box1" name="locus_tag_prefix" id="locus_tag_prefix" size="40" value=""/>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="locus_tag_prefix">Locus tag prefix :</label></span>
+                        <input type="text" class="input-box1" name="locus_tag_prefix" id="locus_tag_prefix" size="50" value=""/>
                     </div>
                 </div>
 
-                <div id="biosample_form" data-target="biosample" show="{visible.biosample}">
+
+            </div>
+
+            <div id="biosample_form" data-target="biosample" show="{visible.biosample}">
+                <div>
+                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_id">Taxonomy ID :</label></span>
+                    <input type="text" class="input-box1" name="taxonomy_id" id="taxonomy_id" size="50" value="" />
+                </div>
+                <div>
+                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_name">Taxonomy Name :</label></span>
+                    <input type="text" class="input-box1" name="taxonomy_name" id="taxonomy_name" size="50" value="" />
+                </div>
+                <div class="show_more"><a href="#" data-target="bs_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
+                <div  id="bs_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bs_title">Title :</label></span>
                         <input type="text" class="input-box1" id="bs_title" name="title" size="50" value=""/>
@@ -60,53 +85,43 @@
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="package">Package :</label></span>
                         <input type="text" class="input-box1" name="package" id="package" size="50" value="" />
                     </div>
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_id">Taxonomy ID :</label></span>
-                        <input type="text" class="input-box1" name="taxonomy_id" id="taxonomy_id" size="50" value="" />
-                    </div>
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_name">Taxonomy Name :</label></span>
-                        <input type="text" class="input-box1" name="taxonomy_name" id="taxonomy_name" size="50" value="" />
-                    </div>
-
-                </div>
-
-                <div>
-                    <label for="view_count">Show
-                        <select id="view_count" class="select-box1" name="rows">
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                         records
-                    </label>
-
-                    <label show='{visible.sra}' for="sra_sort_key">Sort by
-                        <select id="sra_sort_key" class="select-box1" name="sort">
-                            <option value="uid">ACCESSION</option>
-
-                        </select>
-                    </label>
-
-                    <label show='{visible.bioproject}' for="bp_sort_key">Sort by
-                        <select id="bp_sort_key" class="select-box1" name="sort">
-                            <option value="submitted">SUBMITTED</option>
-                            <option value="uid">ACCESSION</option>
-                        </select>
-                    </label>
-
-                    <label show='{visible.biosample}' for="bs_sort_key">Sort by
-                        <select id="bs_sort_key" class="select-box1" name="sort">
-                            <option value="uid">ACCESSION</option>
-                        </select>
-                    </label>
-
-                    <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
-                    <input type="button" id="clear" class="input-box1" value="Clear" onclick={formrst} />
                 </div>
             </div>
+
+            <div>
+                <label for="view_count">Show
+                    <select id="view_count" class="select-box1" name="rows">
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                     records
+                </label>
+
+                <label show='{visible.sra}' for="sra_sort_key">Sort by
+                    <select id="sra_sort_key" class="select-box1" name="sort">
+                        <option value="uid">ACCESSION</option>
+
+                    </select>
+                </label>
+
+                <label show='{visible.bioproject}' for="bp_sort_key">Sort by
+                    <select id="bp_sort_key" class="select-box1" name="sort">
+                        <option value="submitted">SUBMITTED</option>
+                        <option value="uid">ACCESSION</option>
+                    </select>
+                </label>
+
+                <label show='{visible.biosample}' for="bs_sort_key">Sort by
+                    <select id="bs_sort_key" class="select-box1" name="sort">
+                        <option value="uid">ACCESSION</option>
+                    </select>
+                </label>
+
+                <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
+                <input type="button" id="clear" class="input-box1" value="Clear" onclick={formrst} />
+            </div>
         </form>
-    </div>
     <script>
         // アクティブなターゲットを切り替え
         this.visible = {
@@ -127,6 +142,7 @@
             self.formrst();
             self.update()
         });
+
         keywordsearch()
         {
             var forms = document.getElementById('queryform').elements;
@@ -153,6 +169,25 @@
         formrst()
         {
             document.queryform.reset()
+        }
+
+        adv_show(e)
+        {
+            if(e.target.dataset.state == "hide"){
+                $("#" + e.target.dataset.target).addClass("in");
+                e.target.text = "Hide";
+                e.target.dataset.state = "show";
+            }else if(e.target.dataset.state == "show"){
+                $("#" + e.target.dataset.target).removeClass("in");
+                e.target.text = "Advanced search";
+                e.target.dataset.state = "hide";
+            }
+        }
+
+        function toggle_adv(){
+            // textを変更
+
+            // classを変更
         }
     </script>
 </form_set>

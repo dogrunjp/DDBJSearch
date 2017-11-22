@@ -777,10 +777,14 @@ input.input-box1[type="submit"]:hover{
     margin-top: 16px;
 }
 
-#query span.col_name{
+#queryform span.col_name{
     display: inline-block;
-    width: 155px;
+    width: 170px;
 }
+#queryform .show_more a{
+    font-size: 0.75rem;
+}
+
 
 /* page-top button */
 #page-top{
