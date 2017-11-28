@@ -7,8 +7,7 @@
     <script type="text/javascript">
 
         var self = this;
-        //var base_url = "http://localhost:8080/search?";
-        var base_url = "http://52.193.211.138/search?";
+        var base_url = conf.api_search_base_url;
         var arg = {};
         var q =location.search.substring(1).split('&');
         for(var i=0;q[i];i++) {

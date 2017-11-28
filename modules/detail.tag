@@ -18,7 +18,6 @@
         </table>
         <h2  show="{visible.related}">Related entries</h2>
         <table show="{visible.STUDY}">
-
                 <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
                 <tbody each={st_items}>
                     <tr class="sub-header"><th colspan="2">{uid}</th></tr>
@@ -144,8 +143,7 @@
         var uid = arg["accession"];
         // BioProjectに変換する必要有り
         this.accession = uid;
-        var base_url = "http://52.193.211.138/details?db=";
-        //var base_url = "http://localhost:8080/details?db=";
+        var base_url = conf.api_details_base_url;
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         var target_url = base_url + db + "&id=" + uid;
         self.target_url = target_url;
@@ -198,12 +196,12 @@
                             Object.keys(d).forEach(function (g) {
                                 if (Array.isArray(d[g])) {
                                     d[g] = d[g][0]
+
                                 }
                             })
                         });
                     }catch (d){}
                 }
-                console.log(d)
 
                 self.st_items = d.STUDY;
                 a2str_obj(self.st_items);
