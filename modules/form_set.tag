@@ -11,27 +11,21 @@
             </div>
 
             <div id="sra_form" show='{visible.sra}'>
-                <div>
 
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="organism_name">Organism :</label></span>
-                        <input type="text" class="input-box1" name="organism_name" id="organism_name" size="50" value=""/>
-                    </div>
-                </div>
 
                 <div class="show_more"><a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
 
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="study_title" name="study_title" size="50" value=""/>
+                        <input type="text" class="input-box1" id="study_title" name="study_title" data-type="study" size="50" value=""/>
                     </div>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="instrument_model">Instrument model :</label></span>
-                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" size="50" value=""/>
+                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value=""/>
                     </div>
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
-                    <select id="study_type" class="select-box1" name="study_type">
+                    <select id="study_type" class="select-box1" name="study_type" data-type="study">
                         <option></option>
                         <option>Whole Genome Sequencing</option>
                         <option>Transcriptome Analysis</option>
@@ -46,6 +40,46 @@
                         <option>Transcriptome Sequencing</option>
                         <option>Other</option>
                     </select>
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Center Name :</label></span>
+                        <input type="text" class="input-box1" name="center_name" id="center_name" data-type="study" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Library Name :</label></span>
+                        <input type="text" class="input-box1" name="library_name" id="library_name" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_selection">Library Selection :</label></span>
+                        <input type="text" class="input-box1" name="library_selection" id="library_selection" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_source">Library Source :</label></span>
+                        <input type="text" class="input-box1" name="library_source" id="library_source" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_strategy">Library Strategy :</label></span>
+                        <input type="text" class="input-box1" name="library_strategy" id="library_strategy" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="program">Program :</label></span>
+                        <input type="text" class="input-box1" name="program" id="program" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="platform">Platform :</label></span>
+                        <input type="text" class="input-box1" name="platform" id="platform" data-type="experiment" size="50" value=""/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="protocol">Protocol :</label></span>
+                        <input type="text" class="input-box1" name="protocol" id="protocol" data-type="experiment" size="50" value=""/>
+                    </div>
+
 
                 </div>
             </div>
@@ -148,7 +182,7 @@
             var forms = document.getElementById('queryform').elements;
             var vals = [];
 
-            // submit以外のformをk:vにパースしarrayに追加する
+            // nameとvalueをformをk:vにパースしarrayに追加する
             $.each(forms, function (i, x) {
                 var k = x.name;
                 var v = x.value;
@@ -158,10 +192,17 @@
                 }
             });
 
-            //
+            var types = []
             var q = vals.map(function(l){
                 var s = l[0] + "=" +l[1];
+                // 入力されたdata_typeを取得
+                t = types.push($("#"+l[0]).data('type'));
                 return s
+            });
+            var t = types.filter(function(s){
+                if(s != undefined) {
+                    q.push("type=" + s)
+                }
             });
             var qs = q.join("&");
             window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;

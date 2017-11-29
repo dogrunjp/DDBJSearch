@@ -10,6 +10,7 @@
         var base_url = conf.api_search_base_url;
         var arg = {};
         var q =location.search.substring(1).split('&');
+        console.log(q);
         for(var i=0;q[i];i++) {
             var kv = q[i].split('=');
             arg[kv[0]]=kv[1];
