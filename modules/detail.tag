@@ -19,15 +19,15 @@
         <h2  show="{visible.related}">Related entries</h2>
         <table show="{visible.STUDY}">
                 <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
-                <tbody each={st_items}>
-                    <tr class="sub-header"><th colspan="2">{uid}</th></tr>
-                    <tr if={study_title}><td width="180" class="atrb">Study Title</td><td>{study_title}</td></tr>
-                    <tr if={abstract}><td width="180" class="atrb">Abstract</td><td>{abstract}</td></tr>
-                    <tr if={study_type}><td width="180" class="atrb">Study Type</td><td>{study_type}</td></tr>
-                    <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
-                    <tr if={center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{center_project_name}</td></tr>
-                    <tr if={study_link_url}><td width="180" class="atrb">URL Link</td><td>{study_link_url}</td></tr>
-                    <tr if={publication_id}><td width="180" class="atrb">XREF ID</td><td>{publication_id}</td></tr>
+                <tbody each={st_item in st_items}>
+                    <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
+                    <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
+                    <tr if={st_item.abstract}><td width="180" class="atrb">Abstract</td><td>{st_item.abstract}</td></tr>
+                    <tr if={st_item.study_type}><td width="180" class="atrb">Study Type</td><td>{st_item.study_type}</td></tr>
+                    <tr if={st_item.center_name}><td width="180" class="atrb">Center Name</td><td>{st_item.center_name}</td></tr>
+                    <tr if={st_item.center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{st_item.center_project_name}</td></tr>
+                    <tr if={st_item.study_link_url}><td width="180" class="atrb">URL Link</td><td>{st_item.study_link_url}</td></tr>
+                    <tr if={st_item.publication_id}><td width="180" class="atrb">XREF ID</td><td>{st_item.publication_id}</td></tr>
                 </tbody>
         </table>
 
@@ -41,17 +41,17 @@
         </table>
         <div id="ex_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
             <table show="{visible.EXPERIMENT}" >
-                <tbody each={ex_items}>
-                    <tr class="sub-header"><th colspan="2">{uid}</th></tr>
-                    <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
-                    <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
-                    <tr if={design_description}><td width="180" class="atrb">Design Description</td><td>{design_description}</td></tr>
-                    <tr if={library_layout}><td width="180" class="atrb">Library Layout</td><td>{library_layout}</td></tr>
-                    <tr if={library_name}><td width="180" class="atrb">Library Name</td><td>{library_name}</td></tr>
-                    <tr if={program}><td width="180" class="atrb">Program</td><td>{program}</td></tr>
-                    <tr if={platform}><td width="180" class="atrb">Platform</td><td>{platform}</td></tr>
-                    <tr if={protocol}><td width="180" class="atrb">Protocol</td><td>{protocol}</td></tr>
-                    <tr if={instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{instrument_model}</td></tr>
+                <tbody each={ex_item in ex_items}>
+                    <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
+                    <tr if={ex_item.title}><td width="180" class="atrb">Title</td><td>{ex_item.title}</td></tr>
+                    <tr if={ex_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ex_item.center_name}</td></tr>
+                    <tr if={ex_item.design_description}><td width="180" class="atrb">Design Description</td><td>{ex_item.design_description}</td></tr>
+                    <tr if={ex_item.library_layout}><td width="180" class="atrb">Library Layout</td><td>{ex_item.library_layout}</td></tr>
+                    <tr if={ex_item.library_name}><td width="180" class="atrb">Library Name</td><td>{ex_item.library_name}</td></tr>
+                    <tr if={ex_item.program}><td width="180" class="atrb">Program</td><td>{ex_item.program}</td></tr>
+                    <tr if={ex_item.platform}><td width="180" class="atrb">Platform</td><td>{ex_item.platform}</td></tr>
+                    <tr if={ex_item.protocol}><td width="180" class="atrb">Protocol</td><td>{ex_item.protocol}</td></tr>
+                    <tr if={ex_item.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{ex_item.instrument_model}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -66,13 +66,13 @@
         </table>
         <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
-                <tbody each={bs_items}>
-                    <tr class="sub-header"><th colspan="2">{uid}</th></tr>
-                    <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
-                    <tr if={taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{taxonomy_id}</td></tr>
-                    <tr if={taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{taxonomy_name}</td></tr>
-                    <tr if={package}><td width="180" class="atrb">Package</td><td>{package}</td></tr>
-                    <tr if={env_package}><td width="180" class="atrb">Env Package</td><td>{env_package}</td></tr>
+                <tbody each={bs_item in bs_items}>
+                    <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
+                    <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
+                    <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
+                    <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
+                    <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
+                    <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -87,11 +87,11 @@
         </table>
         <div id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
             <table show="{visible.SAMPLE}" >
-                <tbody each={bs_items}>
-                <tr class="sub-header"><th colspan="2">{uid}</th></tr>
-                <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
-                <tr if={scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{scientific_name}</td></tr>
-                <tr if={taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{taxon_id}</td></tr>
+                <tbody each={smp_item in smp_items}>
+                <tr class="sub-header"><th colspan="2">{smp_item.uid}</th></tr>
+                <tr if={mp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
+                <tr if={mp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{mp_item.scientific_name}</td></tr>
+                <tr if={mp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{mp_item.taxon_id}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -106,16 +106,16 @@
         </table>
         <div id="run_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
             <table show="{visible.RUN}">
-                <tbody each={run_items}>
+                <tbody each={run_item in run_items}>
                     <tr class="sub-header">
-                        <th>{uid}</th>
+                        <th>{run_item.uid}</th>
                         <th>
-                            <span if={sra_path} class="file_path"><a href={base_file_path}{sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                            <span if={fastq_path} class="file_path"><a href={base_file_path}{fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                            <span if={run_item.sra_path} class="file_path"><a href={base_file_path}{run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
+                            <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
                         </th>
                     </tr>
-                    <tr if={prefix}><td width="180" class="atrb">Submission</td><td>{prefix}</td></tr>
-                    <tr if={program}><td width="180" class="atrb">Program</td><td>{program}</td></tr>
+                    <tr if={run_item.prefix}><td width="180" class="atrb">Submission</td><td>{run_item.prefix}</td></tr>
+                    <tr if={run_item.program}><td width="180" class="atrb">Program</td><td>{run_item.program}</td></tr>
                 </tbody>
             </table>
         </div>
