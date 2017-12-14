@@ -35,7 +35,7 @@
 
         get_data()
             .done(function(d) {
-                self.lupd = d["sra"];
+                self.lupd = d["sra"]["last_update"];
                 self.update();
             });
 
