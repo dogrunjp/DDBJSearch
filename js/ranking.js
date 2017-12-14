@@ -12,7 +12,7 @@
         var t = options.target;
         var tdb = options.db;
         // データ読み込み
-        var base_url = "http://52.193.211.138/";
+        var base_url = "http://52.193.211.138/api/";
         var conf = {statistic:{params: "sra/type/"},
             organism: {params: "bioproject/organism_name/"},
             study_type: {params: "sra/study_type/"},
