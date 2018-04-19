@@ -36,13 +36,17 @@
             sra: "SRA"
         };
         var self = this;
-        this.focused = "SRA";
+        var args = location.search;
+        var props = args.slice(1).split('&');
+        var target_db = props[0].slice(10);
+        focused = target_db;
+
         this.onFocus = function(e){
-            this.focused = sub_title[e.target.dataset.target];
+            focused = sub_title[e.target.dataset.target];
         };
 
         obs.on("targetSelected", function(s){
-            self.focused = sub_title[s];
+            focused = sub_title[s];
             self.update();
             $("#header-menu li.target").removeClass("focused");
             $("#header-menu [data-target="+ s +"]").addClass("focused");

@@ -164,7 +164,10 @@
             sra: true
         };
         var self = this;
-        var focused = "sra";
+        var args = location.search;
+        var props = args.slice(1).split('&');
+        var target_db = props[0].slice(10);
+        var focused = target_db ? target_db : "sra";
 
         $("#header-menu li.target").click(function(){
             $("#header-menu li.target").removeClass("focused");
