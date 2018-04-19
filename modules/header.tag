@@ -42,7 +42,6 @@
         var props = args.slice(1).split('&');
         var target_db = props[0].split('=');
         focused = target_db ?  target_db[1]: "sra";
-        self.fed = focused;
 
         // headerのdbがクリックされた祭のイベント
         this.onFocus = function(e){

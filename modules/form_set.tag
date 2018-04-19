@@ -183,14 +183,18 @@
         keywordsearch()
         {
             var forms = document.getElementById('queryform').elements;
-            var vals = [];
+            var vals = [],acc;
 
             // nameとvalueをformをk:vにパースしarrayに追加する
             $.each(forms, function (i, x) {
                 var k = x.name;
                 var v = x.value;
+
                 if (["", "Search", "Clear"].indexOf(v) == -1) {
                     var obj = [k, v];
+                    if (obj[0] === "uid"){
+                        acc = obj;
+                    }
                     vals.push(obj);
                 }
             });
@@ -207,8 +211,22 @@
                     q.push("type=" + s)
                 }
             });
-            var qs = q.join("&");
-            window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;
+            if(acc){
+                fetch("http://52.193.211.138/api/" + focused + "?uid=" + acc[1])
+                    .then(function (d) {
+                        return d.json()
+                    })
+                    .then(function (jsn) {
+                        if (jsn["numFound"] > 0){
+                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1]
+                        }
+                    });
+
+            }else{
+                var qs = q.join("&");
+                window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;
+            };
+
         }
         formrst()
         {
