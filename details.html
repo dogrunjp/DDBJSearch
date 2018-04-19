@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head lang="en">
     <meta charset="UTF-8">
     <title>DDBJ Search</title>
@@ -13,32 +12,31 @@
 </head>
 
 <body>
-<div id="container">
+    <div id="container">
 
-    <header></header>
-    <div id="main">
-        <div class="content">
-            <!-- Trends section -->
-            <h2></h2>
-            <form_set></form_set>
-            <detail></detail>
-
+        <header></header>
+        <div id="main">
+            <div class="content">
+                <!-- Trends section -->
+                <h2></h2>
+                <form_set></form_set>
+                <detail></detail>
+            </div>
         </div>
+        <footer></footer>
     </div>
+    <script type="text/javascript">
 
-    <footer></footer>
-</div>
-<script type="text/javascript">
-
-</script>
-<script type="riot/tag" src="modules/header.tag"></script>
-<script type="riot/tag" src="modules/footer.tag"></script>
-<script type="riot/tag" src="modules/form_set.tag"></script>
-<script type="riot/tag" src="modules/detail.tag"></script>
-<script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
-<script>
-    var obs = riot.observable();
-    riot.mount('*')
+    </script>
+    <script type="riot/tag" src="modules/header.tag"></script>
+    <script type="riot/tag" src="modules/footer.tag"></script>
+    <script type="riot/tag" src="modules/form_set.tag"></script>
+    <script type="riot/tag" src="modules/detail.tag"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
+    <script>
+        var focused;
+        var obs = riot.observable();
+        riot.mount('*')
 </script>
 </body>
 

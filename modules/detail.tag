@@ -130,7 +130,17 @@
             RUN:false,
             EXPERIMENT: false,
             SAMPLE: false,
+
+
+            ANALYSIS: false,
+
+
+
             related: false
+
+
+
+
         };
         var self = this;
         var arg = {};
@@ -237,6 +247,12 @@
 
             self.update()
         }
+
+        var args = location.search;
+        var props = args.slice(1).split('&');
+        var targetdb = props[0].split('=')[1];
+
+        obs.trigger("targetSelected", targetdb);
 
     </script>
 </detail>

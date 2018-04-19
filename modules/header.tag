@@ -15,7 +15,7 @@
                 <h1>
                     <a href="./index.html">
                         <img src="images/ddbj_logo.png" class="logo" alt="DRA Search"/>
-                        <span class="title">DDBJ Search <i class="fa fa-angle-right" aria-hidden="true"></i> {focused}</span>
+                        <span class="title">DDBJ Search <i class="fa fa-angle-right" aria-hidden="true"></i> {fed}</span>
                     </a>
                 </h1>
             </div>
@@ -35,18 +35,24 @@
             bioproject: "BioProject",
             sra: "SRA"
         };
+        // ターゲットのdb名を取得し、heaaderの情報に埋め込む
         var self = this;
+        self.fed = "sra";
         var args = location.search;
         var props = args.slice(1).split('&');
-        var target_db = props[0].slice(10);
-        focused = target_db;
+        var target_db = props[0].split('=');
+        focused = target_db ?  target_db[1]: "sra";
+        self.fed = focused;
 
+        // headerのdbがクリックされた祭のイベント
         this.onFocus = function(e){
             focused = sub_title[e.target.dataset.target];
+            self.fed = focused;
         };
 
         obs.on("targetSelected", function(s){
             focused = sub_title[s];
+            self.fed = focused;
             self.update();
             $("#header-menu li.target").removeClass("focused");
             $("#header-menu [data-target="+ s +"]").addClass("focused");
