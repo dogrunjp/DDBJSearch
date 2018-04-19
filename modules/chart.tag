@@ -39,6 +39,14 @@
                 self.update();
             });
 
+        obs.on("menuSelected", function(t){
+            get_data()
+                .done(function (d) {
+                    self.lupd = d[t.toLowerCase()]["last_update"];
+                    self.update()
+                })
+        });
+
     </script>
 
 </chart>

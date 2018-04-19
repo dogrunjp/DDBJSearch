@@ -298,9 +298,7 @@
                     self.visible[x] = true;
                 }
             });
-            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN) {
-                self.visible.related = true;
-            }
+
 
             //dbの値に寄ってテーブルの表示順を帰る。details~, related~
             // project, study, sample をdetailsとrelatedに併記し、排他的にshow のtrue, falseを決める
@@ -317,9 +315,13 @@
             f["biosample"] = function () {
                 self.visible.biosample_top = true;
                 self.visible.biosample = false;
-            }
+            };
 
             f[db]();
+
+            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN || self.visible.bioproject) {
+                self.visible.related = true;
+            }
 
             self.update()
         }

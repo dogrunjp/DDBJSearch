@@ -47,6 +47,7 @@
         this.onFocus = function(e){
             focused = sub_title[e.target.dataset.target];
             self.fed = focused;
+            obs.trigger('menuSelected', focused);
         };
 
         obs.on("targetSelected", function(s){
