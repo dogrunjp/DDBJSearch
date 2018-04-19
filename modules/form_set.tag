@@ -2,12 +2,12 @@
         <form id="queryform" name="queryform">
             <div id="keyword">
                 <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="term">Keyword :</label></span>
-                <input type="text" id="term" class="input-box1" name="term" size="50" value=""/>
+                <input type="text" id="term" class="input-box1" name="term" size="50" value="" onkeydown="{enter_go}"/>
             </div>
 
             <div id="accession">
                 <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="uid">Accession :</label></span>
-                <input type="text" class="input-box1" id="uid" name="uid" size="50" value=""/>
+                <input type="text" class="input-box1" id="uid" name="uid" size="50" value="" onkeydown="{enter_go}"/>
             </div>
 
             <div id="sra_form" show='{visible.sra}'>
@@ -225,10 +225,12 @@
             }
         }
 
-        function toggle_adv(){
-            // textを変更
-
-            // classを変更
+        enter_go(e)
+        {
+            if(e.key == "Enter"){
+                this.keywordsearch();
+            }
         }
+
     </script>
 </form_set>
