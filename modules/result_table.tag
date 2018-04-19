@@ -10,7 +10,6 @@
         var base_url = conf.api_search_base_url;
         var arg = {};
         var q =location.search.substring(1).split('&');
-        console.log(q);
         for(var i=0;q[i];i++) {
             var kv = q[i].split('=');
             arg[kv[0]]=kv[1];
@@ -49,9 +48,9 @@
             sra:{
                 columns:[
                     {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.open("details.html?db=sra&accession=" + cell.getValue())}},
-                    {title:"TITLE", field:"study_title", width: 350, align:"left", headerSort:false},
-                    {title:"ABSTRACT", field:"abstract", width: 420, headerSort:false},
-                    {title:"STUDY TYPE", field:"study_type", width: 135, headerSort:false}
+                    {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
+                    {title:"ABSTRACT", field:"abstract", width: "20%"},
+                    {title:"STUDY_TYPE", field: "study_type", width: "20%"}
                 ]},
             bioproject:{
                 columns:[
