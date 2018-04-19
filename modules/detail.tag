@@ -1,7 +1,10 @@
 <detail>
     <div class="details">
+
+
         <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={target_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
-        <table show="{visible.bioproject}">
+
+        <table show="{visible.bioproject_top}">
             <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
             <tbody>
                 <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
@@ -16,7 +19,63 @@
                 <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
             </tbody>
         </table>
+
+        <table show="{visible.STUDY_top}">
+            <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
+            <tbody each={st_item in st_items}>
+            <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
+            <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
+            <tr if={st_item.abstract}><td width="180" class="atrb">Abstract</td><td>{st_item.abstract}</td></tr>
+            <tr if={st_item.study_type}><td width="180" class="atrb">Study Type</td><td>{st_item.study_type}</td></tr>
+            <tr if={st_item.center_name}><td width="180" class="atrb">Center Name</td><td>{st_item.center_name}</td></tr>
+            <tr if={st_item.center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{st_item.center_project_name}</td></tr>
+            <tr if={st_item.study_link_url}><td width="180" class="atrb">URL Link</td><td>{st_item.study_link_url}</td></tr>
+            <tr if={st_item.publication_id}><td width="180" class="atrb">XREF ID</td><td>{st_item.publication_id}</td></tr>
+            </tbody>
+        </table>
+
+        <table show="{visible.biosample_top}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">BioSample</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table" aria-expanded="true" aria-controls="bs_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
+            <table show="{visible.biosample_top}" >
+                <tbody each={bs_item in bs_items}>
+                <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
+                <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
+                <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
+                <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
+                <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
+                <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
         <h2  show="{visible.related}">Related entries</h2>
+
+
+        <table show="{visible.bioproject}">
+            <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
+            <tbody>
+            <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
+            <tr if={description}><td width="180" class="atrb">Description</td><td>{description}</td></tr>
+            <tr if={organism_name}><td width="180" class="atrb">Organism name</td><td>{organism_name}</td></tr>
+            <tr if={tax_id}><td width="180" class="atrb">Tax id</td><td>{ tax_id }</td></tr>
+            <tr if={archive}><td width="180" class="atrb">Archive</td><td>{ archive }</td></tr>
+            <tr if={locus_tag_prefix}><td width="180" class="atrb">LocusTagPrefix</td><td> { locus_tag_prefix }</td></tr>
+            <tr if={organization}><td width="180" class="atrb">Organization name</td><td>{ organization}</td></tr>
+            <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
+            <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
+            <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
+            </tbody>
+        </table>
+
         <table show="{visible.STUDY}">
                 <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
                 <tbody each={st_item in st_items}>
@@ -125,20 +184,18 @@
     <script type="text/javascript">
         this.visible = {
             bioproject: false,
+            bioproject_top: false,
             biosample: false,
+            bopsample_top: false,
             STUDY: false,
+            STUDY_top: false,
             RUN:false,
             EXPERIMENT: false,
             SAMPLE: false,
 
-
             ANALYSIS: false,
 
-
-
             related: false
-
-
 
 
         };
@@ -245,13 +302,33 @@
                 self.visible.related = true;
             }
 
+            //dbの値に寄ってテーブルの表示順を帰る。details~, related~
+            // project, study, sample をdetailsとrelatedに併記し、排他的にshow のtrue, falseを決める
+            // ただし、[true, false]または[false, false]の可能性もある。
+            f = {};
+            f["sra"] = function () {
+                self.visible.STUDY_top = true;
+                self.visible.STUDY = false;
+            };
+            f["bioproject"] = function () {
+                self.visible.bioproject_top = true;
+                self.visible.bioproject = false
+            };
+            f["biosample"] = function () {
+                self.visible.biosample_top = true;
+                self.visible.biosample = false;
+            }
+
+            f[db]();
+
             self.update()
         }
+
+
 
         var args = location.search;
         var props = args.slice(1).split('&');
         var targetdb = props[0].split('=')[1];
-
         obs.trigger("targetSelected", targetdb);
 
     </script>
