@@ -192,6 +192,7 @@
 
                 if (["", "Search", "Clear"].indexOf(v) == -1) {
                     var obj = [k, v];
+                    // accessionが入力された場合のみaccにも値を入れる
                     if (obj[0] === "uid"){
                         acc = obj;
                     }
@@ -199,7 +200,7 @@
                 }
             });
 
-            var types = []
+            var types = [];
             var q = vals.map(function(l){
                 var s = l[0] + "=" +l[1];
                 // 入力されたdata_typeを取得
@@ -219,6 +220,8 @@
                     .then(function (jsn) {
                         if (jsn["numFound"] > 0){
                             window.location.href = "details.html?db=" + focused + "&accession=" + acc[1]
+                        }else{
+                            window.location.href = "result.html?target_db=" + focused + "&uid=" + acc[1]
                         }
                     });
 

@@ -88,7 +88,7 @@
                 },
                 placeholder: "No Data Available",
                 ajaxError:function (xhr, textStatus, errorThrown){
-                    self.update()
+                    self.update();
                     console.log(xhr);
                     console.log(textStatus);
                     console.log(errorThrown)
