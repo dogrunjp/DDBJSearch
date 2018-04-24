@@ -1635,3 +1635,7 @@ tbody.collapse.in {
 #main .details  span.file_path a:hover{
     text-decoration: underline;
 }
+
+#rslt-table div.tabulator-tableHolder{
+    min-height: 75px;
+}

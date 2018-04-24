@@ -85,8 +85,16 @@
                     self.founds = datas["numFound"];
                     self.target = targetdb + " entries";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
+                },
+                placeholder: "No Data Available",
+                ajaxError:function (xhr, textStatus, errorThrown){
+                    self.update()
+                    console.log(xhr);
+                    console.log(textStatus);
+                    console.log(errorThrown)
                 }
             });
+            $("#rslt-table").tabulator("setFilter", "numFound", "==", 0);
         });
 
         function get_name(v) {

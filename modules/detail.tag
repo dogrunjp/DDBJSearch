@@ -179,6 +179,25 @@
             </table>
         </div>
 
+        <table show="{visible.ANALYSIS">
+            <thead>
+                <tr class="table-header">
+                    <th width="110">ANALYSIS</th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ana_table" aria-expanded="true" aria-controls="ana_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                </tr>
+            </thead>
+        </table>
+        <div id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
+            <table show="{visible.ANALYSIS}" >
+                <tbody each={ana_item in ana_items}>
+                <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
+                <tr if={ana_item.title}><td width="180" class="atrb">Title</td><td>{ana_item.title}</td></tr>
+                <tr if={ana_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ana_item.center_name}</td></tr>
+                <tr if={ana_item.analysis_type}><td width="180" class="atrb">Design Description</td><td>{ana_item.design_description}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
     <script type="text/javascript">
@@ -192,11 +211,8 @@
             RUN:false,
             EXPERIMENT: false,
             SAMPLE: false,
-
             ANALYSIS: false,
-
             related: false
-
 
         };
         var self = this;
@@ -284,6 +300,9 @@
 
                 self.smp_items = d.SAMPLE;
                 a2str_obj(self.smp_items);
+
+                self.ana_items = d.ANALYSIS;
+                a2str_obj(self.ana_items);
 
                 self.update();
 
