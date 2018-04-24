@@ -47,14 +47,14 @@
         var table_conf = {
             sra:{
                 columns:[
-                    {title:"ACCESSION", field:"uid", width:110, cellClick:function(e, cell){ window.open("details.html?db=sra&accession=" + cell.getValue())}},
+                    {title:"ACCESSION", field:"uid", width:110},
                     {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
                     {title:"ABSTRACT", field:"abstract", width: "20%"},
                     {title:"STUDY_TYPE", field: "study_type", width: "20%"}
                 ]},
             bioproject:{
                 columns:[
-                    {title:"BioProject", field:"uid", width:100, cellClick:function(e, cell){ window.open("details.html?db=bioproject&accession=" + cell.getValue())}},
+                    {title:"BioProject", field:"uid", width:100},
                     {title:"TITLE", field:"title", width: 300, align:"left", headerSort:false},
                     {title:"ORGANISM NAME", field:"organism_name", width: 160, sorter:"string"},
                     {title:"ORGANIZATION NAME", field:"organization_name", width: 160, sorter:"string"},
@@ -63,7 +63,7 @@
                 ]},
             biosample:{
                 columns:[
-                    {title:"BioSample", field:"uid", width:120, cellClick:function(e, cell){ window.open("details.html?db=biosample&accession=" + cell.getValue())}},
+                    {title:"BioSample", field:"uid", width:120},
                     {title:"TITLE", field:"title", width: 340, align:"left", sorter:"string"},
                     {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
                     {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
@@ -87,12 +87,13 @@
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
                 },
                 placeholder: "No Data Available",
-                ajaxError:function (xhr, textStatus, errorThrown){
-                    self.update();
-                    console.log(xhr);
-                    console.log(textStatus);
-                    console.log(errorThrown)
-                }
+                rowClick:function(e, row){
+                  const accession = row.row.data.uid;
+                  window.open("details.html?db=" + targetdb + "&accession=" + accession)
+                },
+                ajaxError:function (xhr, textStatus, errorThrown){},
+
+
             });
             $("#rslt-table").tabulator("setFilter", "numFound", "==", 0);
         });
