@@ -221,6 +221,7 @@
                         if (jsn["numFound"] > 0){
                             window.location.href = "details.html?db=" + focused + "&accession=" + acc[1]
                         }else{
+                            // 必ず0件を取得するquery
                             window.location.href = "result.html?target_db=" + focused + "&uid=" + acc[1]
                         }
                     });

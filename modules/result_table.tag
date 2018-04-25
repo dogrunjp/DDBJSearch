@@ -8,6 +8,7 @@
 
         var self = this;
         var base_url = conf.api_search_base_url;
+        var nfounds;
         var arg = {};
         var q =location.search.substring(1).split('&');
         for(var i=0;q[i];i++) {
@@ -81,18 +82,19 @@
                 paginationSize: rows,
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
-                    self.update();
-                    self.founds = datas["numFound"];
+                    //self.update();
+                    nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
+                    self.founds = nfounds ? nfounds: 0;
                     self.target = targetdb + " entries";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
+                    self.update();
+
                 },
                 placeholder: "No Data Available",
                 rowClick:function(e, row){
                   const accession = row.row.data.uid;
                   window.open("details.html?db=" + targetdb + "&accession=" + accession)
-                },
-                ajaxError:function (xhr, textStatus, errorThrown){},
-
+                }
 
             });
             $("#rslt-table").tabulator("setFilter", "numFound", "==", 0);

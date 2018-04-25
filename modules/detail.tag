@@ -55,12 +55,25 @@
             </table>
         </div>
 
-
+        <table show="{visible.SUBMISSION}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">Submission</th><th></th>
+            </tr>
+            </thead>
+            <tbody each={sb_item in sb_items}>
+            <tr class="sub-header"><th colspan="2">{sb_item.uid}</th></tr>
+            <tr if={sb_item.title}><td width="180" class="atrb">Title</td><td>{sb_item.title}</td></tr>
+            <tr if={sb_item.center_name}><td width="180" class="atrb">Center_name</td><td>{sb_item.center_name}</td></tr>
+            <tr if={sb_item.lab_name}><td width="180" class="atrb">Lab_name</td><td>{sb_item.lab_name}</td></tr>
+            </tbody>
+        </table>
 
         <h2  show="{visible.related}">Related entries</h2>
 
 
         <table show="{visible.bioproject}">
+            <thead><tr></tr></thead>
             <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
             <tbody>
             <tr if={title}><td width="180" class="atrb">Title</td><td>{title}</td></tr>
@@ -119,11 +132,11 @@
             <thead>
                 <tr class="table-header">
                     <th width="110">BioSample</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table" aria-expanded="true" aria-controls="bs_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
             </thead>
         </table>
-        <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
+        <div id="bs_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
                 <tbody each={bs_item in bs_items}>
                     <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
@@ -132,6 +145,25 @@
                     <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
                     <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
                     <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table show="{visible.ANALYSIS}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">ANALYSIS</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ana_table" aria-expanded="true" aria-controls="ana_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
+            <table show="{visible.ANALYSIS}" >
+                <tbody each={ana_item in ana_items}>
+                <tr class="sub-header"><th colspan="2">{ana_item.uid}</th></tr>
+                <tr if={ana_item.title}><td width="180" class="atrb">Title</td><td>{ana_item.title}</td></tr>
+                <tr if={ana_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ana_item.center_name}</td></tr>
+                <tr if={ana_item.analysis_type}><td width="180" class="atrb">Design Description</td><td>{ana_item.design_description}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -179,24 +211,7 @@
             </table>
         </div>
 
-        <table show="{visible.ANALYSIS">
-            <thead>
-                <tr class="table-header">
-                    <th width="110">ANALYSIS</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ana_table" aria-expanded="true" aria-controls="ana_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-                </tr>
-            </thead>
-        </table>
-        <div id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
-            <table show="{visible.ANALYSIS}" >
-                <tbody each={ana_item in ana_items}>
-                <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
-                <tr if={ana_item.title}><td width="180" class="atrb">Title</td><td>{ana_item.title}</td></tr>
-                <tr if={ana_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ana_item.center_name}</td></tr>
-                <tr if={ana_item.analysis_type}><td width="180" class="atrb">Design Description</td><td>{ana_item.design_description}</td></tr>
-                </tbody>
-            </table>
-        </div>
+
 
 
     </div>
@@ -212,6 +227,7 @@
             EXPERIMENT: false,
             SAMPLE: false,
             ANALYSIS: false,
+            SUBMISSION: false,
             related: false
 
         };
@@ -304,6 +320,9 @@
                 self.ana_items = d.ANALYSIS;
                 a2str_obj(self.ana_items);
 
+                self.sb_items = d.SUBMISSION;
+                a2str_obj(self.sb_items);
+
                 self.update();
 
             });
@@ -324,8 +343,15 @@
             // ただし、[true, false]または[false, false]の可能性もある。
             f = {};
             f["sra"] = function () {
-                self.visible.STUDY_top = true;
-                self.visible.STUDY = false;
+                // Submission検索のケースでは
+                if(self.visible.SUBMISSION) {
+                    self.visible.STUDY_top = false;
+                    self.visible.STUDY = true;
+                }else{
+                    self.visible.STUDY_top = true;
+                    self.visible.STUDY = false;
+                    self.visible.SUBMISSION = false
+                }
             };
             f["bioproject"] = function () {
                 self.visible.bioproject_top = true;
@@ -338,7 +364,7 @@
 
             f[db]();
 
-            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN || self.visible.bioproject) {
+            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN || self.visible.bioproject || self.visible.analysis) {
                 self.visible.related = true;
             }
 
