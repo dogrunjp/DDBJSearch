@@ -1,7 +1,6 @@
 <detail>
     <div class="details">
 
-
         <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={target_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
 
         <table show="{visible.bioproject_top}">
@@ -33,6 +32,93 @@
             <tr if={st_item.publication_id}><td width="180" class="atrb">XREF ID</td><td>{st_item.publication_id}</td></tr>
             </tbody>
         </table>
+
+        <table show="{visible.EXPERIMENT_top}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">EXPERIMENT</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ex_table" aria-expanded="true" aria-controls="ex_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div show="{visible.EXPERIMENT_top}" id="ex_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
+            <table>
+                <tbody each={ex_item in ex_items}>
+                <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
+                <tr if={ex_item.title}><td width="180" class="atrb">Title</td><td>{ex_item.title}</td></tr>
+                <tr if={ex_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ex_item.center_name}</td></tr>
+                <tr if={ex_item.design_description}><td width="180" class="atrb">Design Description</td><td>{ex_item.design_description}</td></tr>
+                <tr if={ex_item.library_layout}><td width="180" class="atrb">Library Layout</td><td>{ex_item.library_layout}</td></tr>
+                <tr if={ex_item.library_name}><td width="180" class="atrb">Library Name</td><td>{ex_item.library_name}</td></tr>
+                <tr if={ex_item.program}><td width="180" class="atrb">Program</td><td>{ex_item.program}</td></tr>
+                <tr if={ex_item.platform}><td width="180" class="atrb">Platform</td><td>{ex_item.platform}</td></tr>
+                <tr if={ex_item.protocol}><td width="180" class="atrb">Protocol</td><td>{ex_item.protocol}</td></tr>
+                <tr if={ex_item.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{ex_item.instrument_model}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table show="{visible.ANALYSIS_top}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">ANALYSIS</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ana_table" aria-expanded="true" aria-controls="ana_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div show="{visible.ANALYSIS}" id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
+            <table>
+                <tbody each={ana_item in ana_items}>
+                <tr class="sub-header"><th colspan="2">{ana_item.uid}</th></tr>
+                <tr if={ana_item.title}><td width="180" class="atrb">Title</td><td>{ana_item.title}</td></tr>
+                <tr if={ana_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ana_item.center_name}</td></tr>
+                <tr if={ana_item.analysis_type}><td width="180" class="atrb">Design Description</td><td>{ana_item.design_description}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table show="{visible.SAMPLE_top}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">SAMPLE</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#s_table" aria-expanded="true" aria-controls="s_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div show="{visible.SAMPLE}"  id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
+            <table>
+                <tbody each={smp_item in smp_items}>
+                <tr class="sub-header"><th colspan="2">{smp_item.uid}</th></tr>
+                <tr if={mp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
+                <tr if={mp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{mp_item.scientific_name}</td></tr>
+                <tr if={mp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{mp_item.taxon_id}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table show="{visible.RUN_top}">
+            <thead>
+            <tr class="table-header">
+                <th width="110">RUN</th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#run_table" aria-expanded="true" aria-controls="run_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+            </tr>
+            </thead>
+        </table>
+        <div show="{visible.RUN_top}" id="run_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
+            <table>
+                <tbody each={run_item in run_items}>
+                <tr class="sub-header">
+                    <th>{run_item.uid}</th>
+                    <th>
+                        <span if={run_item.sra_path} class="file_path"><a href={base_file_path}{run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
+                        <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                    </th>
+                </tr>
+                <tr if={run_item.prefix}><td width="180" class="atrb">Submission</td><td>{run_item.prefix}</td></tr>
+                <tr if={run_item.program}><td width="180" class="atrb">Program</td><td>{run_item.program}</td></tr>
+                </tbody>
+            </table>
+        </div>
 
         <table show="{visible.biosample_top}">
             <thead>
@@ -211,9 +297,6 @@
             </table>
         </div>
 
-
-
-
     </div>
     <script type="text/javascript">
         this.visible = {
@@ -224,9 +307,13 @@
             STUDY: false,
             STUDY_top: false,
             RUN:false,
+            RUN_top: false,
             EXPERIMENT: false,
+            EXPERIMENT_top: false,
             SAMPLE: false,
+            SAMPLE_top: false,
             ANALYSIS: false,
+            ANALYSIS_top: false,
             SUBMISSION: false,
             related: false
 
@@ -290,6 +377,7 @@
 
 
                 function a2str_obj(obj) {
+                    // visbleを設定するため、typeごとのkeyを取得
                     try{
                         obj.forEach(function (d) {
                             Object.keys(d).forEach(function (g) {
@@ -337,13 +425,48 @@
                 }
             });
 
-
             //dbの値に寄ってテーブルの表示順を帰る。details~, related~
             // project, study, sample をdetailsとrelatedに併記し、排他的にshow のtrue, falseを決める
             // ただし、[true, false]または[false, false]の可能性もある。
             f = {};
             f["sra"] = function () {
-                // Submission検索のケースでは
+                // typeを取得し,x_top = trueに設定する
+                if (arg.accession){
+                    var T = {};
+                    T = {
+                        "P": function () {
+                            self.visible.STUDY_top = true;
+                            self.visible.STUDY = false;
+                        },
+                        "X": function () {
+                            self.visible.EXPERIMENT_top = true;
+                            self.visible.EXPERIMENT = false;
+                        },
+                        "S": function () {
+                            self.visible.SAMPLE_top = true;
+                            self.visible.SAMPLE = false;
+                        },
+                        "R": function() {
+                            self.visible.RUN_top = true;
+                            self.visible.RUN = false;
+                        },
+                        "Z": function () {
+                            self.visible.ANALYSIS_top = true;
+                            self.visible.ANALYSIS = false;
+                        },
+                        "A": function () {
+                            self.visible.SUBMISSION = true
+                        }
+                    };
+                    uid = arg.accession;
+                    T[uid.substr(2, 1)]();
+
+                }else{
+                    self.visible.STUDY_top = true;
+                    self.visible.STUDY = false;
+                }
+                console.log(self.visible.STUDY_top);
+                <!--
                 if(self.visible.SUBMISSION) {
                     self.visible.STUDY_top = false;
                     self.visible.STUDY = true;
@@ -352,6 +475,7 @@
                     self.visible.STUDY = false;
                     self.visible.SUBMISSION = false
                 }
+                -->
             };
             f["bioproject"] = function () {
                 self.visible.bioproject_top = true;
@@ -371,6 +495,17 @@
             self.update()
         }
 
+        function get_type(uid) {
+            const T = {
+                "P": "study",
+                "X": "experiment",
+                "S": "sample",
+                "R": "run",
+                "Z": "analysis",
+                "A": "submission"
+            };
+            return T[uid];
+        }
 
 
         var args = location.search;
