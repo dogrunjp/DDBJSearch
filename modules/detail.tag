@@ -85,13 +85,13 @@
             </tr>
             </thead>
         </table>
-        <div show="{visible.SAMPLE}"  id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
+        <div show="{visible.SAMPLE_top}"  id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
             <table>
                 <tbody each={smp_item in smp_items}>
                 <tr class="sub-header"><th colspan="2">{smp_item.uid}</th></tr>
-                <tr if={mp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
-                <tr if={mp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{mp_item.scientific_name}</td></tr>
-                <tr if={mp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{mp_item.taxon_id}</td></tr>
+                <tr if={smp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
+                <tr if={smp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{smp_item.scientific_name}</td></tr>
+                <tr if={smp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{smp_item.taxon_id}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -266,9 +266,9 @@
             <table show="{visible.SAMPLE}" >
                 <tbody each={smp_item in smp_items}>
                 <tr class="sub-header"><th colspan="2">{smp_item.uid}</th></tr>
-                <tr if={mp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
-                <tr if={mp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{mp_item.scientific_name}</td></tr>
-                <tr if={mp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{mp_item.taxon_id}</td></tr>
+                <tr if={smp_item.title}><td width="180" class="atrb">Title</td><td>{smp_item.title}</td></tr>
+                <tr if={smp_item.scientific_name}><td width="180" class="atrb">Scientific Name</td><td>{smp_item.scientific_name}</td></tr>
+                <tr if={smp_item.taxon_id}><td width="180" class="atrb">Taxonomy ID</td><td>{smp_item.taxon_id}</td></tr>
                 </tbody>
             </table>
         </div>
@@ -465,7 +465,6 @@
                     self.visible.STUDY_top = true;
                     self.visible.STUDY = false;
                 }
-                console.log(self.visible.STUDY_top);
                 <!--
                 if(self.visible.SUBMISSION) {
                     self.visible.STUDY_top = false;
