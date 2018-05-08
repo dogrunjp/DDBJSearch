@@ -12,7 +12,6 @@
 
             <div id="sra_form" show='{visible.sra}'>
 
-
                 <div class="show_more"><a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
 
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -20,29 +19,10 @@
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
                         <input type="text" class="input-box1" id="study_title" name="study_title" data-type="study" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
+
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="instrument_model">Instrument model :</label></span>
-                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
-                    </div>
-                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
-                    <select id="study_type" class="select-box1" name="study_type" data-type="study">
-                        <option></option>
-                        <option>Whole Genome Sequencing</option>
-                        <option>Transcriptome Analysis</option>
-                        <option>Metagenomics</option>
-                        <option>Population Genomics</option>
-                        <option>Epigenetics</option>
-                        <option>Exome Sequencing</option>
-                        <option>Epigenetics</option>
-                        <option>Exome Sequencing</option>
-                        <option>Pooled Clone Sequencing</option>
-                        <option>Synthetic Genomics</option>
-                        <option>Transcriptome Sequencing</option>
-                        <option>Other</option>
-                    </select>
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Center Name :</label></span>
-                        <input type="text" class="input-box1" name="center_name" id="center_name" data-type="study" size="50" value=""  onkeydown="{enter_go}"/>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
+                        <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" onkeydown="{enter_go}" />
                     </div>
 
                     <div>
@@ -51,35 +31,29 @@
                     </div>
 
                     <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_strategy">Library Strategy :</label></span>
+                        <input type="text" class="input-box1" name="library_strategy" id="library_strategy" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_source">Library Source :</label></span>
+                        <input type="text" class="input-box1" name="library_source" id="library_source" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_selection">Library Selection :</label></span>
                         <input type="text" class="input-box1" name="library_selection" id="library_selection" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_source">Library Source :</label></span>
-                        <input type="text" class="input-box1" name="library_source" id="library_source" data-type="experiment" size="50" value=""/>
-                    </div>
-
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_strategy">Library Strategy :</label></span>
-                        <input type="text" class="input-box1" name="library_strategy" id="library_strategy" data-type="experiment" size="50" value=""/>
-                    </div>
-
-                    <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="program">Program :</label></span>
-                        <input type="text" class="input-box1" name="program" id="program" data-type="experiment" size="50" value=""/>
-                    </div>
-
-                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="platform">Platform :</label></span>
-                        <input type="text" class="input-box1" name="platform" id="platform" data-type="experiment" size="50" value=""/>
+                        <input type="text" class="input-box1" name="platform" id="platform" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="protocol">Protocol :</label></span>
-                        <input type="text" class="input-box1" name="protocol" id="protocol" data-type="experiment" size="50" value=""/>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="instrument_model">Instrument model :</label></span>
+                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
-
 
                 </div>
             </div>
@@ -104,21 +78,21 @@
             <div id="biosample_form" data-target="biosample" show="{visible.biosample}">
                 <div>
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_id">Taxonomy ID :</label></span>
-                    <input type="text" class="input-box1" name="taxonomy_id" id="taxonomy_id" size="50" value="" />
+                    <input type="text" class="input-box1" name="taxonomy_id" id="taxonomy_id" size="50" value="" onkeydown="{enter_go}" />
                 </div>
                 <div>
-                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_name">Taxonomy Name :</label></span>
-                    <input type="text" class="input-box1" name="taxonomy_name" id="taxonomy_name" size="50" value="" />
+                    <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="taxonomy_name">Organism name :</label></span>
+                    <input type="text" class="input-box1" name="taxonomy_name" id="taxonomy_name" size="50" value="" onkeydown="{enter_go}" />
                 </div>
                 <div class="show_more"><a href="#" data-target="bs_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
                 <div  id="bs_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bs_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="bs_title" name="title" size="50" value=""/>
+                        <input type="text" class="input-box1" id="bs_title" name="title" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="package">Package :</label></span>
-                        <input type="text" class="input-box1" name="package" id="package" size="50" value="" />
+                        <input type="text" class="input-box1" name="package" id="package" size="50" value="" onkeydown="{enter_go}" />
                     </div>
                 </div>
             </div>
