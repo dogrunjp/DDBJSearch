@@ -18,11 +18,11 @@
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="study_title" name="study_title" data-type="study" size="50" value=""/>
+                        <input type="text" class="input-box1" id="study_title" name="study_title" data-type="study" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="instrument_model">Instrument model :</label></span>
-                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value=""/>
+                        <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
                     <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
                     <select id="study_type" class="select-box1" name="study_type" data-type="study">
@@ -42,17 +42,17 @@
                     </select>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Center Name :</label></span>
-                        <input type="text" class="input-box1" name="center_name" id="center_name" data-type="study" size="50" value=""/>
+                        <input type="text" class="input-box1" name="center_name" id="center_name" data-type="study" size="50" value=""  onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Library Name :</label></span>
-                        <input type="text" class="input-box1" name="library_name" id="library_name" data-type="experiment" size="50" value=""/>
+                        <input type="text" class="input-box1" name="library_name" id="library_name" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_selection">Library Selection :</label></span>
-                        <input type="text" class="input-box1" name="library_selection" id="library_selection" data-type="experiment" size="50" value=""/>
+                        <input type="text" class="input-box1" name="library_selection" id="library_selection" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
@@ -89,12 +89,12 @@
                 <div  id="bp_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bp_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="bp_title" name="title" size="50" value=""/>
+                        <input type="text" class="input-box1" id="bp_title" name="title" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="publication_id">Publication ID :</label></span>
-                        <input type="text" class="input-box1" name="publication_id" id="publication_id" size="50" value=""/>
+                        <input type="text" class="input-box1" name="publication_id" id="publication_id" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
                 </div>
 
@@ -257,6 +257,16 @@
                 this.keywordsearch();
             }
         }
+
+        // Advanced searchのshow propertyを設定
+        obs.on("targetSelected", function(s){
+            for (var k in self.visible){
+                self.visible[k] = false;
+            }
+            self.visible[s] = true;
+            self.update();
+
+        });
 
     </script>
 </form_set>
