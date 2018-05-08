@@ -91,9 +91,10 @@
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bp_title">Title :</label></span>
                         <input type="text" class="input-box1" id="bp_title" name="title" size="50" value=""/>
                     </div>
+
                     <div>
-                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="locus_tag_prefix">Locus tag prefix :</label></span>
-                        <input type="text" class="input-box1" name="locus_tag_prefix" id="locus_tag_prefix" size="50" value=""/>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="publication_id">Publication ID :</label></span>
+                        <input type="text" class="input-box1" name="publication_id" id="publication_id" size="50" value=""/>
                     </div>
                 </div>
 

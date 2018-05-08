@@ -782,9 +782,14 @@ input.input-box1[type="submit"]:hover{
     width: 170px;
 }
 #queryform .show_more a{
+    padding: 2px 6px;
+    background-color: #efefef;
     font-size: 0.75rem;
+    border: solid 1px #444444;
+    border-radius: 4px;
+    color: #333333;
+    text-decoration: none;
 }
-
 
 /* page-top button */
 #page-top{
