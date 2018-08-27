@@ -65,7 +65,7 @@
                 .attr("class", "lists")
                 .on("click", function (d) {
                     var type = $(this).parents()[1].getAttribute('data-field');
-                    console.log($(this).parents());
+                    //console.log($(this).parents());
                     showList({key: type, value: d.name})
                 });
 
