@@ -45,6 +45,7 @@ div#header-menu{
 #header-link.navbar-inverse.nav-upper ul {
     float: left;
     display: table;
+    margin-left: 4px;
 }
 #header-link.navbar-inverse.nav-upper .navbar-upper > li {
     display: table-cell;
