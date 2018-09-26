@@ -21,6 +21,11 @@
                     </div>
 
                     <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="publication_id">Publication ID :</label></span>
+                        <input type="text" class="input-box1" id="publication_id" name="publication_id" data-type="study" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
                         <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" onkeydown="{enter_go}" />
                     </div>

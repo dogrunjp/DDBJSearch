@@ -1,5 +1,5 @@
 <result-table>
-    <h3>Search Results for {query_params}, {founds} {target} <!-- ex. --></h3>
+    <h3>Search Results for {query_params}, {founds} {target} <span show='{visible_sra}'>(total {total} sra entries)</span><!-- ex. --></h3>
     <div id="rslt-table"></div>
 
     <div id="data-container"></div>
@@ -75,6 +75,7 @@
         };
 
         this.on("mount", function(){
+            self.visible_sra = targetdb == "sra" ? true: false;
             $("#rslt-table").tabulator({
                 pagination:"remote",
                 ajaxURL: q,
@@ -82,13 +83,13 @@
                 paginationSize: rows,
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
-                    //self.update();
+                    ttl = datas["total"] ? datas["total"]: ttl;
                     nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
                     self.founds = nfounds ? nfounds: 0;
-                    self.target = targetdb + " entries";
+                    self.total = ttl;
+                    self.target = targetdb == "sra" ?  "Study entries": targetdb + " entries";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
                     self.update();
-
                 },
                 placeholder: "No Data Available",
                 rowClick:function(e, row){
