@@ -83,10 +83,11 @@
                 paginationSize: rows,
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
-                    ttl = datas["total"] ? datas["total"]: ttl;
                     nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
+                    ttl = datas["total"] ? datas["total"]: ttl;
+                    console.log(ttl)
                     self.founds = nfounds ? nfounds: 0;
-                    self.total = ttl;
+                    self.total = ttl ? ttl: 0;
                     self.target = targetdb == "sra" ?  "Study entries": targetdb + " entries";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
                     self.update();
