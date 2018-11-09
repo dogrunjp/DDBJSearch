@@ -9,6 +9,7 @@
         var self = this;
         var base_url = conf.api_search_base_url;
         var nfounds;
+        var ntotal;
         var arg = {};
         var q =location.search.substring(1).split('&');
         for(var i=0;q[i];i++) {
@@ -84,10 +85,9 @@
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
                     nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
-                    ttl = datas["total"] ? datas["total"]: ttl;
-                    console.log(ttl)
+                    ntotal = datas["total"] ? datas["total"]: ntotal;
                     self.founds = nfounds ? nfounds: 0;
-                    self.total = ttl ? ttl: 0;
+                    self.total = ntotal ? ntotal: 0;
                     self.target = targetdb == "sra" ?  "Study entries": targetdb + " entries";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
                     self.update();
