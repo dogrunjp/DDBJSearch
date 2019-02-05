@@ -193,11 +193,12 @@
             <thead>
                 <tr class="table-header">
                     <th width="110">EXPERIMENT</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ex_table" aria-expanded="true" aria-controls="ex_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ex_table_m" aria-expanded="true" aria-controls="ex_table_m">
+                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
             </thead>
         </table>
-        <div id="ex_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
+        <div id="ex_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
             <table show="{visible.EXPERIMENT}" >
                 <tbody each={ex_item in ex_items}>
                     <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
@@ -218,7 +219,8 @@
             <thead>
                 <tr class="table-header">
                     <th width="110">BioSample</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m">
+                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
             </thead>
         </table>
@@ -277,11 +279,12 @@
             <thead>
             <tr class="table-header">
                 <th width="110">RUN</th>
-                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#run_table" aria-expanded="true" aria-controls="run_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#run_table_m" aria-expanded="true" aria-controls="run_table_m">
+                    <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
             </tr>
             </thead>
         </table>
-        <div id="run_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
+        <div id="run_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
             <table show="{visible.RUN}">
                 <tbody each={run_item in run_items}>
                     <tr class="sub-header">
@@ -327,11 +330,13 @@
         }
         var db = arg["db"];
         var uid = arg["accession"];
+        var study = arg["_id"];
         // BioProjectに変換する必要有り
         this.accession = uid;
         var base_url = conf.api_details_base_url;
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
-        var target_url = base_url + db + "&id=" + uid;
+        // _id（study）を追加
+        var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
         self.target_url = target_url;
 
         function get_data(db, uid) {

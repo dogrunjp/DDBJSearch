@@ -51,7 +51,8 @@
                     {title:"ACCESSION", field:"uid", width:110},
                     {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
                     {title:"ABSTRACT", field:"abstract", width: "20%"},
-                    {title:"STUDY_TYPE", field: "study_type", width: "20%"}
+                    {title:"STUDY_TYPE", field: "study_type", width: "20%"},
+                    {title:"", field:"study", width:0 }
                 ]},
             bioproject:{
                 columns:[
@@ -60,7 +61,8 @@
                     {title:"ORGANISM NAME", field:"organism_name", width: 160, sorter:"string"},
                     {title:"ORGANIZATION NAME", field:"organization_name", width: 160, sorter:"string"},
                     {title:"PROJECT DATATYPE", field:"project_datatype", width: 150, sorter:"string"},
-                    {title:"SUBMISSION DATE", field: "submitted", sorterParams:{format:"DD-MM-YYThh:mm:ssZ"}}
+                    {title:"SUBMISSION DATE", field: "submitted", sorterParams:{format:"DD-MM-YYThh:mm:ssZ"}},
+                    {title:"", field:"study", width:0 }
                 ]},
             biosample:{
                 columns:[
@@ -69,7 +71,8 @@
                     {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
                     {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
                     {title:"PACKAGE", field:"package", width: 110, sorter:"string"},
-                    {title:"SUBMISSION DATE", field: "submission_date", sorter:"date", sorterParams:{format:"DD-MM-YY"}}
+                    {title:"SUBMISSION DATE", field: "submission_date", sorter:"date", sorterParams:{format:"DD-MM-YY"}},
+                    {title:"", field:"study", width:0 }
                 ]
             }
         };
@@ -92,8 +95,9 @@
                 },
                 placeholder: "No Data Available",
                 rowClick:function(e, row){
-                  const accession = row.row.data.uid;
-                  window.open("details.html?db=" + targetdb + "&accession=" + accession)
+                  var accession = row.row.data.uid;
+                  var study = row.row.data.study;
+                  window.open("details.html?db=" + targetdb + "&accession=" + accession + "&_id=" + study)
                 }
 
             });

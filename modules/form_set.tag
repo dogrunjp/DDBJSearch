@@ -21,6 +21,11 @@
                     </div>
 
                     <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="publication_id">Publication ID :</label></span>
+                        <input type="text" class="input-box1" id="publication_id" name="publication_id" data-type="study" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
                         <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" onkeydown="{enter_go}" />
                     </div>
@@ -167,7 +172,7 @@
 
                 if (["", "Search", "Clear"].indexOf(v) == -1) {
                     var obj = [k, v];
-                    // accessionが入力された場合のみaccにも値を入れる
+                    // accessionが入力された場合のみaccに値を入れる
                     if (obj[0] === "uid"){
                         acc = obj;
                     }
@@ -187,16 +192,20 @@
                     q.push("type=" + s)
                 }
             });
+            // Accession検索の場合UIDでヒットするようであれば詳細を表示する
             if(acc){
-                fetch("http://52.193.211.138/api/" + focused + "?uid=" + acc[1])
+                url = conf.api_base;
+                // Elasticsearch _countから件数を取得する
+                // 検索結果の_idを詳細画面に渡す必要がある
+
+                fetch(url + "count/" + acc[1])
                     .then(function (d) {
                         return d.json()
                     })
                     .then(function (jsn) {
-                        if (jsn["numFound"] > 0){
-                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1]
+                        if (jsn["count"] == 1){
+                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1] + "&_id=" + jsn["_id"]
                         }else{
-                            // 必ず0件を取得するquery
                             window.location.href = "result.html?target_db=" + focused + "&uid=" + acc[1]
                         }
                     });
