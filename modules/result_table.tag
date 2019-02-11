@@ -7,7 +7,8 @@
     <script type="text/javascript">
 
         var self = this;
-        var base_url = conf.api_search_base_url;
+        //var base_url = conf.api_search_base_url;
+        var base_url = conf.api_base + "/search?";
         var nfounds;
         var arg = {};
         var q =location.search.substring(1).split('&');

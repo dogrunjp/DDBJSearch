@@ -23,7 +23,7 @@
             }
         });
 
-        var target_url = conf.api_update_url;
+        var target_url = conf.api_base;
         var self = this;
         function get_data() {
             return $.ajax({

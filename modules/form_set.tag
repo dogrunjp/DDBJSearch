@@ -198,7 +198,7 @@
                 // Elasticsearch _countから件数を取得する
                 // 検索結果の_idを詳細画面に渡す必要がある
 
-                fetch(url + "count/" + acc[1])
+                fetch(url + "/count/" + acc[1])
                     .then(function (d) {
                         return d.json()
                     })
@@ -206,7 +206,7 @@
                         if (jsn["count"] == 1){
                             window.location.href = "details.html?db=" + focused + "&accession=" + acc[1] + "&_id=" + jsn["_id"]
                         }else{
-                            window.location.href = "result.html?target_db=" + focused + "&uid=" + acc[1]
+                            window.location.href = "result.html?target_db=" + focused + "&term=" + acc[1]
                         }
                     });
 

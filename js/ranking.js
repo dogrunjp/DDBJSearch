@@ -13,7 +13,8 @@
         var t = options.target;
         var tdb = options.db;
         // データ読み込み
-        var base_url = "http://52.193.211.138/api/";
+        var base_url = api_base_url + "/";
+        //var base_url = "http://52.193.211.138/api/";
         var conf = {statistic:{params: "sra/type/"},
             organism: {params: "bioproject/organism_name/"},
             study_type: {params: "sra/study_type/"},
@@ -22,6 +23,7 @@
         var target_url = base_url + conf[t]["params"];
 
         d3.json(target_url, function(e, d){
+            console.log(d);
             //リスト描画領域を作成
             svg_list = d3.select("#" + t + "_ranking").append("svg")
                 .attr("width", 505).attr("height", 115);
@@ -66,7 +68,6 @@
                 .attr("class", "lists")
                 .on("click", function (d) {
                     var type = $(this).parents()[1].getAttribute('data-field');
-                    //console.log($(this).parents());
                     showList({key: type, value: d.name})
                 });
 
@@ -208,7 +209,6 @@
         //
         function showList(q) {
             if (q != "total") {
-                //console.log(window.location.pathname);
                 // key: valueを渡す
                 var k = q["key"];
                 var v = q["value"];
