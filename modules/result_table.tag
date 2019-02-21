@@ -1,5 +1,5 @@
 <result-table>
-    <h3>Search Results for {query_params}, {founds} {target} <!-- ex. --></h3>
+    <h3>Search Results for {query_params} - {founds} {target} <!-- ex. --></h3>
     <div id="rslt-table"></div>
 
     <div id="data-container"></div>
