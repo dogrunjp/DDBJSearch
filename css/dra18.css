@@ -175,9 +175,9 @@ div#main{
 
 #main.result h3, #main.trends h3, #main.detail h3{
     border-top: solid 1px #EB6238;
-    color: #3e3a3a;
+    color: #555555;
     margin-top: 16px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     font-size: 1rem;
     font-weight: bold;
 }
