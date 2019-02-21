@@ -88,8 +88,8 @@
                 dataLoaded: function (datas) {
                     //self.update();
                     nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
-                    self.founds = nfounds ? nfounds: 0;
-                    self.target = targetdb + " entries";
+                    self.founds = nfounds ? nfounds: "No Hits";
+                    self.target = nfounds ? targetdb + " entries" : "";
                     self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
                     self.update();
 
