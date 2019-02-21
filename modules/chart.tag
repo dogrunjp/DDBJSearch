@@ -10,7 +10,7 @@
             <h3>Organism Name</h3>
         </div>
         <div class="box" id="project_datatype_ranking" data-field="project_datatype" data-target="sra">
-            <h3>Project Datatype</h3>
+            <h3>BioProject Datatype</h3>
         </div>
 
     </div>
