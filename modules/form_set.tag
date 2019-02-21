@@ -27,7 +27,7 @@
 
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_type" class="left-margin">StudyType :</label></span>
-                        <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" onkeydown="{enter_go}" />
+                        <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" size="50" onkeydown="{enter_go}" />
                     </div>
 
                     <div>
