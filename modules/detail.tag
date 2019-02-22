@@ -329,17 +329,16 @@
             arg[kv[0]]=kv[1];
         }
         var db = arg["db"];
-        console.log(db);
         var uid = arg["accession"];
         var study = arg["_id"];
         // BioProjectに変換する必要有り
         this.accession = uid;
-        //var base_url = conf.api_details_base_url;
         var base_url = conf.api_base + "/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
         var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
-        self.target_url = target_url;
+        //self.target_url = target_url;
+        self.target_url = conf.api_base + "/metadata/" + study
 
         function get_data(db, uid) {
             return $.ajax({
