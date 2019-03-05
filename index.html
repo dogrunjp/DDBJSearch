@@ -39,9 +39,11 @@
 <script>
     var focused = "sra";
     var obs = riot.observable();
-    riot.mount('*')
+    riot.mount('*');
+    var api_base_url = conf.api_base;
 </script>
-<script src="js/ranking.js"></script>
+<script src="js/ranking.js" id="rankingjs" data-conf="{$api_base_url}"></script>
+
 
 </body>
 
