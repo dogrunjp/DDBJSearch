@@ -155,7 +155,7 @@
             </tbody>
         </table>
 
-        <h2  show="{visible.related}">Related entries</h2>
+    <h2  show="{visible.related}">Related entries</h2>
 
 
         <table show="{visible.bioproject}">
