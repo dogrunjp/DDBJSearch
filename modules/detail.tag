@@ -1,4 +1,3 @@
-
 <detail>
     <div class="details">
 
@@ -34,29 +33,41 @@
             </tbody>
         </table>
 
-        <table show="{visible.EXPERIMENT_top}">
-            <thead>
-            <tr class="table-header">
-                <th width="110">EXPERIMENT</th>
-                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#ex_table" aria-expanded="true" aria-controls="ex_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-            </tr>
-            </thead>
-        </table>
-        <div show="{visible.EXPERIMENT_top}" id="ex_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ex_table">
+        <div show="{visible.EXPERIMENT_RUN_top}">
             <table>
-                <tbody each={ex_item in ex_items}>
-                <tr class="sub-header"><th colspan="2">{ex_item.uid}</th></tr>
-                <tr if={ex_item.title}><td width="180" class="atrb">Title</td><td>{ex_item.title}</td></tr>
-                <tr if={ex_item.center_name}><td width="180" class="atrb">Center Name</td><td>{ex_item.center_name}</td></tr>
-                <tr if={ex_item.design_description}><td width="180" class="atrb">Design Description</td><td>{ex_item.design_description}</td></tr>
-                <tr if={ex_item.library_layout}><td width="180" class="atrb">Library Layout</td><td>{ex_item.library_layout}</td></tr>
-                <tr if={ex_item.library_name}><td width="180" class="atrb">Library Name</td><td>{ex_item.library_name}</td></tr>
-                <tr if={ex_item.program}><td width="180" class="atrb">Program</td><td>{ex_item.program}</td></tr>
-                <tr if={ex_item.platform}><td width="180" class="atrb">Platform</td><td>{ex_item.platform}</td></tr>
-                <tr if={ex_item.protocol}><td width="180" class="atrb">Protocol</td><td>{ex_item.protocol}</td></tr>
-                <tr if={ex_item.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{ex_item.instrument_model}</td></tr>
-                </tbody>
+                <thead>
+                <tr class="table-header">
+                    <th width="110">EXPERIMENT & RUN</th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
+                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                </tr>
+                </thead>
             </table>
+
+            <div show="{visible.EXPERIMENT_RUN_top}" id="er_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
+                <table each={er_item in er_items} if={er_item.EXPERIMENT.uid==accession || er_item.RUN.uid==accession}>
+                    <tbody>
+                    <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
+                    <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
+                    <tr if={er_item.EXPERIMENTcenter_name}><td width="180" class="atrb">Center Name</td><td>{er_item.EXPERIMENT.center_name}</td></tr>
+                    <tr if={er_item.EXPERIMENT.design_description}><td width="180" class="atrb">Design Description</td><td>{er_item.EXPERIMENT.design_description}</td></tr>
+                    <tr if={er_item.EXPERIMENT.library_layout}><td width="180" class="atrb">Library Layout</td><td>{er_item.EXPERIMENT.library_layout}</td></tr>
+                    <tr if={er_item.EXPERIMENT.library_name}><td width="180" class="atrb">Library Name</td><td>{er_item.EXPERIMENT.library_name}</td></tr>
+                    <tr if={er_item.EXPERIMENT.program}><td width="180" class="atrb">Program</td><td>{er_item.EXPERIMENT.program}</td></tr>
+                    <tr if={er_item.EXPERIMENT.platform}><td width="180" class="atrb">Platform</td><td>{er_item.EXPERIMENT.platform}</td></tr>
+                    <tr if={er_item.EXPERIMENTprotocol}><td width="180" class="atrb">Protocol</td><td>{er_item.EXPERIMENTprotocol}</td></tr>
+                    <tr if={er_item.EXPERIMENT.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{er_item.EXPERIMENT.instrument_model}</td></tr>
+
+                    <tr class="sub-header">
+                        <th>RUN: {er_item.RUN.uid}</th>
+                        <th>
+                            <span if={er_item.RUN.sra_path} class="file_path"><a href={er_item.RUN.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
+                            <span if={er_item.RUN.fastq_path} class="file_path"><a href={base_file_path}{er_item.RUN.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <table show="{visible.ANALYSIS_top}">
@@ -97,29 +108,6 @@
             </table>
         </div>
 
-        <table show="{visible.RUN_top}">
-            <thead>
-            <tr class="table-header">
-                <th width="110">RUN</th>
-                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#run_table" aria-expanded="true" aria-controls="run_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-            </tr>
-            </thead>
-        </table>
-        <div show="{visible.RUN_top}" id="run_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-            <table>
-                <tbody each={run_item in run_items}>
-                <tr class="sub-header">
-                    <th>{run_item.uid}</th>
-                    <th>
-                        <span if={run_item.sra_path} class="file_path"><a href={run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                        <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
-                    </th>
-                </tr>
-                <tr if={run_item.prefix}><td width="180" class="atrb">Submission</td><td>{run_item.prefix}</td></tr>
-                <tr if={run_item.program}><td width="180" class="atrb">Program</td><td>{run_item.program}</td></tr>
-                </tbody>
-            </table>
-        </div>
 
         <table show="{visible.biosample_top}">
             <thead>
@@ -131,7 +119,7 @@
         </table>
         <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample_top}" >
-                <tbody each={bs_item in bs_items}>
+                <tbody each={bs_item in bs_items}   if={bs_item.uid==accession}>
                 <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
                 <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
                 <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
@@ -190,7 +178,6 @@
             </tbody>
         </table>
 
-
         <div id="experiment_run" show="{visible.EXPERIMENT_RUN}">
             <table>
                 <thead>
@@ -203,7 +190,7 @@
             </table>
 
             <div id="er_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-                <table show="{visible.EXPERIMENT_RUN}" each={er_item in er_items}>
+                <table each={er_item in er_items}  if={er_item.EXPERIMENT.uid != accession & er_item.RUN.uid != accession}>
                     <tbody>
                     <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
                     <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
@@ -228,7 +215,6 @@
             </div>
         </div>
 
-
         <table show="{visible.biosample}">
             <thead>
             <tr class="table-header">
@@ -240,7 +226,7 @@
         </table>
         <div id="bs_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
-                <tbody each={bs_item in bs_items}>
+                <tbody each={bs_item in bs_items} {bs_item.uid != accession}>
                 <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
                 <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
                 <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
@@ -308,7 +294,8 @@
             ANALYSIS_top: false,
             SUBMISSION: false,
             related: false,
-            EXPERIMENT_RUN: false
+            EXPERIMENT_RUN: false,
+            EXPERIMENT_RUN_top: false
 
         };
         var self = this;
@@ -442,16 +429,18 @@
                             self.visible.STUDY = false;
                         },
                         "X": function () {
-                            self.visible.EXPERIMENT_top = true;
-                            self.visible.EXPERIMENT = false;
+                            // 配列オブジェクトとなるメタデータはクエリのaccessionと一致するオブジェクトのみ"details"に表示する
+                            self.visible.EXPERIMENT_RUN_top = true;
+                            self.visible.EXPERIMENT_RUN = true;
                         },
                         "S": function () {
                             self.visible.SAMPLE_top = true;
                             self.visible.SAMPLE = false;
                         },
                         "R": function() {
-                            self.visible.RUN_top = true;
-                            self.visible.RUN = false;
+                            // 配列オブジェクトとなるメタデータはクエリのaccessionと一致するオブジェクトのみ"details"に表示する
+                            self.visible.EXPERIMENT_RUN_top = true;
+                            self.visible.EXPERIMENT_RUN = true;
                         },
                         "Z": function () {
                             self.visible.ANALYSIS_top = true;
@@ -487,7 +476,7 @@
             };
             f["biosample"] = function () {
                 self.visible.biosample_top = true;
-                self.visible.biosample = false;
+                self.visible.biosample = true;
             };
 
             f[db]();
@@ -496,8 +485,6 @@
                 self.visible.related = true;
             }
 
-            console.log(self.visible.EXPERIMENT)
-            console.log(self.visible.RUN)
             if(self.visible.EXPERIMENT == true || self.visible.RUN == true)
             {
                 self.visible.exp_run = true;
