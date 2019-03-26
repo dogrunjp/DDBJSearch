@@ -23,7 +23,6 @@
         var target_url = base_url + conf[t]["params"];
 
         d3.json(target_url, function(e, d){
-            console.log(d);
             //リスト描画領域を作成
             svg_list = d3.select("#" + t + "_ranking").append("svg")
                 .attr("width", 505).attr("height", 115);
