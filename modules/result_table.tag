@@ -46,6 +46,8 @@
         var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
         //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
 
+        console.log(q);
+
         var table_conf = {
             sra:{
                 columns:[
@@ -86,6 +88,7 @@
                 paginationSize: rows,
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
+                    console.log(table_conf)
                     //self.update();
                     nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
                     self.founds = nfounds ? nfounds: "No Hits";
