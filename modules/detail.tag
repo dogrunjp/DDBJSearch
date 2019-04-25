@@ -313,9 +313,14 @@
         var base_url = conf.api_base + "/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
-        var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
-        //self.target_url = target_url;
-        self.target_url = conf.api_base + "/metadata/" + study
+        if (study){
+            var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
+            // whole metada を取得するためのapi path
+            self.target_url = conf.api_base + "/metadata/" + study;
+        }else{
+            var target_url = base_url + db + "&id=" + uid;
+        }
+
 
         function get_data(db, uid) {
             return $.ajax({
@@ -344,6 +349,7 @@
                         return null
                     }
                 };
+
 
                 bpval = new default_val("bioproject");
                 self.bioproject = bpval.get("uid");
@@ -374,6 +380,8 @@
 
                 self.st_items = d.STUDY;
                 a2str_obj(self.st_items);
+                // 取得したJSONからSTUDY[0]["uid"]を取得し、whole metadata のAPIのパラメータとする
+                self.target_url = conf.api_base + "/metadata/" + self.st_items[0]["uid"];
 
                 self.ex_items = d.EXPERIMENT;
                 a2str_obj(self.ex_items);
