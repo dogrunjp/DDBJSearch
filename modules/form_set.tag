@@ -250,6 +250,5 @@
             self.update();
 
         });
-
     </script>
 </form_set>
