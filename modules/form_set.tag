@@ -205,9 +205,9 @@
                     })
                     .then(function (jsn) {
                         if (jsn["count"] == 1){
-                            //window.location.href = "details.html?db=" + focused + "&accession=" + acc[1] + "&_id=" + jsn["_id"]
+                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1] + "&_id=" + jsn["_id"]
                         }else{
-                            //window.location.href = "result.html?target_db=" + focused + "&term=" + acc[1]
+                            window.location.href = "result.html?target_db=" + focused + "&term=" + acc[1]
                         }
                     });
             }else{
