@@ -332,6 +332,7 @@
             });
         }
 
+
         get_data(db, uid)
             .done(function(d){
                 set_show(d);
