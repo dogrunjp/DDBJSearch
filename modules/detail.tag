@@ -182,7 +182,7 @@
             <table>
                 <thead>
                 <tr class="table-header">
-                    <th width="110">EXPERIMENT & RUN</th>
+                    <th width="110">EXPERIMENT, RUN & BioSample</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
                         <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
@@ -210,32 +210,44 @@
                             <span if={er_item.RUN.fastq_path} class="file_path"><a href={base_file_path}{er_item.RUN.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
                         </th>
                     </tr>
+
+
+                    <tr class="sub-header"><th colspan="2">BioSample: {er_item.BioSample.uid}</th></tr>
+                    <tr if={er_item.BioSample.title}><td width="180" class="atrb">Title</td><td>{er_item.BioSample.title}</td></tr>
+                    <tr if={er_item.BioSample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.BioSample.taxonomy_id}</td></tr>
+                    <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
+                    <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
+                    <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
+
+
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!--
         <table show="{visible.biosample}">
             <thead>
-            <tr class="table-header">
-                <th width="110">BioSample</th>
-                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m">
-                    <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-            </tr>
+                <tr class="table-header">
+                    <th width="110">BioSample</th>
+                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m">
+                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                </tr>
             </thead>
         </table>
         <div id="bs_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
                 <tbody each={bs_item in bs_items} {bs_item.uid != accession}>
-                <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
-                <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
-                <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
-                <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
-                <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
-                <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
+                    <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
+                    <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
+                    <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
+                    <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
+                    <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
+                    <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
                 </tbody>
             </table>
         </div>
+        -->
 
         <table show="{visible.ANALYSIS}">
             <thead>
@@ -329,6 +341,7 @@
                 timeout: 5000
             });
         }
+
 
         get_data(db, uid)
             .done(function(d){
