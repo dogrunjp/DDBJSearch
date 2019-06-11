@@ -182,7 +182,7 @@
             <table>
                 <thead>
                 <tr class="table-header">
-                    <th width="110">EXPERIMENT & RUN</th>
+                    <th width="110">EXPERIMENT, RUN & BioSample</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
                         <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
@@ -210,11 +210,22 @@
                                 <span if={er_item.RUN.fastq_path} class="file_path"><a href={base_file_path}{er_item.RUN.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
                             </th>
                         </tr>
+
+
+                        <tr class="sub-header"><th colspan="2">BioSample: {er_item.BioSample.uid}</th></tr>
+                        <tr if={er_item.BioSample.title}><td width="180" class="atrb">Title</td><td>{er_item.BioSample.title}</td></tr>
+                        <tr if={er_item.BioSample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.BioSample.taxonomy_id}</td></tr>
+                        <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
+                        <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
+                        <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
+
+
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!--
         <table show="{visible.biosample}">
             <thead>
                 <tr class="table-header">
@@ -236,6 +247,7 @@
                 </tbody>
             </table>
         </div>
+        -->
 
         <table show="{visible.ANALYSIS}">
             <thead>
@@ -314,12 +326,10 @@
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
         if (study){
-            console.log(study)
             var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
             // whole metada を取得するためのapi path
             self.target_url = conf.api_base + "/metadata/" + study;
         }else{
-            console.log("no")
             var target_url = base_url + db + "&id=" + uid;
         }
 
