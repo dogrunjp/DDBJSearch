@@ -14,6 +14,7 @@
             <tr if={locus_tag_prefix}><td width="180" class="atrb">LocusTagPrefix</td><td> { locus_tag_prefix }</td></tr>
             <tr if={organization}><td width="180" class="atrb">Organization name</td><td>{ organization}</td></tr>
             <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
+            <tr if={publication_id}><td width="180" class="atrb">Publication ID</td><td>{ publication_id }</td></tr>
             <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
             <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
             </tbody>
@@ -72,10 +73,8 @@
                     <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
                     <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
                     <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
-                    <virtual  if={er_item.BioSample.attributes}>
-                        <tr><td colspan="2" class="atrb">Attributes</td></tr>
-                        <tr each={attribute in er_item.BioSample.attributes}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
-                    </virtual>
+                    <tr if={er_item.BioSample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
+                    <tr each={attribute in er_item.BioSample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
 
                     </tbody>
                 </table>
@@ -171,6 +170,7 @@
             <tr if={locus_tag_prefix}><td width="180" class="atrb">LocusTagPrefix</td><td> { locus_tag_prefix }</td></tr>
             <tr if={organization}><td width="180" class="atrb">Organization name</td><td>{ organization}</td></tr>
             <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
+            <tr if={publication_id}><td width="180" class="atrb">Publication ID</td><td>{ publication_id }</td></tr>
             <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
             <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
             </tbody>
@@ -229,10 +229,8 @@
                     <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
                     <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
                     <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
-                    <virtual  if={er_item.BioSample.attributes}>
-                        <tr><td colspan="2" class="atrb">Attributes</td></tr>
-                        <tr each={attribute in er_item.BioSample.attributes}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
-                    </virtual>
+                    <tr if={er_item.BioSample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
+                    <tr each={attribute in er_item.BioSample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
 
                     </tbody>
                 </table>
@@ -389,6 +387,7 @@
                 self.organization = bpval.get("organization_name");
                 self.xref_id = bpval.get("xref_id");
                 self.external_db = bpval.get("external_db");
+                self.publication_id = bpval.get("publication_id")
                 self.bp_submitted = bpval.get("submitted");
 
 
