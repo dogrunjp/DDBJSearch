@@ -21,7 +21,7 @@
         </table>
 
         <table show="{visible.STUDY_top}">
-            <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
+            <thead><tr class="table-header"><th colspan="2">STUDY</th></tr></thead>
             <tbody each={st_item in st_items}>
             <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
             <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
@@ -177,7 +177,7 @@
         </table>
 
         <table show="{visible.STUDY}">
-                <thead><tr class="table-header"><th colspan="2">Study</th></tr></thead>
+                <thead><tr class="table-header"><th colspan="2">STUDY</th></tr></thead>
                 <tbody each={st_item in st_items}>
                     <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
                     <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
