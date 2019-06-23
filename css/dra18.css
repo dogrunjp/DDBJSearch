@@ -1578,6 +1578,9 @@ tbody.collapse.in {
     border-collapse: collapse;
     width: 100%;
 }
+#main .details table.er{
+    margin-bottom: 2px;
+}
 
 #main .details table th{
 
