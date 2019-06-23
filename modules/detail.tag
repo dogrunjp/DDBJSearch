@@ -38,7 +38,7 @@
             <table>
                 <thead>
                 <tr class="table-header">
-                    <th width="110">EXPERIMENT & RUN</th>
+                    <th width="110">EXPERIMENT, RUN, and BioSample</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
                         <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
@@ -120,27 +120,6 @@
         </div>
 
 
-        <table show="{visible.biosample_top}">
-            <thead>
-            <tr class="table-header">
-                <th width="110">BioSample</th>
-                <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table" aria-expanded="true" aria-controls="bs_table"><i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-            </tr>
-            </thead>
-        </table>
-        <div id="bs_table" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
-            <table show="{visible.biosample_top}" >
-                <tbody each={bs_item in bs_items}   if={bs_item.uid==accession}>
-                <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
-                <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
-                <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
-                <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
-                <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
-                <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
-                </tbody>
-            </table>
-        </div>
-
         <table show="{visible.SUBMISSION}">
             <thead>
             <tr class="table-header">
@@ -202,7 +181,7 @@
             </table>
 
             <div id="er_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-                <table each={er_item in er_items}  if={er_item.EXPERIMENT.uid != accession & er_item.RUN.uid != accession}>
+                <table each={er_item in er_items} class="er" if={er_item.EXPERIMENT.uid != accession & er_item.RUN.uid != accession} >
                     <tbody>
                     <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
                     <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
@@ -509,13 +488,13 @@
                 self.visible.bioproject = false
             };
             f["biosample"] = function () {
-                self.visible.biosample_top = true;
-                self.visible.biosample = true;
+                self.visible.EXPERIMENT_RUN_top = true;
+                self.visible.EXPERIMENT_RUN_top = true;
             };
 
             f[db]();
 
-            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.biosample || self.visible.RUN || self.visible.bioproject || self.visible.analysis) {
+            if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.RUN || self.visible.bioproject || self.visible.analysis) {
                 self.visible.related = true;
             }
 
