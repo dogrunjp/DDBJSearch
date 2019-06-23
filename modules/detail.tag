@@ -46,7 +46,7 @@
             </table>
 
             <div show="{visible.EXPERIMENT_RUN_top}" id="er_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-                <table each={er_item in er_items} if={er_item.EXPERIMENT.uid==accession || er_item.RUN.uid==accession}>
+                <table each={er_item in er_items} if={er_item.EXPERIMENT.uid==accession || er_item.RUN.uid==accession || er_item.BioSample.uid==accession}>
                     <tbody>
                     <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
                     <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
