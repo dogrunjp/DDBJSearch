@@ -1,3 +1,4 @@
+<!-- 現在つかっていない -->
 <detail>
     <detail_table name="tbl"></detail_table>
     <script type="text/javascript">
