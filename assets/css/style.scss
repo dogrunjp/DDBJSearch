@@ -1,0 +1,73 @@
+@import "valiables";
+
+.content {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+#header-link {
+  &.navbar-inverse.nav-upper {
+    line-height: 1.4rem;
+    padding: 3px 0;
+    background-color: $primary-darker;
+    .navbar-upper {
+      list-style: none;
+      margin: auto;
+      > li {
+        display: table-cell;
+        > a {
+          color: $white;
+          font-size: 0.75rem;
+          margin-right:8px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  margin: 1rem auto;
+  .logo {
+    max-height: 2.4rem;
+    margin: 0 .5rem 0 0;
+  }
+}
+
+.pagination {
+  .pagination-list {
+    list-style: none;
+    margin: 0;
+    li+li {
+      margin-top: 0;
+    }
+  }
+}
+
+.tag.for-table-tag {
+  margin-right: 1rem;
+}
+
+.search-section {
+  margin: 0 0 2rem;
+  padding: 2rem 0 1rem;
+  background: #e6dbb6;
+}
+.search-collapse {
+  margin-bottom: 2rem;
+}
+.search-collapse-trigger {
+  width: 100%;
+  display: block;
+  text-align: right;
+  margin: .5rem 0;
+}
+.search-horizontal-guide {
+  line-height: 2.25rem;
+  margin: 0 .5rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.search-horizontal-submit {
+  margin: 0 1rem;
+}
