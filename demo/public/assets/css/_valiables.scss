@@ -35,6 +35,11 @@ $link-focus-border: $primary;
 //other
 $color-search-area-background: #e6dbb6;
 
+//margin
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
+
 
 // Import Bulma and Buefy styles
 @import "../../../node_modules/bulma/bulma";
