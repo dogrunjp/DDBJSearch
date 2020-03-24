@@ -98,7 +98,7 @@ div#header-menu{
 #header-menu.sub{
     width: 100%;
     height: 50px;
-    border-top: solid 1px #111629;
+    border-top: solid 1px #ffffff;
 }
 #header-menu.sub h1{
     font-weight: bold;
@@ -1652,4 +1652,11 @@ tbody.collapse.in {
 
 #last_update div.row{
     margin-top: 24px
+}
+
+h4.note {
+    margin-top: 4px;
+    color: #a21d1f;
+    size: 0.8rem;
+    text-align: center;
 }

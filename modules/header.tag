@@ -7,15 +7,19 @@
             </ul>
         </div>
     </div>
+    <h4 class="note">Search index is not up to date due to a system error, will be back soon</h4>
+
 
     <div id="header-menu" class="sub">
+
         <div class="content">
             <!-- Header section -->
             <div class="box box1">
+
                 <h1>
                     <a href="./index.html">
                         <img src="images/ddbj_logo.png" class="logo" alt="DRA Search"/>
-                        <span class="title">DDBJ Search <i class="fa fa-angle-right" aria-hidden="true"></i> {fed}</span>
+                        <span class="title">DBCLS SRA <i class="fa fa-angle-right" aria-hidden="true"></i> {fed}</span>
                     </a>
                 </h1>
             </div>
