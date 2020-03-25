@@ -71,3 +71,22 @@
 .search-horizontal-submit {
   margin: 0 1rem;
 }
+#result {
+  .result-box {
+    font-size: 2rem;
+    i {
+      margin-right: 1rem;
+    }
+    &.-start {
+      background-color: #d6d6de;
+    }
+    &.-search {
+      color: #FFF;
+      background-color: #738581;
+    }
+    &.-error {
+      color: #FFF;
+      background-color: #ea553a;
+    }
+  }
+}
