@@ -37,7 +37,7 @@
                 lupd: '',
                 bioproject: true,
                 sra: true,
-                targetUrl: "http://13.113.107.7/api"
+                targetUrl: "http://dbcls-sra-api.bmu.jp/api"
             }
         },
         mounted: function () {
