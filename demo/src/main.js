@@ -16,10 +16,12 @@ import Publication from './components/result_publication.vue'
 
 const routes = [
     {
-        path: '/',
+        path: '/sra',
+        alias: 'http://sra-demo.bmu.jp',
         component: Sra,
         name: 'sra',
         label: 'SRA',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -42,6 +44,7 @@ const routes = [
         component: BioProject,
         name: 'bioproject',
         label: 'BioProject',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -57,6 +60,7 @@ const routes = [
         component: BioSample,
         name: 'biosample',
         label: 'BioSample',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -70,10 +74,11 @@ const routes = [
         })
     },
     {
-        path: '/taxonomy',
+        path: '/',
         component: Taxonomy,
         name: 'taxonomy',
         label: 'Taxonomy',
+        show: true,
         props: (route) => ({
             tx_taxonomy_id: route.query.tx_taxonomy_id,
             scientific_name: route.query.scientific_name,
@@ -93,6 +98,7 @@ const routes = [
         component: Publication,
         name:'publication',
         label: 'Publication',
+        show: true,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,

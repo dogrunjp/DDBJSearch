@@ -17,7 +17,7 @@
             }
         },
         mounted: function () {
-            this.getData()
+            this.$router.go('http://sra-demo.bmu.jp')
         },
         watch: {
             '$route': 'getData'
