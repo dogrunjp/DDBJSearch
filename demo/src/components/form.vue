@@ -6,27 +6,8 @@
 
                 <div v-show="$route.name !== 'taxonomy' && $route.name !== 'publication'">
                     <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label">SRA Keyword</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <!--サンプルとして残します <p><b>Selected:</b> {{ selected }}</p>-->
-                                <b-autocomplete
-                                        :data="data"
-                                        v-model="params.keyword"
-                                        placeholder="e.g. dog"
-                                        field="ArticleTitle"
-                                        :loading="isFetching"
-                                        @typing="keywordSearch"
-                                        @select="option => selected = option">
-
-                                    <template slot-scope="props">
-                                        <p>{{ props.option.ArticleTitle }}</p>
-                                    </template>
-                                </b-autocomplete>
-                            </div>
-                        </div>
+                        <div class="field-label is-normal"><label class="label">SRA Keyword</label></div>
+                        <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.keyword"></div></div>
                     </div>
                     <div class="field is-horizontal mb-075">
                         <div class="field-label is-normal"><label class="label">SRA Accessions</label></div>
