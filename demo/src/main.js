@@ -1,41 +1,122 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+Vue.config.productionTip = true
 
 import buefy from 'buefy'
 Vue.use(buefy)
 
-// import './config'
 import App from './App.vue'
+import Sra from './components/result_sra.vue'
+import BioProject from './components/result_bioproject.vue'
+import BioSample from './components/result_biosample.vue'
+import Taxonomy from './components/result_taxonomy.vue'
+import Publication from './components/result_publication.vue'
 
-Vue.config.productionTip = false
 
-
-// 1. ルートコンポーネントを定義します
-// 他のファイルからインポートすることもできます
-//const taxonomy = { template: '<div>taxonomy</div>' }
-//const publication = { template: '<div>publication</div>' }
-
-// 2. ルートをいくつか定義します
-// 各ルートは 1 つのコンポーネントとマッピングされる必要があります。
-// このコンポーネントは実際の `Vue.extend()`、
-// またはコンポーネントオプションのオブジェクトでも構いません。
-// ネストされたルートに関しては後で説明します
 const routes = [
-    { path: '/taxonomy' },
-    { path: '/publication' }
+    {
+        path: '/',
+        component: Sra,
+        name: 'sra',
+        label: 'SRA',
+        props: (route) => ({
+            assesions: route.query.assesions,
+            keyword: route.query.keyword,
+            sra_title: route.query.sra_title,
+            publication_id: route.query.publication_id,
+            studytype_id: route.query.studytype_id,
+            library_name: route.query.library_name,
+            library_strategy: route.query.library_strategy,
+            library_source: route.query.library_source,
+            library_selection: route.query.library_selection,
+            platform: route.query.platform,
+            instrument_model: route.query.instrument_model,
+            per_page: route.query.per_page,
+            sort_key: route.query.sort_key,
+            page_no: route.query.page_no
+        })
+    },
+    {
+        path: '/bioproject',
+        component: BioProject,
+        name: 'bioproject',
+        label: 'BioProject',
+        props: (route) => ({
+            assesions: route.query.assesions,
+            keyword: route.query.keyword,
+            bioproject_title: route.query.bioproject_title,
+            bp_publication_id: route.query.bp_publication_id,
+            per_page: route.query.per_page,
+            sort_key: route.query.sort_key,
+            page_no: route.query.page_no
+        })
+    },
+    {
+        path: '/biosample',
+        component: BioSample,
+        name: 'biosample',
+        label: 'BioSample',
+        props: (route) => ({
+            assesions: route.query.assesions,
+            keyword: route.query.keyword,
+            bs_taxonomy_id: route.query.bs_taxonomy_id,
+            bs_organism_name: route.query.bs_organism_name,
+            bs_title: route.query.bs_title,
+            package: route.query.package,
+            per_page: route.query.per_page,
+            sort_key: route.query.sort_key,
+            page_no: route.query.page_no
+        })
+    },
+    {
+        path: '/taxonomy',
+        component: Taxonomy,
+        name: 'taxonomy',
+        label: 'Taxonomy',
+        props: (route) => ({
+            tx_taxonomy_id: route.query.tx_taxonomy_id,
+            scientific_name: route.query.scientific_name,
+            per_page: route.query.per_page,
+            page_no: route.query.page_no,
+            sort_key: route.query.sort_key,
+            order_by: route.query.order_by,
+        }),
+        meta: {
+            apiUrl_taxonomy:'http://dbcls-sra-api.bmu.jp/api/exp_taxonomy/',
+            apiUrl_scientific_name:'http://dbcls-sra-api.bmu.jp/api/taxonomyid/',
+            sortList: ['Taxonomy ID', 'Scientific Name'],
+        }
+    },
+    {
+        path: '/publication',
+        component: Publication,
+        name:'publication',
+        label: 'Publication',
+        props: (route) => ({
+            assesions: route.query.assesions,
+            keyword: route.query.keyword,
+            pmid: route.query.pmid,
+            article_title: route.query.article_title,
+            bp_title: route.query.pub_bp_title,
+            pub_year: route.query.pub_year,
+            per_page: route.query.per_page,
+            page_no: route.query.page_no,
+            sort_key: route.query.sort_key,
+            order_by: route.query.order_by,
+        }),
+        meta: {
+            apiUrl: 'http://dbcls-sra-api.bmu.jp/api/publication/search',
+            sortList: ['BioProject', 'PMID'],
+        }
+    }
 ]
 
-// 3. ルーターインスタンスを作成して、ルートオプションを渡します
-// 追加のオプションをここで指定できますが、
-// この例ではシンプルにしましょう
 const router = new VueRouter({
-    routes // `routes: routes` の短縮表記
+    mode: 'history',
+    routes
 })
 
-// 4. root となるインスタンスを作成してマウントします
-// アプリケーション全体がルーターを認知できるように、
-// ルーターをインジェクトすることを忘れないでください。
 new Vue({
     router,
     render: h => h(App),
