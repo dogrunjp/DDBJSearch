@@ -10813,7 +10813,7 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
     #header-link.navbar-inverse.nav-upper .navbar-upper > li {
       display: table-cell; }
       #header-link.navbar-inverse.nav-upper .navbar-upper > li > a {
-        color: white;
+        color: #FFF;
         font-size: 0.75rem;
         margin-right: 8px;
         text-decoration: none; }
@@ -10832,7 +10832,7 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
     margin-right: .75rem; }
   .search-section .field .label {
     white-space: nowrap;
-    width: 133px; }
+    width: 170px; }
   .search-section .search-collapse {
     margin-bottom: 2rem; }
   .search-section .search-collapse-trigger {
@@ -10849,17 +10849,22 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
     margin: 0 1rem; }
 
 #result .result-box {
-  font-size: 2rem; }
+  font-size: 2rem;
+  height: 112px;
+  margin-bottom: 2rem; }
   #result .result-box i {
     margin-right: 1rem; }
   #result .result-box.-start {
-    background-color: #d6d6de; }
+    background-color: #d6d6de;
+    padding: 2rem 0; }
   #result .result-box.-search {
     color: #FFF;
-    background-color: #738581; }
+    background-color: #738581;
+    padding: 2rem 0; }
   #result .result-box.-error {
     color: #FFF;
-    background-color: #ea553a; }
+    background-color: #ea553a;
+    padding: 2rem 0; }
   #result .result-box.-result {
     background-color: #d6d6de; }
     #result .result-box.-result p {
@@ -10869,6 +10874,13 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
       #result .result-box.-result p span {
         font-size: 1.25rem;
         font-weight: 600; }
+  #result .result-box .toDetail {
+    position: relative;
+    top: -.5rem;
+    margin-left: 1rem;
+    padding: 0 2rem; }
+    #result .result-box .toDetail i {
+      margin-right: 1rem; }
 #result .pagination .pagination-list {
   list-style: none;
   margin: 0; }

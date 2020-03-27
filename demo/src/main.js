@@ -13,13 +13,15 @@ import BioSample from './components/result_biosample.vue'
 import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
+const base_api = 'http://13.113.107.2/api/'
 
 const routes = [
     {
-        path: '/',
+        path: '/sra',
         component: Sra,
         name: 'sra',
         label: 'SRA',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -42,6 +44,7 @@ const routes = [
         component: BioProject,
         name: 'bioproject',
         label: 'BioProject',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -57,6 +60,7 @@ const routes = [
         component: BioSample,
         name: 'biosample',
         label: 'BioSample',
+        show: false,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -70,10 +74,11 @@ const routes = [
         })
     },
     {
-        path: '/taxonomy',
+        path: '/',
         component: Taxonomy,
         name: 'taxonomy',
         label: 'Taxonomy',
+        show: true,
         props: (route) => ({
             tx_taxonomy_id: route.query.tx_taxonomy_id,
             scientific_name: route.query.scientific_name,
@@ -83,9 +88,12 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl_taxonomy:'http://dbcls-sra-api.bmu.jp/api/exp_taxonomy/',
-            apiUrl_scientific_name:'http://dbcls-sra-api.bmu.jp/api/taxonomyid/',
-            sortList: ['Taxonomy ID', 'Scientific Name'],
+            apiUrl_taxonomy: base_api + 'exp_taxonomy/',
+            apiUrl_scientific_name: base_api + 'scientific_name/',
+            apiUrl_get_tax_name: base_api + 'taxonomyid/',
+            apiUrl_get_name_tax: base_api + 'scientific_name/',
+            linkUrl_biosample: 'http://sra-demo.bmu.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
+            sortList: ['TaxonomyID', 'ScientificName'],
         }
     },
     {
@@ -93,6 +101,7 @@ const routes = [
         component: Publication,
         name:'publication',
         label: 'Publication',
+        show: true,
         props: (route) => ({
             assesions: route.query.assesions,
             keyword: route.query.keyword,
@@ -106,7 +115,7 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl: 'http://dbcls-sra-api.bmu.jp/api/publication/search',
+            apiUrl: base_api + 'publication/search',
             sortList: ['BioProject', 'PMID'],
         }
     }
