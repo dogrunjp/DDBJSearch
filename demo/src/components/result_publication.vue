@@ -6,7 +6,7 @@
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
-                <p>terms : <span>{{ assesions }} {{ keyword }} {{ pmid }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
+                <p>terms : <span>{{ assesions }} {{ keyword }} {{ journal }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
                 <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
         </div>
@@ -60,9 +60,7 @@
             }
         },
         props:{
-            assesions: String,
-            keyword: String,
-            pmid: String,
+            journal: String,
             article_title: String,
             bp_title: String,
             pub_year: String,
@@ -90,9 +88,7 @@
                 axios
                     .get(this.$route.meta.apiUrl , {
                         params: {
-                            assesions: this.assesions,
-                            keyword: this.keyword,
-                            pmid: this.pmid,
+                            journal: this.pmid,
                             article_title: this.article_title,
                             bp_title: this.bp_title,
                             year: this.pub_year,
@@ -104,7 +100,11 @@
                     })
                     .then(response => {
                         this.pubData = response.data.data
-                        this.total = response.data.numfound
+                        if (response.data.numfound >= this.per_page) {
+                            this.total = 100 //TODO
+                        } else {
+                            this.total = response.data.numfound
+                        }
                         this.isLoading = false
                     })
                     .catch(function (error) {

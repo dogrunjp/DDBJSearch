@@ -103,9 +103,7 @@ const routes = [
         label: 'Publication',
         show: true,
         props: (route) => ({
-            assesions: route.query.assesions,
-            keyword: route.query.keyword,
-            pmid: route.query.pmid,
+            journal: route.query.journal,
             article_title: route.query.article_title,
             bp_title: route.query.pub_bp_title,
             pub_year: route.query.pub_year,
