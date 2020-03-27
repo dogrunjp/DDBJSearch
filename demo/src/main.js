@@ -115,7 +115,7 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl: base_api + 'publication/search',
+            apiUrl: 'http://dbcls-sra-api.bmu.jp/api/publication/search',
             sortList: ['BioProject', 'PMID'],
         }
     }

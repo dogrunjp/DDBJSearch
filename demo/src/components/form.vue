@@ -4,7 +4,7 @@
         <div class="search-section">
             <section id="search" class="content">
 
-                <div v-show="$route.name !== 'taxonomy'">
+                <div v-show="$route.name !== 'taxonomy' && $route.name !== 'publication'">
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
                             <label class="label">SRA Keyword</label>
@@ -149,34 +149,28 @@
 
                 <!-- publication search -->
                 <div v-show="$route.name == 'publication'">
-                    <b-collapse :open="false" position="is-bottom" aria-id="contentIdForA11y1" class="search-collapse">
-                        <a slot="trigger" slot-scope="props" aria-controls="contentIdForA11y1" class="search-collapse-trigger">
-                            <b-icon :icon="!props.open ? 'menu-down' : 'menu-up'"></b-icon>
-                            {{ !props.open ? 'All settings' : 'Fewer settings' }}
-                        </a>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="field is-horizontal">
-                                    <div class="field-label is-normal"><label class="label">PMID</label></div>
-                                    <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pmid"></div></div>
-                                </div>
-                                <div class="field is-horizontal">
-                                    <div class="field-label is-normal"><label class="label">Article Title</label></div>
-                                    <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.article_title"></div></div>
-                                </div>
+                    <div class="columns mb-075">
+                        <div class="column">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label">PMID</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pmid"></div></div>
                             </div>
-                            <div class="column">
-                                <div class="field is-horizontal">
-                                    <div class="field-label is-normal"><label class="label">BioProject title</label></div>
-                                    <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pub_bp_title"></div></div>
-                                </div>
-                                <div class="field is-horizontal">
-                                    <div class="field-label is-normal"><label class="label">Year</label></div>
-                                    <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.pub_year"></div></div>
-                                </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label">Article Title</label></div>
+                                <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.article_title"></div></div>
                             </div>
                         </div>
-                    </b-collapse>
+                        <div class="column">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label">BioProject title</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pub_bp_title"></div></div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label">Year</label></div>
+                                <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.pub_year"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
