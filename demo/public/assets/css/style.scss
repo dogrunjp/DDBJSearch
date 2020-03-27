@@ -103,6 +103,15 @@
         }
       }
     }
+    .toDetail {
+      position: relative;
+      top: -.5rem;
+      margin-left: 1rem;
+      padding: 0 2rem;
+      i {
+        margin-right: 1rem;
+      }
+    }
   }
   .pagination {
     .pagination-list {

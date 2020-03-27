@@ -13,6 +13,8 @@ import BioSample from './components/result_biosample.vue'
 import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
+const base_api = 'http://13.113.107.2/api/'
+
 const routes = [
     {
         path: '/sra',
@@ -86,9 +88,12 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl_taxonomy:'http://dbcls-sra-api.bmu.jp/api/exp_taxonomy/',
-            apiUrl_scientific_name:'http://dbcls-sra-api.bmu.jp/api/taxonomyid/',
-            sortList: ['Taxonomy ID', 'Scientific Name'],
+            apiUrl_taxonomy: base_api + 'exp_taxonomy/',
+            apiUrl_scientific_name: base_api + 'scientific_name/',
+            apiUrl_get_tax_name: base_api + 'taxonomyid/',
+            apiUrl_get_name_tax: base_api + 'scientific_name/',
+            linkUrl_biosample: 'http://sra-demo.bmu.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
+            sortList: ['TaxonomyID', 'ScientificName'],
         }
     },
     {
@@ -110,7 +115,7 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl: 'http://dbcls-sra-api.bmu.jp/api/publication/search',
+            apiUrl: base_api + 'publication/search',
             sortList: ['BioProject', 'PMID'],
         }
     }
