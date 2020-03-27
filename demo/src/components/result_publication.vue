@@ -1,15 +1,16 @@
 <template>
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-book"></i>Let's search Publication entries!</div>
-        <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner"></i>Now searching...</div>
+        <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
         <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-sad-tear"></i>Sorry caused an error...</div>
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
-                <p>terms:<span>{{ assesions }} {{ keyword }} {{ pmid }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
+                <p>terms : <span>{{ assesions }} {{ keyword }} {{ pmid }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
                 <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
-
+        </div>
+        <div v-show="!isStart & !isError" class="search_loaded">
             <b-table
                     :data="pubData"
                     ref="table"
@@ -102,9 +103,8 @@
                         }
                     })
                     .then(response => {
-                        console.log(response);
                         this.pubData = response.data.data
-                        this.total = 100; //response.data.numfound // TODO
+                        this.total = response.data.numfound
                         this.isLoading = false
                     })
                     .catch(function (error) {
@@ -112,7 +112,7 @@
                         this.pubData = []
                         this.isLoading = false
                         this.isError = true
-                    }).bind(this)
+                    }.bind(this))
             },
             onPageChange() {
                 this.page_no += 1

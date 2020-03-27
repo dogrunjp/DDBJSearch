@@ -16,7 +16,7 @@
       > li {
         display: table-cell;
         > a {
-          color: $white;
+          color: #FFF;
           font-size: 0.75rem;
           margin-right:8px;
           text-decoration: none;
@@ -46,7 +46,7 @@
   .field {
     .label {
       white-space: nowrap;
-      width: 133px;
+      width: 170px;
     }
   }
   .search-collapse {
@@ -72,19 +72,24 @@
 #result {
   .result-box {
     font-size: 2rem;
+    height: 112px;
+    margin-bottom: 2rem;
     i {
       margin-right: 1rem;
     }
     &.-start {
       background-color: #d6d6de;
+      padding: 2rem 0;
     }
     &.-search {
       color: #FFF;
       background-color: #738581;
+      padding: 2rem 0;
     }
     &.-error {
       color: #FFF;
       background-color: #ea553a;
+      padding: 2rem 0;
     }
     &.-result {
       background-color: #d6d6de;

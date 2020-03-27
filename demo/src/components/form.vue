@@ -11,17 +11,18 @@
                         </div>
                         <div class="field-body">
                             <div class="field">
+                                <!--サンプルとして残します <p><b>Selected:</b> {{ selected }}</p>-->
                                 <b-autocomplete
                                         :data="data"
                                         v-model="params.keyword"
                                         placeholder="e.g. dog"
-                                        field="title"
+                                        field="ArticleTitle"
                                         :loading="isFetching"
                                         @typing="keywordSearch"
                                         @select="option => selected = option">
 
                                     <template slot-scope="props">
-                                        <p>{{ props.option.title }}</p>
+                                        <p>{{ props.option.ArticleTitle }}</p>
                                     </template>
                                 </b-autocomplete>
                             </div>
@@ -201,6 +202,7 @@
 <script>
 
     import debounce from 'lodash/debounce'
+    import axios from 'axios'
 
     export default {
         data() {
@@ -241,12 +243,13 @@
             }
         },
         mounted: function () {
-            this.sortList = this.$route.meta.sortList
-            this.params.sort_key = this.sortList[0]
+            this.setDefaultValues()
+        },
+        watch: {
+            '$route': 'setDefaultValues'
         },
         methods: {
             goSearch: function () {
-
                 if (this.$route.name == 'taxonomy') {
                     this.$router.push({
                         query: {
@@ -276,16 +279,29 @@
                     })
                 }
             },
+            clear: function () {
+                Object.entries(this.params).forEach(([key]) => this.params = {[key]:''})
+                this.sortList = this.$route.meta.sortList
+                this.params.sort_key = this.sortList[0]
+                this.params.per_page = this.perPageList[0]
+                this.$router.push({ name: this.$route.name })
+            },
+            setDefaultValues: function () {
+                this.params = Object.assign(this.params, this.$route.query);
+                this.sortList = this.$route.meta.sortList
+                this.params.sort_key = this.sortList[0]
+            },
+            //TODO サンプルとして残します
             keywordSearch: debounce(function (name) {
                 if (!name.length) {
                     this.data = []
                     return
                 }
                 this.isFetching = true
-                this.$http.get(`https://api.themoviedb.org/3/search/movie?api_key=bb6f51bef07465653c3e553d6ab161a8&query=${name}`)
+                axios.get(`http://dbcls-sra-api.bmu.jp/api/publication/search?article_title=${name}`)
                     .then(({ data }) => {
                     this.data = []
-                data.results.forEach((item) => this.data.push(item))
+                    data.data.forEach((item) => this.data.push(item))
                 })
                 .catch((error) => {
                     this.data = []
@@ -294,10 +310,7 @@
                 .finally(() => {
                     this.isFetching = false
                 })
-            }, 500),
-            clear: function () {
-                this.$router.push({name: this.$route.name})
-            }
+            }, 500)
         }
     }
 </script>

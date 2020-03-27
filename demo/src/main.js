@@ -13,11 +13,9 @@ import BioSample from './components/result_biosample.vue'
 import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
-
 const routes = [
     {
         path: '/sra',
-        alias: 'http://sra-demo.bmu.jp',
         component: Sra,
         name: 'sra',
         label: 'SRA',
