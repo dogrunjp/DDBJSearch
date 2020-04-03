@@ -14,10 +14,11 @@ import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
 const base_api = 'http://13.113.107.2/api/'
+const public_path = '/advanced/'
 
 const routes = [
     {
-        path: '/sra',
+        path: public_path + 'sra',
         component: Sra,
         name: 'sra',
         label: 'SRA',
@@ -40,7 +41,7 @@ const routes = [
         })
     },
     {
-        path: '/bioproject',
+        path: public_path+'bioproject',
         component: BioProject,
         name: 'bioproject',
         label: 'BioProject',
@@ -56,7 +57,7 @@ const routes = [
         })
     },
     {
-        path: '/biosample',
+        path: public_path+'biosample',
         component: BioSample,
         name: 'biosample',
         label: 'BioSample',
@@ -74,7 +75,7 @@ const routes = [
         })
     },
     {
-        path: '/',
+        path: public_path,
         component: Taxonomy,
         name: 'taxonomy',
         label: 'Taxonomy',
@@ -97,15 +98,13 @@ const routes = [
         }
     },
     {
-        path: '/publication',
+        path: public_path+'publication',
         component: Publication,
         name:'publication',
         label: 'Publication',
         show: true,
         props: (route) => ({
-            assesions: route.query.assesions,
-            keyword: route.query.keyword,
-            pmid: route.query.pmid,
+            journal: route.query.journal,
             article_title: route.query.article_title,
             bp_title: route.query.pub_bp_title,
             pub_year: route.query.pub_year,

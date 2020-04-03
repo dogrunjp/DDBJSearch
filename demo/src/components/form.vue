@@ -6,27 +6,8 @@
 
                 <div v-show="$route.name !== 'taxonomy' && $route.name !== 'publication'">
                     <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label">SRA Keyword</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <!--サンプルとして残します <p><b>Selected:</b> {{ selected }}</p>-->
-                                <b-autocomplete
-                                        :data="data"
-                                        v-model="params.keyword"
-                                        placeholder="e.g. dog"
-                                        field="ArticleTitle"
-                                        :loading="isFetching"
-                                        @typing="keywordSearch"
-                                        @select="option => selected = option">
-
-                                    <template slot-scope="props">
-                                        <p>{{ props.option.ArticleTitle }}</p>
-                                    </template>
-                                </b-autocomplete>
-                            </div>
-                        </div>
+                        <div class="field-label is-normal"><label class="label">SRA Keyword</label></div>
+                        <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.keyword"></div></div>
                     </div>
                     <div class="field is-horizontal mb-075">
                         <div class="field-label is-normal"><label class="label">SRA Accessions</label></div>
@@ -152,18 +133,32 @@
                     <div class="columns mb-075">
                         <div class="column">
                             <div class="field is-horizontal">
-                                <div class="field-label is-normal"><label class="label">PMID</label></div>
-                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pmid"></div></div>
+                                <div class="field-label is-normal"><label class="label">Article Title</label></div>
+                                <div class="field-body"><div class="field">
+                                    <b-autocomplete
+                                            :data="data"
+                                            v-model="params.article_title"
+                                            placeholder="e.g. LRIG1"
+                                            field="ArticleTitle"
+                                            :loading="isFetching"
+                                            @typing="keywordSearch"
+                                            @select="option => selected = option">
+
+                                        <template slot-scope="props">
+                                            <p>{{ props.option.ArticleTitle }}</p>
+                                        </template>
+                                    </b-autocomplete>
+                                </div></div>
                             </div>
                             <div class="field is-horizontal">
-                                <div class="field-label is-normal"><label class="label">Article Title</label></div>
-                                <div class="field-body"><div class="field"><input class="input" type="text" v-model="params.article_title"></div></div>
+                                <div class="field-label is-normal"><label class="label">BioProject title</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pub_bp_title"></div></div>
                             </div>
                         </div>
                         <div class="column">
                             <div class="field is-horizontal">
-                                <div class="field-label is-normal"><label class="label">BioProject title</label></div>
-                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.pub_bp_title"></div></div>
+                                <div class="field-label is-normal"><label class="label">journal</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.journal"></div></div>
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal"><label class="label">Year</label></div>
@@ -223,7 +218,7 @@
                     library_strategy: '',
                     package: '',
                     platform: '',
-                    pmid: '',
+                    journal: '',
                     pub_year: '',
                     publication_id: '',
                     scientific_name: '',
@@ -261,7 +256,7 @@
                         query: {
                             assesions: this.params.assesions,
                             keyword: this.params.keyword,
-                            pmid: this.params.pmid,
+                            journal: this.params.journal,
                             article_title: this.params.article_title,
                             bp_title: this.params.bp_title,
                             pub_year: this.params.pub_year,

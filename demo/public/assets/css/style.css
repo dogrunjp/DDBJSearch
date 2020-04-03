@@ -10873,7 +10873,12 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
       margin-bottom: 0; }
       #result .result-box.-result p span {
         font-size: 1.25rem;
-        font-weight: 600; }
+        font-weight: 600;
+        white-space: nowrap;
+        max-width: 90%;
+        display: inline-flex;
+        text-overflow: ellipsis;
+        overflow: hidden; }
   #result .result-box .toDetail {
     position: relative;
     top: -.5rem;

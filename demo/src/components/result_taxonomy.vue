@@ -124,7 +124,7 @@
                 this.isError = false
 
                 let targetUrl = this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id
-                if(this.scientific_name !== '') targetUrl = this.$route.meta.apiUrl_scientific_name + this.scientific_name
+                if(!this.scientific_name === false) targetUrl = this.$route.meta.apiUrl_scientific_name + this.scientific_name
                 axios
                     .get(targetUrl , {
                         params: {
@@ -155,7 +155,7 @@
             showDendrogram() {
                 this.isDendrogramLoading = true
                 let targetUrl = this.$route.meta.apiUrl_get_tax_name + this.tx_taxonomy_id
-                if(this.scientific_name !== '') targetUrl = this.$route.meta.apiUrl_get_name_tax + this.scientific_name
+                if(!this.scientific_name === false) targetUrl = this.$route.meta.apiUrl_get_name_tax + this.scientific_name
                 axios
                     .get(targetUrl)
                     .then(response => {
