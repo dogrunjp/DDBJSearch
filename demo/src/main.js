@@ -13,7 +13,7 @@ import BioSample from './components/result_biosample.vue'
 import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
-const base_api = 'http://13.113.107.2/api/'
+const base_api = 'http://dbcls-sra.bhx.jp/api/'
 const public_path = '/advanced/'
 
 const routes = [
@@ -114,14 +114,14 @@ const routes = [
             order_by: route.query.order_by,
         }),
         meta: {
-            apiUrl: 'http://dbcls-sra-api.bmu.jp/api/publication/search',
+            apiUrl: base_api + 'publication/search',
             sortList: ['BioProject', 'PMID'],
         }
     }
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    //mode: 'history',
     routes
 })
 
