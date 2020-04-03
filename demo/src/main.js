@@ -13,7 +13,7 @@ import BioSample from './components/result_biosample.vue'
 import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
-const base_api = 'http://13.113.107.2/api/'
+const base_api = 'dbcls-sra.bhx.jp/api/'
 const public_path = '/advanced/'
 
 const routes = [
@@ -121,9 +121,10 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    /*mode: 'history',*/
     routes
 })
+
 
 new Vue({
     router,
