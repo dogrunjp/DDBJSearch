@@ -1,0 +1,186 @@
+[
+  {
+    "key": "PacBio RS II",
+    "doc_count": 34863
+  },
+  {
+    "key": "PacBio RS",
+    "doc_count": 15102
+  },
+  {
+    "key": "Sequel",
+    "doc_count": 7366
+  },
+  {
+    "key": "Sequel II",
+    "doc_count": 96
+  }
+  {
+    "key": "Illumina MiSeq",
+    "doc_count": 2045742
+  },
+  {
+    "key": "Illumina HiSeq 2000",
+    "doc_count": 1748534
+  },
+  {
+    "key": "Illumina HiSeq 2500",
+    "doc_count": 1610101
+  },
+  {
+    "key": "NextSeq 500",
+    "doc_count": 472074
+  },
+  {
+    "key": "Illumina HiSeq 4000",
+    "doc_count": 302352
+  },
+  {
+    "key": "HiSeq X Ten",
+    "doc_count": 256592
+  },
+  {
+    "key": "Illumina Genome Analyzer II",
+    "doc_count": 118087
+  },
+  {
+    "key": "Illumina Genome Analyzer IIx",
+    "doc_count": 73504
+  },
+  {
+    "key": "Illumina NovaSeq 6000",
+    "doc_count": 67803
+  },
+  {
+    "key": "Illumina HiSeq X Ten",
+    "doc_count": 56769
+  },
+  {
+    "key": "Illumina HiSeq 3000",
+    "doc_count": 55373
+  },
+  {
+    "key": "Illumina unspecified",
+    "doc_count": 55156
+  },
+  {
+    "key": "NextSeq 550",
+    "doc_count": 44182
+  },
+  {
+    "key": "Illumina HiSeq 1500",
+    "doc_count": 29480
+  },
+  {
+    "key": "Illumina HiSeq 1000",
+    "doc_count": 23526
+  },
+  {
+    "key": "Illumina Genome Analyzer",
+    "doc_count": 23384
+  },
+  {
+    "key": "Illumina MiniSeq",
+    "doc_count": 15073
+  },
+  {
+    "key": "Illumina HiScanSQ",
+    "doc_count": 5988
+  },
+  {
+    "key": "HiSeq X Five",
+    "doc_count": 1006
+  },
+  {
+    "key": "Illumina iSeq 100",
+    "doc_count": 937
+  },
+  {
+    "key": "Illumina NextSeq 500",
+    "doc_count": 34
+  },
+  {
+    "key": "Illumina NextSeq 550",
+    "doc_count": 3
+  },
+  {
+    "key": "MinION",
+    "doc_count": 7510
+  },
+  {
+    "key": "GridION",
+    "doc_count": 2973
+  },
+  {
+    "key": "PromethION",
+    "doc_count": 217
+  },
+  {
+    "key": "Ion Torrent PGM",
+    "doc_count": 63178
+  },
+  {
+    "key": "Ion Torrent Proton",
+    "doc_count": 26074
+  },
+  {
+    "key": "Ion S5 XL",
+    "doc_count": 3708
+  },
+  {
+    "key": "Ion S5",
+    "doc_count": 2424
+  },
+  {
+    "key": "Ion Torrent S5 XL",
+    "doc_count": 726
+  },
+  {
+    "key": "Ion Torrent S5",
+    "doc_count": 255
+  },
+  {
+    "key": "unspecified",
+    "doc_count": 20
+  },
+  {
+    "key": "Helicos HeliScope",
+    "doc_count": 4086
+  },
+  {
+    "key": "Complete Genomics",
+    "doc_count": 5068
+  },
+  {
+    "key": "AB 310 Genetic Analyzer",
+    "doc_count": 292107
+  },
+  {
+    "key": "AB 3730xL Genetic Analyzer",
+    "doc_count": 3297
+  },
+  {
+    "key": "AB 3730 Genetic Analyzer",
+    "doc_count": 898
+  },
+  {
+    "key": "AB 3500 Genetic Analyzer",
+    "doc_count": 875
+  },
+  {
+    "key": "AB 3130 Genetic Analyzer",
+    "doc_count": 215
+  },
+  {
+    "key": "AB 3130xL Genetic Analyzer",
+    "doc_count": 166
+  },
+  {
+    "key": "AB 3500xL Genetic Analyzer",
+    "doc_count": 150
+  },
+  {
+    "key": "BGISEQ-500",
+    "doc_count": 14775
+  }
+]

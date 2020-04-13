@@ -22,15 +22,15 @@
 
         <table show="{visible.STUDY_top}">
             <thead><tr class="table-header"><th colspan="2">STUDY</th></tr></thead>
-            <tbody each={st_item in st_items}>
-            <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
-            <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
-            <tr if={st_item.abstract}><td width="180" class="atrb">Abstract</td><td>{st_item.abstract}</td></tr>
-            <tr if={st_item.study_type}><td width="180" class="atrb">Study Type</td><td>{st_item.study_type}</td></tr>
-            <tr if={st_item.center_name}><td width="180" class="atrb">Center Name</td><td>{st_item.center_name}</td></tr>
-            <tr if={st_item.center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{st_item.center_project_name}</td></tr>
-            <tr if={st_item.study_link_url}><td width="180" class="atrb">URL Link</td><td>{st_item.study_link_url}</td></tr>
-            <tr if={st_item.publication_id}><td width="180" class="atrb">XREF ID</td><td>{st_item.publication_id}</td></tr>
+            <tbody>
+            <tr class="sub-header"><th colspan="2">{study}</th></tr>
+            <tr if={study_title}><td width="180" class="atrb">Study Title</td><td>{study_title}</td></tr>
+            <tr if={abstract}><td width="180" class="atrb">Abstract</td><td>{abstract}</td></tr>
+            <tr if={study_type}><td width="180" class="atrb">Study Type</td><td>{study_type}</td></tr>
+            <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
+            <tr if={center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{center_project_name}</td></tr>
+            <tr if={study_link_url}><td width="180" class="atrb">URL Link</td><td>{study_link_url}</td></tr>
+            <tr if={publication_id}><td width="180" class="atrb">XREF ID</td><td>{publication_id}</td></tr>
             </tbody>
         </table>
 
@@ -137,7 +137,7 @@
         <h2  show="{visible.related}">Related entries</h2>
 
 
-        <table show="{visible.bioproject}">
+        <table show="{visible.bioproject}" class="bp">
             <thead><tr></tr></thead>
             <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
             <tbody>
@@ -155,21 +155,21 @@
             </tbody>
         </table>
 
-        <table show="{visible.STUDY}">
+        <table show="{visible.study}">
                 <thead><tr class="table-header"><th colspan="2">STUDY</th></tr></thead>
-                <tbody each={st_item in st_items}>
-                    <tr class="sub-header"><th colspan="2">{st_item.uid}</th></tr>
-                    <tr if={st_item.study_title}><td width="180" class="atrb">Study Title</td><td>{st_item.study_title}</td></tr>
-                    <tr if={st_item.abstract}><td width="180" class="atrb">Abstract</td><td>{st_item.abstract}</td></tr>
-                    <tr if={st_item.study_type}><td width="180" class="atrb">Study Type</td><td>{st_item.study_type}</td></tr>
-                    <tr if={st_item.center_name}><td width="180" class="atrb">Center Name</td><td>{st_item.center_name}</td></tr>
-                    <tr if={st_item.center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{st_item.center_project_name}</td></tr>
-                    <tr if={st_item.study_link_url}><td width="180" class="atrb">URL Link</td><td>{st_item.study_link_url}</td></tr>
-                    <tr if={st_item.publication_id}><td width="180" class="atrb">XREF ID</td><td>{st_item.publication_id}</td></tr>
+                <tbody>
+                <tr class="sub-header"><th colspan="2">{study}</th></tr>
+                <tr if={study_title}><td width="180" class="atrb">Study Title</td><td>{study_title}</td></tr>
+                <tr if={abstract}><td width="180" class="atrb">Abstract</td><td>{abstract}</td></tr>
+                <tr if={study_type}><td width="180" class="atrb">Study Type</td><td>{study_type}</td></tr>
+                <tr if={center_name}><td width="180" class="atrb">Center Name</td><td>{center_name}</td></tr>
+                <tr if={center_project_name}><td width="180" class="atrb">Center Project Name</td><td>{center_project_name}</td></tr>
+                <tr if={study_link_url}><td width="180" class="atrb">URL Link</td><td>{study_link_url}</td></tr>
+                <tr if={publication_id}><td width="180" class="atrb">XREF ID</td><td>{publication_id}</td></tr>
                 </tbody>
         </table>
 
-        <div id="experiment_run" show="{visible.EXPERIMENT_RUN}">
+        <div id="experiment_run" show="{visible.experiment_group}">
             <table>
                 <thead>
                 <tr class="table-header">
@@ -181,35 +181,35 @@
             </table>
 
             <div id="er_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-                <table each={er_item in er_items} class="er" if={er_item.EXPERIMENT.uid != accession & er_item.RUN.uid != accession} >
+                <table each={er_item in er_items} class="er" if={er_item.experiment._id != accession & er_item.run._id != accession} >
                     <tbody>
-                        <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
-                        <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
-                        <tr if={er_item.EXPERIMENTcenter_name}><td width="180" class="atrb">Center Name</td><td>{er_item.EXPERIMENT.center_name}</td></tr>
-                        <tr if={er_item.EXPERIMENT.design_description}><td width="180" class="atrb">Design Description</td><td>{er_item.EXPERIMENT.design_description}</td></tr>
-                        <tr if={er_item.EXPERIMENT.library_layout}><td width="180" class="atrb">Library Layout</td><td>{er_item.EXPERIMENT.library_layout}</td></tr>
-                        <tr if={er_item.EXPERIMENT.library_name}><td width="180" class="atrb">Library Name</td><td>{er_item.EXPERIMENT.library_name}</td></tr>
-                        <tr if={er_item.EXPERIMENT.program}><td width="180" class="atrb">Program</td><td>{er_item.EXPERIMENT.program}</td></tr>
-                        <tr if={er_item.EXPERIMENT.platform}><td width="180" class="atrb">Platform</td><td>{er_item.EXPERIMENT.platform}</td></tr>
-                        <tr if={er_item.EXPERIMENTprotocol}><td width="180" class="atrb">Protocol</td><td>{er_item.EXPERIMENTprotocol}</td></tr>
-                        <tr if={er_item.EXPERIMENT.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{er_item.EXPERIMENT.instrument_model}</td></tr>
+                        <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.experiment._id}</th></tr>
+                        <tr if={er_item.experiment.TITLE}><td width="180" class="atrb">Title</td><td>{er_item.experiment.TITLE}</td></tr>
+                        <tr if={er_item.experiment.center_name}><td width="180" class="atrb">Center Name</td><td>{er_item.experiment.center_name}</td></tr>
+                        <tr if={er_item.experiment.design_description}><td width="180" class="atrb">Design Description</td><td>{er_item.experiment.design_description}</td></tr>
+                        <tr if={er_item.experiment.LIBRARY_LAYOUT}><td width="180" class="atrb">Library Layout</td><td>{er_item.experiment.LIBRARY_LAYOUT}</td></tr>
+                        <tr if={er_item.experiment.library_name}><td width="180" class="atrb">Library Name</td><td>{er_item.experiment.library_name}</td></tr>
+                        <tr if={er_item.experiment.program}><td width="180" class="atrb">Program</td><td>{er_item.experiment.program}</td></tr>
+                        <tr if={er_item.experiment.protocol}><td width="180" class="atrb">Protocol</td><td>{er_item.experiment.protocol}</td></tr>
+                        <tr if={er_item.experiment.INSTRUMENT_MODEL}><td width="180" class="atrb">Instrument Model</td><td>{er_item.experiment.INSTRUMENT_MODEL}</td></tr>
 
-                        <tr class="sub-header">
-                            <th>RUN: {er_item.RUN.uid}</th>
-                            <th>
-                                <span if={er_item.RUN.sra_path} class="file_path"><a href={er_item.RUN.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                                <span if={er_item.RUN.fastq_path} class="file_path"><a href={base_file_path}{er_item.RUN.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
-                            </th>
+                        <tr if={er_item.biosample._id} class="sub-header"><th colspan="2">BioSample: {er_item.biosample._id}</th></tr>
+                        <tr if={er_item.biosample.Title}><td width="180" class="atrb">Title</td><td>{er_item.biosample.Title}</td></tr>
+                        <tr if={er_item.biosample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.biosample.taxonomy_id}</td></tr>
+                        <tr if={er_item.biosample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.biosample.taxonomy_name}</td></tr>
+                        <tr if={er_item.biosample.Package}><td width="180" class="atrb">Package</td><td>{er_item.biosample.Package}</td></tr>
+                        <tr if={er_item.biosample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
+                        <tr each={attribute in er_item.biosample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
+
+                        <tr class="sub-header" if={er_item.run.length > 0}><th colspan="2">RUN</th></tr>
+                        <tr each={run_item in er_item.run}>
+                            <td>{run_item._id}</td>
+                            <td class="atrb">
+                                <span if={run_item.sra_path} class="file_path"><a href={run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
+                                <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                            </td>
                         </tr>
 
-                        <tr if={er_item.BioSample.uid} class="sub-header"><th colspan="2">BioSample: {er_item.BioSample.uid}</th></tr>
-                        <tr if={er_item.BioSample.title}><td width="180" class="atrb">Title</td><td>{er_item.BioSample.title}</td></tr>
-                        <tr if={er_item.BioSample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.BioSample.taxonomy_id}</td></tr>
-                        <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
-                        <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
-                        <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
-                        <tr if={er_item.BioSample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
-                        <tr each={attribute in er_item.BioSample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
 
                     </tbody>
                 </table>
@@ -240,6 +240,7 @@
         </div>
         -->
 
+        <!--
         <table show="{visible.ANALYSIS}">
             <thead>
             <tr class="table-header">
@@ -248,6 +249,7 @@
             </tr>
             </thead>
         </table>
+        -->
         <div id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
             <table show="{visible.ANALYSIS}" >
                 <tbody each={ana_item in ana_items}>
@@ -259,6 +261,7 @@
             </table>
         </div>
 
+        <!--
         <table show="{visible.SAMPLE}">
             <thead>
             <tr class="table-header">
@@ -267,6 +270,8 @@
             </tr>
             </thead>
         </table>
+        -->
+
         <div id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
             <table show="{visible.SAMPLE}" >
                 <tbody each={smp_item in smp_items}>
@@ -297,8 +302,8 @@
             ANALYSIS_top: false,
             SUBMISSION: false,
             related: false,
-            EXPERIMENT_RUN: false,
-            EXPERIMENT_RUN_top: false
+            experiment_group: false,
+            experiment_group_top: false
 
         };
         var self = this;
@@ -312,7 +317,7 @@
         var uid = arg["accession"];
         var study = arg["_id"];
         // BioProjectに変換する必要有り
-        this.accession = uid;
+        self.accession = uid;
         var base_url = conf.api_base + "/details?db=";
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
@@ -354,22 +359,33 @@
                     }
                 };
 
-
                 bpval = new default_val("bioproject");
-                self.bioproject = bpval.get("uid");
-                self.title = bpval.get("title");
-                self.description = bpval.get("description");
-                self.organism_name = bpval.get("organism_name");
-                self.tax_id = bpval.get("tax_id");
-                self.archive = bpval.get("archive");
-                self.locus_tag_prefix = bpval.get( "locus_tag_prefix");
-                self.organization = bpval.get("organization_name");
-                self.xref_id = bpval.get("xref_id");
-                self.external_db = bpval.get("external_db");
-                self.publication_id = bpval.get("publication_id")
-                self.bp_submitted = bpval.get("submitted");
+                if (d.bioproject){
+                    self.bioproject = d.bioproject._id;
+                    self.title = d.bioproject.Title;
+                    self.description = d.bioproject.Description;
+                    self.organism_name = d.bioproject.OrganismName;
+                    self.organization_name = d.bioproject.Name;
+                    self.archive = d.bioproject.archive;
+                    self.locus_tag_prefix = d.bioproject.LocusTagPrefix;
+                    self.organization = d.bioproject.Name;
+                    self.external_db = d.bioproject.db;
+                    self.publication_id = d.bioproject.id;
+                    self.bp_submitted = d.bioproject.submitted;
+                }
 
 
+                self.study = d.study._id;
+                self.study_title = d.study.STUDY_TITLE;
+                self.study_type =d.study.existing_study_type;
+                self.abstract = d.study.STUDY_ABSTRACT;
+                self.center_name = d.study.center_name;
+                self.center_project_name = d.study.CENTER_PROJECT_NAME;
+                self.study_link_url = d.study.URL;
+                self.publication_id = d.study.ID;
+
+
+                // 要らないのでは
                 function a2str_obj(obj) {
                     // visbleを設定するため、typeごとのkeyを取得
                     try{
@@ -383,32 +399,51 @@
                     }catch (d){}
                 }
 
-                self.st_items = d.STUDY;
-                a2str_obj(self.st_items);
-                // 取得したJSONからSTUDY[0]["uid"]を取得し、whole metadata のAPIのパラメータとする
-                self.target_url = conf.api_base + "/metadata/" + self.st_items[0]["uid"];
+                //self.st_item = d.study;
+                //a2str_obj(self.st_items);
 
-                self.ex_items = d.EXPERIMENT;
+                /*
+                 取得したJSONからSTUDY[0]["uid"]を取得し、whole metadata のAPIのパラメータとする
+                 /metadata API!
+                */
+                self.target_url = conf.api_base + "/metadata/" + self.study;
+                /*
+                self.ex_items = d.experiment;
                 a2str_obj(self.ex_items);
 
-                self.run_items = d.RUN;
+                self.run_items = d.run;
                 a2str_obj(self.run_items);
 
                 self.bs_items = d.biosample;
                 a2str_obj(self.bs_items);
 
-                self.smp_items = d.SAMPLE;
+                self.smp_items = d.sample;
                 a2str_obj(self.smp_items);
 
-                self.ana_items = d.ANALYSIS;
+                self.ana_items = d.analysis;
                 a2str_obj(self.ana_items);
 
-                self.sb_items = d.SUBMISSION;
+                self.sb_items = d.submission;
                 a2str_obj(self.sb_items);
+                */
 
-                self.er_items = d.EXPERIMENT_RUN;
-                a2str_obj(self.er_items)
+                //experiment_groupのオブジェクトをtype別にまとめる
+                var types = ["experiment", "biosample", "run"];
+                self.er_items = [];
+                d.experiment_group.forEach(function (obj) {
+                    // groupごとの処理
+                    var item = {}
+                    types.forEach(function (t) {
+                        // typeごとの処理
+                        var tmp_d = obj.filter(function (e) {
+                            return e._index == t
+                        });
+                        item[t] = tmp_d.length == 1 && t != "run" ? tmp_d[0] : tmp_d
+                    });
+                    self.er_items.push(item)
+                });
 
+                //a2str_obj(self.er_items)
                 self.update();
 
             });
@@ -418,28 +453,30 @@
             // self.visible.bioproject = self.visible.study = self.visible.experiment = true;
             var types = Object.keys(d);
             types.forEach(function(x){
-                if(d[x].length > 0){
-                    self.visible[x] = true;
-                    // EXPAERIMENT_RUNにexperimentとrunが内包される。
-                    if(x == "EXPERIMENT_RUN"){
-                        self.visible.EXPERIMENT = true;
-                        self.visible.RUN = true;
-                    }
+                self.visible[x] = true;
+                // experiment_groupにexperimentとrun,biosampleが内包される。
+                if(x == "experiment_group"){
+                    self.visible.experiment_group = true;
+                    self.visible.EXPERIMENT = true;
+                    self.visible.RUN = true;
+                    self.visible.BioSample = true;
                 }
+
             });
 
-            //dbの値に寄ってテーブルの表示順を帰る。details~, related~
+            //dbの値に寄ってテーブルの表示順を変更する。details~, related~
             // project, study, sample をdetailsとrelatedに併記し、排他的にshow のtrue, falseを決める
             // ただし、[true, false]または[false, false]の可能性もある。
             f = {};
             f["sra"] = function () {
+                // テーブルの最上部に表示するメタデータのタイプの設定
                 // typeを取得し,x_top = trueに設定する
                 if (arg.accession){
                     var T = {};
                     T = {
                         "P": function () {
                             self.visible.STUDY_top = true;
-                            self.visible.STUDY = false;
+                            self.visible.study = false;
                         },
                         "X": function () {
                             // 配列オブジェクトとなるメタデータはクエリのaccessionと一致するオブジェクトのみ"details"に表示する
@@ -469,7 +506,7 @@
                 }else{
                     // study以外のバラメータでなければstudyをdetailsに表示する
                     self.visible.STUDY_top = true;
-                    self.visible.STUDY = false;
+                    self.visible.study = false;
                 }
 
                 <!--
@@ -492,6 +529,7 @@
                 self.visible.EXPERIMENT_RUN_top = true;
             };
 
+            // 設定を呼ぶ
             f[db]();
 
             if (self.visible.EXPERIMENT || self.visible.STUDY || self.visible.RUN || self.visible.bioproject || self.visible.analysis) {

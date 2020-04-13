@@ -225,7 +225,7 @@ div#main{
     margin-left: 0;
 }
 #main .trends{
-    height: 440px;
+    min-height: 500px;
     margin-bottom: 16px;
 }
 #main h3{
@@ -1630,14 +1630,6 @@ tbody.collapse.in {
 #main .details th.toggle-icon a i{
     color: #ffffff;
 }
-#main .details td.atrb span.file_path{
-    text-align: right;
-}
-#main .details td.atrb span.file_path a{
-    color: #333333;
-    font-size: 0.8rem;
-    font-weight: normal;
-}
 #main .details  span.file_path{
     width: 100%;
     margin-top: 16px;
@@ -1660,4 +1652,14 @@ tbody.collapse.in {
 
 #last_update div.row{
     margin-top: 24px
+}
+
+.panel_stas h4{
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 24px;
+    color: #555555;
+}
+.panel_stas rect{
+    cursor: pointer;
 }

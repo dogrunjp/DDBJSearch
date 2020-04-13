@@ -1,0 +1,402 @@
+[
+  {
+    "key": "Homo sapiens",
+    "doc_count": 6292144
+  },
+  {
+    "key": "Mus musculus",
+    "doc_count": 817460
+  },
+  {
+    "key": "human gut metagenome",
+    "doc_count": 248149
+  },
+  {
+    "key": "soil metagenome",
+    "doc_count": 225992
+  },
+  {
+    "key": "human metagenome",
+    "doc_count": 179004
+  },
+  {
+    "key": "Escherichia coli",
+    "doc_count": 141189
+  },
+  {
+    "key": "Salmonella enterica",
+    "doc_count": 141059
+  },
+  {
+    "key": "Saccharomyces cerevisiae",
+    "doc_count": 128916
+  },
+  {
+    "key": "marine metagenome",
+    "doc_count": 120961
+  },
+  {
+    "key": "metagenome",
+    "doc_count": 118679
+  },
+  {
+    "key": "gut metagenome",
+    "doc_count": 113172
+  },
+  {
+    "key": "mouse gut metagenome",
+    "doc_count": 85298
+  },
+  {
+    "key": "Arabidopsis thaliana",
+    "doc_count": 85202
+  },
+  {
+    "key": "Hordeum vulgare subsp. vulgare",
+    "doc_count": 84322
+  },
+  {
+    "key": "Rattus norvegicus",
+    "doc_count": 83008
+  },
+  {
+    "key": "Streptococcus pneumoniae",
+    "doc_count": 79787
+  },
+  {
+    "key": "Mycobacterium tuberculosis",
+    "doc_count": 64049
+  },
+  {
+    "key": "Drosophila melanogaster",
+    "doc_count": 62765
+  },
+  {
+    "key": "Staphylococcus aureus",
+    "doc_count": 61992
+  },
+  {
+    "key": "Plasmodium falciparum",
+    "doc_count": 59507
+  },
+  {
+    "key": "Danio rerio",
+    "doc_count": 50607
+  },
+  {
+    "key": "Zea mays",
+    "doc_count": 50268
+  },
+  {
+    "key": "human oral metagenome",
+    "doc_count": 47837
+  },
+  {
+    "key": "Campylobacter jejuni",
+    "doc_count": 45733
+  },
+  {
+    "key": "freshwater metagenome",
+    "doc_count": 43563
+  },
+  {
+    "key": "rhizosphere metagenome",
+    "doc_count": 42193
+  },
+  {
+    "key": "Bos taurus",
+    "doc_count": 42153
+  },
+  {
+    "key": "Listeria monocytogenes",
+    "doc_count": 39165
+  },
+  {
+    "key": "synthetic construct",
+    "doc_count": 39049
+  },
+  {
+    "key": "Oryza sativa",
+    "doc_count": 38597
+  },
+  {
+    "key": "plant metagenome",
+    "doc_count": 38263
+  },
+  {
+    "key": "human skin metagenome",
+    "doc_count": 36031
+  },
+  {
+    "key": "Oryza sativa Japonica Group",
+    "doc_count": 34442
+  },
+  {
+    "key": "feces metagenome",
+    "doc_count": 30883
+  },
+  {
+    "key": "Klebsiella pneumoniae",
+    "doc_count": 29242
+  },
+  {
+    "key": "Salmonella enterica subsp. enterica serovar Enteritidis",
+    "doc_count": 29075
+  },
+  {
+    "key": "Streptococcus pyogenes",
+    "doc_count": 28872
+  },
+  {
+    "key": "Caenorhabditis elegans",
+    "doc_count": 26498
+  },
+  {
+    "key": "Neisseria gonorrhoeae",
+    "doc_count": 26416
+  },
+  {
+    "key": "Triticum aestivum",
+    "doc_count": 25973
+  },
+  {
+    "key": "uncultured bacterium",
+    "doc_count": 25312
+  },
+  {
+    "key": "Neisseria meningitidis",
+    "doc_count": 22812
+  },
+  {
+    "key": "Hordeum vulgare",
+    "doc_count": 22588
+  },
+  {
+    "key": "Anopheles gambiae",
+    "doc_count": 22367
+  },
+  {
+    "key": "Salmonella enterica subsp. enterica serovar Typhimurium",
+    "doc_count": 21360
+  },
+  {
+    "key": "aquatic metagenome",
+    "doc_count": 21311
+  },
+  {
+    "key": "Clostridioides difficile",
+    "doc_count": 21156
+  },
+  {
+    "key": "Gallus gallus",
+    "doc_count": 21058
+  },
+  {
+    "key": "Sus scrofa",
+    "doc_count": 20906
+  },
+  {
+    "key": "uncultured Clostridiales bacterium",
+    "doc_count": 20886
+  },
+  {
+    "key": "human lung metagenome",
+    "doc_count": 19878
+  },
+  {
+    "key": "indoor metagenome",
+    "doc_count": 19302
+  },
+  {
+    "key": "sediment metagenome",
+    "doc_count": 19209
+  },
+  {
+    "key": "pig gut metagenome",
+    "doc_count": 18895
+  },
+  {
+    "key": "Enterococcus faecium",
+    "doc_count": 17415
+  },
+  {
+    "key": "Pseudomonas aeruginosa",
+    "doc_count": 17355
+  },
+  {
+    "key": "human nasopharyngeal metagenome",
+    "doc_count": 17208
+  },
+  {
+    "key": "Salmonella enterica subsp. enterica",
+    "doc_count": 17140
+  },
+  {
+    "key": "root metagenome",
+    "doc_count": 17077
+  },
+  {
+    "key": "seawater metagenome",
+    "doc_count": 16897
+  },
+  {
+    "key": "Campylobacter coli",
+    "doc_count": 14585
+  },
+  {
+    "key": "Streptococcus agalactiae",
+    "doc_count": 14028
+  },
+  {
+    "key": "biofilm metagenome",
+    "doc_count": 13455
+  },
+  {
+    "key": "marine sediment metagenome",
+    "doc_count": 13280
+  },
+  {
+    "key": "Schizosaccharomyces pombe",
+    "doc_count": 13021
+  },
+  {
+    "key": "Macaca mulatta",
+    "doc_count": 12601
+  },
+  {
+    "key": "Shigella sonnei",
+    "doc_count": 12482
+  },
+  {
+    "key": "human vaginal metagenome",
+    "doc_count": 12358
+  },
+  {
+    "key": "skin metagenome",
+    "doc_count": 12033
+  },
+  {
+    "key": "uncultured eukaryote",
+    "doc_count": 11848
+  },
+  {
+    "key": "bovine gut metagenome",
+    "doc_count": 11824
+  },
+  {
+    "key": "coral metagenome",
+    "doc_count": 11784
+  },
+  {
+    "key": "insect metagenome",
+    "doc_count": 11194
+  },
+  {
+    "key": "wastewater metagenome",
+    "doc_count": 10896
+  },
+  {
+    "key": "Acinetobacter baumannii",
+    "doc_count": 10889
+  },
+  {
+    "key": "Glycine max",
+    "doc_count": 10804
+  },
+  {
+    "key": "chicken gut metagenome",
+    "doc_count": 10569
+  },
+  {
+    "key": "Canis lupus familiaris",
+    "doc_count": 10503
+  },
+  {
+    "key": "Apis mellifera",
+    "doc_count": 10456
+  },
+  {
+    "key": "mouse metagenome",
+    "doc_count": 10327
+  },
+  {
+    "key": "Ovis aries",
+    "doc_count": 9946
+  },
+  {
+    "key": "food metagenome",
+    "doc_count": 9863
+  },
+  {
+    "key": "Gasterosteus aculeatus",
+    "doc_count": 9836
+  },
+  {
+    "key": "uncultured Ruminococcaceae bacterium",
+    "doc_count": 9748
+  },
+  {
+    "key": "Solanum lycopersicum",
+    "doc_count": 9677
+  },
+  {
+    "key": "uncultured prokaryote",
+    "doc_count": 9619
+  },
+  {
+    "key": "activated sludge metagenome",
+    "doc_count": 9298
+  },
+  {
+    "key": "insect gut metagenome",
+    "doc_count": 9257
+  },
+  {
+    "key": "Sorghum bicolor",
+    "doc_count": 8908
+  },
+  {
+    "key": "fish gut metagenome",
+    "doc_count": 8724
+  },
+  {
+    "key": "fish metagenome",
+    "doc_count": 8576
+  },
+  {
+    "key": "Brassica napus",
+    "doc_count": 8429
+  },
+  {
+    "key": "Panicum virgatum",
+    "doc_count": 8425
+  },
+  {
+    "key": "Hordeum vulgare subsp. spontaneum",
+    "doc_count": 8421
+  },
+  {
+    "key": "Salmonella enterica subsp. enterica serovar Typhi",
+    "doc_count": 8419
+  },
+  {
+    "key": "Populus trichocarpa",
+    "doc_count": 8369
+  },
+  {
+    "key": "sponge metagenome",
+    "doc_count": 8242
+  },
+  {
+    "key": "metagenomes",
+    "doc_count": 8237
+  },
+  {
+    "key": "sludge metagenome",
+    "doc_count": 8126
+  },
+  {
+    "key": "air metagenome",
+    "doc_count": 8001
+  }
+]

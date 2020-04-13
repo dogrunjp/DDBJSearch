@@ -1,0 +1,122 @@
+[
+  {
+    "key": "Transcriptome or Gene expression",
+    "doc_count": 93323
+  },
+  {
+    "key": "Genome sequencing and assembly",
+    "doc_count": 57243
+  },
+  {
+    "key": "genome sequencing",
+    "doc_count": 40481
+  },
+  {
+    "key": "raw sequence reads",
+    "doc_count": 39454
+  },
+  {
+    "key": "transcriptome",
+    "doc_count": 38275
+  },
+  {
+    "key": "metagenome",
+    "doc_count": 27577
+  },
+  {
+    "key": "Other",
+    "doc_count": 27570
+  },
+  {
+    "key": "RefSeq Genome",
+    "doc_count": 15458
+  },
+  {
+    "key": "Genome sequencing",
+    "doc_count": 13305
+  },
+  {
+    "key": "Epigenomics",
+    "doc_count": 11760
+  },
+  {
+    "key": "genome sequencing and assembly",
+    "doc_count": 9102
+  },
+  {
+    "key": "exome",
+    "doc_count": 5005
+  },
+  {
+    "key": "targeted loci",
+    "doc_count": 3841
+  },
+  {
+    "key": "Variation",
+    "doc_count": 2994
+  },
+  {
+    "key": "Phenotype or Genotype",
+    "doc_count": 1802
+  },
+  {
+    "key": "targeted loci environmental",
+    "doc_count": 1308
+  },
+  {
+    "key": "other",
+    "doc_count": 1280
+  },
+  {
+    "key": "epigenomics",
+    "doc_count": 1102
+  },
+  {
+    "key": "Targeted Locus (Loci)",
+    "doc_count": 984
+  },
+  {
+    "key": "RefSeq Genome sequencing and assembly",
+    "doc_count": 517
+  },
+  {
+    "key": "Metagenome",
+    "doc_count": 407
+  },
+  {
+    "key": "assembly",
+    "doc_count": 404
+  },
+  {
+    "key": "map",
+    "doc_count": 356
+  },
+  {
+    "key": "RefSeq genome sequencing",
+    "doc_count": 351
+  },
+  {
+    "key": "variation",
+    "doc_count": 342
+  },
+  {
+    "key": "RefSeq Genome sequencing",
+    "doc_count": 331
+  },
+  {
+    "key": "metagenomic assembly",
+    "doc_count": 316
+  },
+  {
+    "key": "Proteome",
+    "doc_count": 265
+  },
+  {
+    "key": "RefSeq genome sequencing and assembly",
+    "doc_count": 197
+  },
+  {
+    "key": "phenotype or genotype",
+    "doc_count": 177
+  }
+]
