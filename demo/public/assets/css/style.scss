@@ -44,9 +44,12 @@
     }
   }
   .field {
-    .label {
+    .label:not(.-width-not-set) {
       white-space: nowrap;
       width: 170px;
+    }
+    .label.-width-not-set {
+      white-space: nowrap;
     }
   }
   .search-collapse {

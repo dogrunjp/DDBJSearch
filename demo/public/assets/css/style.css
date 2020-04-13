@@ -10830,9 +10830,11 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
   background: #e6dbb6; }
   .search-section .button i {
     margin-right: .75rem; }
-  .search-section .field .label {
+  .search-section .field .label:not(.-width-not-set) {
     white-space: nowrap;
     width: 170px; }
+  .search-section .field .label.-width-not-set {
+    white-space: nowrap; }
   .search-section .search-collapse {
     margin-bottom: 2rem; }
   .search-section .search-collapse-trigger {

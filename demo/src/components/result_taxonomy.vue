@@ -123,13 +123,13 @@
             page_no: String
         },
         mounted: function () {
-            this.getData()
+            this.search()
         },
         watch: {
-            '$route': 'getData'
+            '$route': 'search'
         },
         methods: {
-            getData() {
+            async search() {
                 if (!Object.keys(this.$route.query).length) {
                     this.isStart = true
                     return
@@ -139,8 +139,15 @@
                 this.isLoading = true
                 this.isError = false
 
-                let targetUrl = this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id
-                if(!this.scientific_name === false) targetUrl = this.$route.meta.apiUrl_scientific_name + this.scientific_name
+                if(!this.scientific_name === false) {
+                    this.tx_taxonomy_id = await this.getTaxonomyIdUrl(this.scientific_name)
+                }
+
+                var targetUrl = this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id
+                this.getData(targetUrl)
+
+            },
+            getData(targetUrl) {
                 axios
                     .get(targetUrl , {
                         params: {
@@ -161,12 +168,28 @@
                         this.showDendrogram()
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error)
                         this.parentData = []
                         this.parentTotal = []
                         this.isLoading = false
                         this.isError = true
                     }.bind(this))
+            },
+            getScientificName(taxonomyId) {
+                axios
+                    .get(this.$route.meta.apiUrl_get_tax_name + taxonomyId)
+                    .then(res => {this.scientific_name = res.data.scientific_name})
+            },
+            getTaxonomyIdUrl(scientificName) {
+                console.log('here')
+                axios
+                    .get(this.$route.meta.apiUrl_get_name_tax + scientificName)
+                    .then(res => {
+                        return res.data.taxonomy_id.split("/").filter(e => Boolean(e))
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
             },
             showDendrogram() {
                 this.isDendrogramLoading = true
