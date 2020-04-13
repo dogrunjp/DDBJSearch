@@ -15,7 +15,7 @@
                 <h1>
                     <a href="./index.html">
                         <img src="images/ddbj_logo.png" class="logo" alt="DRA Search"/>
-                        <span class="title">DDBJ Search <i class="fa fa-angle-right" aria-hidden="true"></i> {fed}</span>
+                        <span class="title">DBCLS SRA <i class="fa fa-angle-right" aria-hidden="true"></i> {fed}</span>
                     </a>
                 </h1>
             </div>

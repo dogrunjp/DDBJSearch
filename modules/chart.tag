@@ -23,7 +23,7 @@
             }
         });
 
-        var target_url = conf.api_base;
+        var target_url = "http://dbcls-sra-dev.bmu.jp/api";
         var self = this;
         function get_data() {
             return $.ajax({

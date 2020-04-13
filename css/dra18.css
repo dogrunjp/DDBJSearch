@@ -1630,6 +1630,14 @@ tbody.collapse.in {
 #main .details th.toggle-icon a i{
     color: #ffffff;
 }
+#main .details td.atrb span.file_path{
+    text-align: right;
+}
+#main .details td.atrb span.file_path a{
+    color: #333333;
+    font-size: 0.8rem;
+    font-weight: normal;
+}
 #main .details  span.file_path{
     width: 100%;
     margin-top: 16px;

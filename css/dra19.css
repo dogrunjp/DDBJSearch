@@ -225,7 +225,7 @@ div#main{
     margin-left: 0;
 }
 #main .trends{
-    height: 440px;
+    min-height: 500px;
     margin-bottom: 16px;
 }
 #main h3{
@@ -1652,4 +1652,14 @@ tbody.collapse.in {
 
 #last_update div.row{
     margin-top: 24px
+}
+
+.panel_stas h4{
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 24px;
+    color: #555555;
+}
+.panel_stas rect{
+    cursor: pointer;
 }

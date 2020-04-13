@@ -12,7 +12,10 @@
 
             <div id="sra_form" show='{visible.sra}'>
 
-                <div class="show_more"><a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a></div>
+                <div class="show_more">
+                    <a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a>
+                    <a href="http://sra-dev.bmu.jp" >Additional features</a>
+                </div>
 
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
@@ -112,23 +115,16 @@
                      records
                 </label>
 
-                <label show='{visible.sra}' for="sra_sort_key">Sort by
+                <label for="sra_sort_key">Sort by
                     <select id="sra_sort_key" class="select-box1" name="sort">
-                        <option value="uid">ACCESSION</option>
-
+                        <option value="Updated" selected>Updated</option>
                     </select>
                 </label>
 
-                <label show='{visible.bioproject}' for="bp_sort_key">Sort by
-                    <select id="bp_sort_key" class="select-box1" name="sort">
-                        <option value="submitted">SUBMITTED</option>
-                        <option value="uid">ACCESSION</option>
-                    </select>
-                </label>
-
-                <label show='{visible.biosample}' for="bs_sort_key">Sort by
-                    <select id="bs_sort_key" class="select-box1" name="sort">
-                        <option value="uid">ACCESSION</option>
+                <label for="sra_order">Order
+                    <select id="sra_order" class="select-box1" name="order">
+                        <option value="desc" selected>DESC</option>
+                        <option value="asc">ASC</option>
                     </select>
                 </label>
 
@@ -167,12 +163,15 @@
             var forms = document.getElementById('queryform').elements;
             var vals = [],acc;
 
-            // nameとvalueをformをk:vにパースしarrayに追加する
+            // formをk:vにパースしarray valsに追加する
             $.each(forms, function (i, x) {
                 var k = x.name;
                 var v = x.value;
 
+
+                // valueが空で無いformのオブジェクトを取得する
                 if (["", "Search", "Clear"].indexOf(v) == -1) {
+                    console.log(k,v)
                     var obj = [k, v];
                     // accessionが入力された場合のみaccに値を入れる
                     if (obj[0] === "uid"){
@@ -212,6 +211,8 @@
                     });
             }else{
                 var qs = q.join("&");
+                console.log(focused)
+                console.log(qs)
                 window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;
             };
 

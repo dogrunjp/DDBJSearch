@@ -1,0 +1,102 @@
+[
+    {
+        "doc_count": 2045742,
+        "key": "Illumina MiSeq"
+    },
+    {
+        "doc_count": 1748534,
+        "key": "Illumina HiSeq 2000"
+    },
+    {
+        "doc_count": 1610101,
+        "key": "Illumina HiSeq 2500"
+    },
+    {
+        "doc_count": 472074,
+        "key": "NextSeq 500"
+    },
+    {
+        "doc_count": 302352,
+        "key": "Illumina HiSeq 4000"
+    },
+    {
+        "doc_count": 292107,
+        "key": "AB 310 Genetic Analyzer"
+    },
+    {
+        "doc_count": 256592,
+        "key": "HiSeq X Ten"
+    },
+    {
+        "doc_count": 118087,
+        "key": "Illumina Genome Analyzer II"
+    },
+    {
+        "doc_count": 73504,
+        "key": "Illumina Genome Analyzer IIx"
+    },
+    {
+        "doc_count": 67803,
+        "key": "Illumina NovaSeq 6000"
+    },
+    {
+        "doc_count": 63178,
+        "key": "Ion Torrent PGM"
+    },
+    {
+        "doc_count": 56769,
+        "key": "Illumina HiSeq X Ten"
+    },
+    {
+        "doc_count": 55373,
+        "key": "Illumina HiSeq 3000"
+    },
+    {
+        "doc_count": 55156,
+        "key": "Illumina unspecified"
+    },
+    {
+        "doc_count": 44182,
+        "key": "NextSeq 550"
+    },
+    {
+        "doc_count": 34863,
+        "key": "PacBio RS II"
+    },
+    {
+        "doc_count": 29480,
+        "key": "Illumina HiSeq 1500"
+    },
+    {
+        "doc_count": 26074,
+        "key": "Ion Torrent Proton"
+    },
+    {
+        "doc_count": 23526,
+        "key": "Illumina HiSeq 1000"
+    },
+    {
+        "doc_count": 23384,
+        "key": "Illumina Genome Analyzer"
+    },
+    {
+        "doc_count": 15102,
+        "key": "PacBio RS"
+    },
+    {
+        "doc_count": 15073,
+        "key": "Illumina MiniSeq"
+    },
+    {
+        "doc_count": 14775,
+        "key": "BGISEQ-500"
+    },
+    {
+        "doc_count": 7510,
+        "key": "MinION"
+    },
+    {
+        "doc_count": 7366,
+        "key": "Sequel"
+    }
+]

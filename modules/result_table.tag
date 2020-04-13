@@ -16,12 +16,13 @@
             var kv = q[i].split('=');
             arg[kv[0]]=kv[1];
         };
-        var search_ops = ["target_db", "rows", "sort"];
+        var search_ops = ["target_db", "rows", "sort", "order"];
         var search_option = [];
         var search_keys = [];
         var targetdb = arg["target_db"];
         var rows = arg["rows"] ? arg["rows"] : 20;
-        var sort = arg["sort"] ? arg["sort"] + "%20desc" : "uid%20desc";
+        var sort = arg["sort"] ? arg["sort"] : "Updated";
+        var order = arg["order"] ? arg["order"] : "desc";
         this.founds = "";
 
         obs.trigger("targetSelected", targetdb);
@@ -46,14 +47,13 @@
         var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
         //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
 
-        console.log(q);
 
         var table_conf = {
             sra:{
                 columns:[
                     {title:"ACCESSION", field:"uid", width:110},
                     {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
-                    {title:"ABSTRACT", field:"abstract", width: "20%"},
+                    {title:"ABSTRACT", field:"study_abstract", width: "20%"},
                     {title:"STUDY_TYPE", field: "study_type", width: "20%"},
                     {title:"", field:"study", width:0 }
                 ]},
@@ -88,12 +88,11 @@
                 paginationSize: rows,
                 columns:table_conf[targetdb]["columns"],
                 dataLoaded: function (datas) {
-                    console.log(table_conf)
                     //self.update();
-                    nfounds = datas["numFound"] ? datas["numFound"]: nfounds;
+                    nfounds = datas["numfound"] ? datas["numfound"]: nfounds;
                     self.founds = nfounds ? nfounds: "No Hits";
                     self.target = nfounds ? targetdb + " entries" : "";
-                    self.query_params = Object.keys(arg) + ": " +decodeURI(Object.values(arg));
+                    self.query_params = Object.keys(arg) + ': "' + decodeURI(Object.values(arg)) + '"';
                     self.update();
 
                 },
