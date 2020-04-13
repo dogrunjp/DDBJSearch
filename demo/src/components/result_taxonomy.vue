@@ -2,7 +2,7 @@
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-dna"></i>Let's search Taxonomy entries!</div>
         <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
-        <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-sad-tear"></i>Sorry caused an error...</div>
+        <div v-show="isError" class="box is-warning is-light has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>terms : <span>{{ tx_taxonomy_id }} {{ scientific_name }}</span> <a class="button is-info toDetail" :href="toBilsampleLink"><i class="fas fa-external-link-alt"></i>Show all Taxonomies</a></p>
@@ -20,7 +20,15 @@
                 <template slot-scope="props">
                     <b-table-column field="TaxonomyID" label="Taxonomy ID" sortable>
                         <template>
-                            <router-link :to="{ name: 'taxonomy', query:{ tx_taxonomy_id: props.row.taxid } }">{{ props.row.taxid }}</router-link>
+                            <router-link :to="{
+                                name: 'taxonomy',
+                                query:{
+                                    tx_taxonomy_id: props.row.taxid,
+                                    sort_key: sort_key,
+                                    order_by: order_by,
+                                    per_page: per_page,
+                                 }
+                             }">{{ props.row.taxid }}</router-link>
                         </template>
                     </b-table-column>
                     <b-table-column field="ScientificName" label="Scientific Name">{{ props.row.label }}</b-table-column>
@@ -47,7 +55,15 @@
                 <template slot-scope="props">
                     <b-table-column field="TaxonomyID" label="Taxonomy ID" sortable>
                         <template>
-                            <router-link :to="{ name: 'taxonomy', query:{ tx_taxonomy_id: props.row.taxid } }">{{ props.row.taxid }}</router-link>
+                            <router-link :to="{
+                                name: 'taxonomy',
+                                query:{
+                                    tx_taxonomy_id: props.row.taxid,
+                                    sort_key: sort_key,
+                                    order_by: order_by,
+                                    per_page: per_page,
+                                 }
+                             }">{{ props.row.taxid }}</router-link>
                         </template>
                     </b-table-column>
                     <b-table-column field="ScientificName" label="Scientific Name" sortable>{{ props.row.label }}</b-table-column>
@@ -162,7 +178,7 @@
                         this.isDendrogramLoading = false
                         if(this.scientific_name !== '') {
                             this.targetTaxId = response.taxonomy_id
-                            this.targetName = response.input__name
+                            this.targetName = response.input_name
                         } else {
                             this.targetTaxId = response.input_id
                             this.targetName = response.scientific_name

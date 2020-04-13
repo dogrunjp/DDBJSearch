@@ -157,7 +157,7 @@
                         </div>
                         <div class="column">
                             <div class="field is-horizontal">
-                                <div class="field-label is-normal"><label class="label">journal</label></div>
+                                <div class="field-label is-normal"><label class="label">Journal</label></div>
                                 <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.journal"></div></div>
                             </div>
                             <div class="field is-horizontal">

@@ -10849,9 +10849,10 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
     margin: 0 1rem; }
 
 #result .result-box {
-  font-size: 2rem;
   height: 112px;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  line-height: 3rem; }
   #result .result-box i {
     margin-right: 1rem; }
   #result .result-box.-start {
@@ -10862,8 +10863,8 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
     background-color: #738581;
     padding: 2rem 0; }
   #result .result-box.-error {
-    color: #FFF;
-    background-color: #ea553a;
+    color: #d48379;
+    background-color: #FFFFFF;
     padding: 2rem 0; }
   #result .result-box.-result {
     background-color: #d6d6de; }

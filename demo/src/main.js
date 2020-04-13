@@ -91,8 +91,8 @@ const routes = [
         meta: {
             apiUrl_taxonomy: base_api + 'exp_taxonomy/',
             apiUrl_scientific_name: base_api + 'scientific_name/',
-            apiUrl_get_tax_name: base_api + 'taxonomyid/',
-            apiUrl_get_name_tax: base_api + 'scientific_name/',
+            apiUrl_get_tax_name: base_api + 'scientific_name/',
+            apiUrl_get_name_tax: base_api + 'taxonomyid/',
             linkUrl_biosample: 'http://sra-demo.bmu.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
             sortList: ['TaxonomyID', 'ScientificName'],
         }
@@ -121,7 +121,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    //mode: 'history',
+    mode: 'history',
     routes
 })
 
