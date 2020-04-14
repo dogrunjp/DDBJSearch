@@ -72,8 +72,6 @@
                 </template>
             </b-table>
 
-
-            <p class="title is-5">Dendrogram</p>
             <dendrogram :scientific_name="scientific_name"></dendrogram>
         </div>
     </section>
