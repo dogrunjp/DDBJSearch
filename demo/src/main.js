@@ -14,11 +14,11 @@ import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
 const base_api = 'http://dbcls-sra.bhx.jp/api/'
-const public_path = '/advanced/'
+const public_path = '/advanced'
 
 const routes = [
     {
-        path: public_path + 'sra',
+        path: public_path + '/sra',
         component: Sra,
         name: 'sra',
         label: 'SRA',
@@ -41,7 +41,7 @@ const routes = [
         })
     },
     {
-        path: public_path+'bioproject',
+        path: public_path+'/bioproject',
         component: BioProject,
         name: 'bioproject',
         label: 'BioProject',
@@ -57,7 +57,7 @@ const routes = [
         })
     },
     {
-        path: public_path+'biosample',
+        path: public_path+'/biosample',
         component: BioSample,
         name: 'biosample',
         label: 'BioSample',
@@ -91,14 +91,14 @@ const routes = [
         meta: {
             apiUrl_taxonomy: base_api + 'exp_taxonomy/',
             apiUrl_scientific_name: base_api + 'scientific_name/',
-            apiUrl_get_tax_name: base_api + 'taxonomyid/',
-            apiUrl_get_name_tax: base_api + 'scientific_name/',
+            apiUrl_get_tax_name: base_api + 'scientific_name/',
+            apiUrl_get_name_tax: base_api + 'taxonomyid/',
             linkUrl_biosample: 'http://sra-demo.bmu.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
             sortList: ['TaxonomyID', 'ScientificName'],
         }
     },
     {
-        path: public_path+'publication',
+        path: public_path+'/publication',
         component: Publication,
         name:'publication',
         label: 'Publication',
@@ -121,7 +121,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    //mode: 'history',
+    mode: 'history',
     routes
 })
 

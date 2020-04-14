@@ -44,9 +44,12 @@
     }
   }
   .field {
-    .label {
+    .label:not(.-width-not-set) {
       white-space: nowrap;
       width: 170px;
+    }
+    .label.-width-not-set {
+      white-space: nowrap;
     }
   }
   .search-collapse {
@@ -71,9 +74,10 @@
 
 #result {
   .result-box {
-    font-size: 2rem;
     height: 112px;
     margin-bottom: 2rem;
+    font-size: 1.3rem;
+    line-height: 3rem;
     i {
       margin-right: 1rem;
     }
@@ -87,8 +91,8 @@
       padding: 2rem 0;
     }
     &.-error {
-      color: #FFF;
-      background-color: #ea553a;
+      color: #d48379;
+      background-color: #FFFFFF;
       padding: 2rem 0;
     }
     &.-result {

@@ -118,14 +118,24 @@
 
                 <!-- taxonomy search -->
                 <div v-show="$route.name == 'taxonomy'">
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal"><label class="label">Taxonomy ID</label></div>
-                        <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.tx_taxonomy_id"></div></div>
+                    <div class="columns mb-075">
+                        <div class="column">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label -width-not-set">Taxonomy ID</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.tx_taxonomy_id"></div></div>
+                            </div>
+                        </div>
+                        <div class="column is-narrow">
+                            <div class="field-label is-normal"><label class="label">OR</label></div>
+                        </div>
+                        <div class="column">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal"><label class="label -width-not-set">Scientific Name</label></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.scientific_name"></div></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="field is-horizontal mb-3">
-                        <div class="field-label is-normal"><label class="label">Scientific Name</label></div>
-                        <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.scientific_name"></div></div>
-                    </div>
+                    <p class="mb-3">If you enter a Scientific Name, that takes precedence.</p>
                 </div>
 
                 <!-- publication search -->
