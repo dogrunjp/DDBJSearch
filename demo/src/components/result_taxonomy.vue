@@ -133,7 +133,6 @@
                         }.bind(this))
                         .finally(function () {
                             this.isLoading = false
-                            this.showDendrogram()
                         }.bind(this))
                 } else {
                     axios
@@ -148,7 +147,6 @@
                         }.bind(this))
                         .finally(function () {
                             this.isLoading = false
-                            this.showDendrogram()
                         }.bind(this))
                 }
             },

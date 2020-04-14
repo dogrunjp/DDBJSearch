@@ -14,11 +14,11 @@ import Taxonomy from './components/result_taxonomy.vue'
 import Publication from './components/result_publication.vue'
 
 const base_api = 'http://dbcls-sra.bhx.jp/api/'
-const public_path = '/advanced/'
+const public_path = '/advanced'
 
 const routes = [
     {
-        path: public_path + 'sra',
+        path: public_path + '/sra',
         component: Sra,
         name: 'sra',
         label: 'SRA',
@@ -41,7 +41,7 @@ const routes = [
         })
     },
     {
-        path: public_path+'bioproject',
+        path: public_path+'/bioproject',
         component: BioProject,
         name: 'bioproject',
         label: 'BioProject',
@@ -57,7 +57,7 @@ const routes = [
         })
     },
     {
-        path: public_path+'biosample',
+        path: public_path+'/biosample',
         component: BioSample,
         name: 'biosample',
         label: 'BioSample',
@@ -98,7 +98,7 @@ const routes = [
         }
     },
     {
-        path: public_path+'publication',
+        path: public_path+'/publication',
         component: Publication,
         name:'publication',
         label: 'Publication',

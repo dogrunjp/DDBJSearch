@@ -4,7 +4,7 @@
         <div id="contents">
             <div class="showcase_detail">
                 <div class="showcase_box">
-                    <togostanza-dendrogram :sparql_api="'http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=' + scientific_name" title="D3 dendrogram"></togostanza-dendrogram>
+                    <togostanza-dendrogram v-if="scientific_name" :sparql_api="'http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=' + scientific_name" title="D3 dendrogram"></togostanza-dendrogram>
                 </div>
             </div>
         </div>
