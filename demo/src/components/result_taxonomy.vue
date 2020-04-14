@@ -43,13 +43,9 @@
                     hoverable
                     class="mb-3"
 
-                    backend-sorting
                     :default-sort="[sort_key, order_by]"
-                    @sort="onSort"
 
                     paginated
-                    backend-pagination
-                    @page-change="onPageChange"
                     :total="childTotal"
                     :per-page="per_page">
 
@@ -180,15 +176,6 @@
                         this.parentTotal = []
                         this.isError = true
                     }.bind(this))
-            },
-            onPageChange() {
-                this.page_no += 1
-                this.getData()
-            },
-            onSort(field, order) {
-                this.sort_key = field
-                this.order_by = order
-                this.getData()
             }
         }
     }
