@@ -24,6 +24,7 @@
                                 name: 'taxonomy',
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
+                                    scientific_name: '',
                                     sort_key: sort_key,
                                     order_by: order_by,
                                     per_page: per_page,
@@ -59,6 +60,7 @@
                                 name: 'taxonomy',
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
+                                    scientific_name: '',
                                     sort_key: sort_key,
                                     order_by: order_by,
                                     per_page: per_page,
@@ -71,31 +73,14 @@
             </b-table>
 
 
-            <div v-show="isDendrogramLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now dendrogram drawing...</div>
-            <div v-show="isDendrogramError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-sad-tear"></i>Sorry caused an error to dendrogram drawing...</div>
-            <div v-show="!isStart & !isDendrogramLoading & !isDendrogramError & targetTaxId !== '' & targetName !== ''" class="search_loaded">
-                <div class="box is-primary result-box -result has-text-centered">
-                    <p>Taxonomy ID : <span>{{ targetTaxId }}</span> Scientific Name : <span>{{ targetName }}</span></p>
-                </div>
-            </div>
-<!--
-            <script src="https://cdn.jsdelivr.net/combine/npm/@babel/polyfill@7.2.5/dist/polyfill.min.js,npm/@ungap/url-search-params@0.1.2/min.js,npm/whatwg-fetch@3.0.0/dist/fetch.umd.js" crossorigin></script>
-            <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@1.3.0/webcomponents-loader.js" crossorigin></script>
-            <link rel="import" href="http://togostanza.org/dist/metastanza/dendrogram/">
-            <link rel="stylesheet" href="http://togostanza.org/dist/metastanza/assets/css/ts.css">
-            <div id="contents">
-                <div class="showcase_detail">
-                    <div class="showcase_box">
-                        <togostanza-dendrogram sparql_api="http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=Oryza sativa" title="D3 dendrogram"></togostanza-dendrogram>
-                    </div>
-                </div>
-            </div>
--->
+            <p class="title is-5">Dendrogram</p>
+            <dendrogram :scientific_name="scientific_name"></dendrogram>
         </div>
     </section>
 </template>
 <script>
     import axios from 'axios'
+    import dendrogram from './result_taxonomy_dendrogram.vue'
 
     export default {
         data() {
@@ -105,8 +90,6 @@
                 parentTotal: 0,
                 childTotal: 0,
                 toBilsampleLink: '',
-                targetTaxId: '',
-                targetName: '',
                 isStart: false,
                 isLoading: false,
                 isError: false,
@@ -121,6 +104,9 @@
             sort_key: String,
             order_by: String,
             page_no: Number
+        },
+        components: {
+            dendrogram
         },
         mounted: function () {
             this.search()
@@ -195,28 +181,6 @@
                         this.parentData = []
                         this.parentTotal = []
                         this.isError = true
-                    }.bind(this))
-            },
-            showDendrogram() {
-                this.isDendrogramLoading = true
-                let targetUrl = this.$route.meta.apiUrl_get_tax_name + this.tx_taxonomy_id
-                if(!this.scientific_name === false) targetUrl = this.$route.meta.apiUrl_get_name_tax + this.scientific_name
-                axios
-                    .get(targetUrl)
-                    .then(response => {
-                        this.isDendrogramLoading = false
-                        if(this.scientific_name !== '') {
-                            this.targetTaxId = response.taxonomy_id
-                            this.targetName = response.input_name
-                        } else {
-                            this.targetTaxId = response.input_id
-                            this.targetName = response.scientific_name
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        this.isDendrogramLoading = false
-                        this.isDendrogramError = true
                     }.bind(this))
             },
             onPageChange() {
