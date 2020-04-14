@@ -120,7 +120,7 @@
             per_page: String,
             sort_key: String,
             order_by: String,
-            page_no: String
+            page_no: Number
         },
         mounted: function () {
             this.search()
@@ -129,7 +129,7 @@
             '$route': 'search'
         },
         methods: {
-            async search() {
+            search() {
                 if (!Object.keys(this.$route.query).length) {
                     this.isStart = true
                     return
@@ -139,13 +139,38 @@
                 this.isLoading = true
                 this.isError = false
 
+
                 if(!this.scientific_name === false) {
-                    this.tx_taxonomy_id = await this.getTaxonomyIdUrl(this.scientific_name)
+                    axios
+                        .get(this.$route.meta.apiUrl_get_name_tax + this.scientific_name)
+                        .then(res => {
+                            this.tx_taxonomy_id = res.data.taxonomy_id.split("/")[4]
+                            this.getData(this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id)
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                            this.isError = true
+                        }.bind(this))
+                        .finally(function () {
+                            this.isLoading = false
+                            this.showDendrogram()
+                        }.bind(this))
+                } else {
+                    axios
+                        .get(this.$route.meta.apiUrl_get_tax_name + this.tx_taxonomy_id)
+                        .then(res => {
+                            this.scientific_name = res.data.scientific_name
+                            this.getData(this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id)
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                            this.isError = true
+                        }.bind(this))
+                        .finally(function () {
+                            this.isLoading = false
+                            this.showDendrogram()
+                        }.bind(this))
                 }
-
-                var targetUrl = this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id
-                this.getData(targetUrl)
-
             },
             getData(targetUrl) {
                 axios
@@ -164,32 +189,13 @@
                         this.childTotal = response.data.child.length
                         this.toBilsampleLink = this.$route.meta.linkUrl_biosample + this.tx_taxonomy_id
                         Object.keys(response.data.child).map(([value]) => this.toBilsampleLink += "," + response.data.child[value].taxid)
-                        this.isLoading = false
-                        this.showDendrogram()
                     })
                     .catch(function (error) {
                         console.log(error)
                         this.parentData = []
                         this.parentTotal = []
-                        this.isLoading = false
                         this.isError = true
                     }.bind(this))
-            },
-            getScientificName(taxonomyId) {
-                axios
-                    .get(this.$route.meta.apiUrl_get_tax_name + taxonomyId)
-                    .then(res => {this.scientific_name = res.data.scientific_name})
-            },
-            getTaxonomyIdUrl(scientificName) {
-                console.log('here')
-                axios
-                    .get(this.$route.meta.apiUrl_get_name_tax + scientificName)
-                    .then(res => {
-                        return res.data.taxonomy_id.split("/").filter(e => Boolean(e))
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
             },
             showDendrogram() {
                 this.isDendrogramLoading = true
