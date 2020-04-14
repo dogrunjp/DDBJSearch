@@ -7,10 +7,10 @@
 
     <div class="row trends">
         <div class="box tob" id="organism_ranking" data-field="organism_name" data-target="bioproject">
-            <h3>Organism Name</h3>
+            <h3>BioProject OrganismName</h3>
         </div>
         <div class="box" id="project_datatype_ranking" data-field="project_datatype" data-target="sra">
-            <h3>BioProject Datatype</h3>
+            <h3>BioProject DataType</h3>
         </div>
 
     </div>

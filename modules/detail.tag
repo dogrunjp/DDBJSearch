@@ -46,36 +46,34 @@
             </table>
 
             <div show="{visible.EXPERIMENT_RUN_top}" id="er_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
-                <table each={er_item in er_items} if={er_item.EXPERIMENT.uid==accession || er_item.RUN.uid==accession || er_item.BioSample.uid==accession}>
+                <table each={er_item in er_items} if={er_item.experiment._id==accession || er_item.run._id==accession || er_item.biosample._id==accession}>
                     <tbody>
-                        <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.EXPERIMENT.uid}</th></tr>
-                        <tr if={er_item.EXPERIMENT.title}><td width="180" class="atrb">Title</td><td>{er_item.EXPERIMENT.title}</td></tr>
-                        <tr if={er_item.EXPERIMENTcenter_name}><td width="180" class="atrb">Center Name</td><td>{er_item.EXPERIMENT.center_name}</td></tr>
-                        <tr if={er_item.EXPERIMENT.design_description}><td width="180" class="atrb">Design Description</td><td>{er_item.EXPERIMENT.design_description}</td></tr>
-                        <tr if={er_item.EXPERIMENT.library_layout}><td width="180" class="atrb">Library Layout</td><td>{er_item.EXPERIMENT.library_layout}</td></tr>
-                        <tr if={er_item.EXPERIMENT.library_name}><td width="180" class="atrb">Library Name</td><td>{er_item.EXPERIMENT.library_name}</td></tr>
-                        <tr if={er_item.EXPERIMENT.program}><td width="180" class="atrb">Program</td><td>{er_item.EXPERIMENT.program}</td></tr>
-                        <tr if={er_item.EXPERIMENT.platform}><td width="180" class="atrb">Platform</td><td>{er_item.EXPERIMENT.platform}</td></tr>
-                        <tr if={er_item.EXPERIMENTprotocol}><td width="180" class="atrb">Protocol</td><td>{er_item.EXPERIMENTprotocol}</td></tr>
-                        <tr if={er_item.EXPERIMENT.instrument_model}><td width="180" class="atrb">Instrument Model</td><td>{er_item.EXPERIMENT.instrument_model}</td></tr>
+                        <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.experiment._id}</th></tr>
+                        <tr if={er_item.experiment.TITLE}><td width="180" class="atrb">Title</td><td>{er_item.experiment.TITLE}</td></tr>
+                        <tr if={er_item.experiment.center_name}><td width="180" class="atrb">Center Name</td><td>{er_item.experiment.center_name}</td></tr>
+                        <tr if={er_item.experiment.design_description}><td width="180" class="atrb">Design Description</td><td>{er_item.experiment.design_description}</td></tr>
+                        <tr if={er_item.experiment.LIBRARY_LAYOUT}><td width="180" class="atrb">Library Layout</td><td>{er_item.experiment.LIBRARY_LAYOUT}</td></tr>
+                        <tr if={er_item.experiment.library_name}><td width="180" class="atrb">Library Name</td><td>{er_item.experiment.library_name}</td></tr>
+                        <tr if={er_item.experiment.program}><td width="180" class="atrb">Program</td><td>{er_item.experiment.program}</td></tr>
+                        <tr if={er_item.experiment.protocol}><td width="180" class="atrb">Protocol</td><td>{er_item.experiment.protocol}</td></tr>
+                        <tr if={er_item.experiment.INSTRUMENT_MODEL}><td width="180" class="atrb">Instrument Model</td><td>{er_item.experiment.INSTRUMENT_MODEL}</td></tr>
 
-                        <tr class="sub-header">
-                            <th>RUN: {er_item.RUN.uid}</th>
-                            <th>
-                                <span if={er_item.RUN.sra_path} class="file_path"><a href={er_item.RUN.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                                <span if={er_item.RUN.fastq_path} class="file_path"><a href={base_file_path}{er_item.RUN.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
-                            </th>
-                        </tr>
+                        <tr if={er_item.biosample._id} class="sub-header"><th colspan="2">BioSample: {er_item.biosample._id}</th></tr>
+                        <tr if={er_item.biosample.Title}><td width="180" class="atrb">Title</td><td>{er_item.biosample.Title}</td></tr>
+                        <tr if={er_item.biosample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.biosample.taxonomy_id}</td></tr>
+                        <tr if={er_item.biosample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.biosample.taxonomy_name}</td></tr>
+                        <tr if={er_item.biosample.Package}><td width="180" class="atrb">Package</td><td>{er_item.biosample.Package}</td></tr>
+                        <tr if={er_item.biosample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
+                        <tr each={attribute in er_item.biosample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
 
-                        <tr if={er_item.BioSample.uid} class="sub-header"><th colspan="2">BioSample: {er_item.BioSample.uid}</th></tr>
-                        <tr if={er_item.BioSample.title}><td width="180" class="atrb">Title</td><td>{er_item.BioSample.title}</td></tr>
-                        <tr if={er_item.BioSample.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{er_item.BioSample.taxonomy_id}</td></tr>
-                        <tr if={er_item.BioSample.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{er_item.BioSample.taxonomy_name}</td></tr>
-                        <tr if={er_item.BioSample.package}><td width="180" class="atrb">Package</td><td>{er_item.BioSample.package}</td></tr>
-                        <tr if={er_item.BioSample.env_package}><td width="180" class="atrb">Env Package</td><td>{er_item.BioSample.env_package}</td></tr>
-                        <tr if={er_item.BioSample.attributes} ><td colspan="2" class="atrb">Attributes</td></tr>
-                        <tr each={attribute in er_item.BioSample.attributes || []}><td>{Object.keys(attribute).toString()}</td><td>{Object.values(attribute).toString()}</td></tr>
-
+                        <tr class="sub-header" if={er_item.run.length > 0}><th colspan="2">RUN</th></tr>
+                        <tr each={run_item in er_item.run}>
+                        <td>{run_item._id}</td>
+                        <td class="atrb">
+                            <span if={run_item.sra_path} class="file_path"><a href={run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
+                            <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -195,6 +195,7 @@
             });
             // Accession検索の場合UIDでヒットするようであれば詳細を表示する
             if(acc){
+                console.log(acc)
                 url = conf.api_base;
                 // Elasticsearch _countから件数を取得する
                 // 検索結果の_idを詳細画面に渡す必要がある
@@ -204,7 +205,7 @@
                     })
                     .then(function (jsn) {
                         if (jsn["count"] == 1){
-                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1] + "&_id=" + jsn["_id"]
+                            window.location.href = "details.html?db=" + focused + "&accession=" + acc[1]
                         }else{
                             window.location.href = "result.html?target_db=" + focused + "&term=" + acc[1]
                         }
