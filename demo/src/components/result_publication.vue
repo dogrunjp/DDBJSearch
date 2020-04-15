@@ -6,7 +6,7 @@
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
-                <p>terms : <span>{{ journal }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
+                <p>terms : <span>{{ article_title }} {{ journal }} {{ bp_title }} {{ pub_year }}</span></p>
                 <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ targetSortKey }}</span> / Order <span> {{ targetOrderBy }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
         </div>
@@ -29,16 +29,24 @@
                 <template slot-scope="props">
                     <b-table-column field="BioProject" label="BioProject" sortable>
                         <template>
-                            <router-link :to="{ name: 'bioproject', query:{ bp_publication_id: props.row.BioProject } }">{{ props.row.BioProject }}</router-link>
+                            <a :href="'http://sra-demo.bmu.jp/bioproject?target_db=bioproject&publication_id=' + props.row.BioProject">{{ props.row.BioProject }}</a>
                         </template>
                     </b-table-column>
                     <b-table-column field="Title" label="Title">{{ props.row.Title }}</b-table-column>
-                    <b-table-column field="PMID" label="PMID" sortable>
+                    <b-table-column field="PMID" label="PMID" sortable>{{ props.row.PMID }}</b-table-column>
+                    <b-table-column field="Journal" label="Journal">
                         <template>
-                            <router-link :to="{ name: 'publication', query:{ pmid: props.row.PMID } }">{{ props.row.PMID }}</router-link>
+                            <router-link :to="{ name: 'publication', query:{
+                                journal: props.row.Journal,
+                                article_title: article_title,
+                                bp_title: bp_title,
+                                pub_year: pub_year,
+                                per_page: per_page,
+                                sort_key: targetSortKey,
+                                order_by: targetOrderBy
+                             } }">{{ props.row.Journal }}</router-link>
                         </template>
                     </b-table-column>
-                    <b-table-column field="Journal" label="Journal">{{ props.row.Journal }}</b-table-column>
                     <b-table-column field="ArticleTitle" label="ArticleTitle">{{ props.row.ArticleTitle }}</b-table-column>
                     <b-table-column field="Year" label="Year">{{ props.row.Year }}</b-table-column>
                 </template>
@@ -94,8 +102,8 @@
                 axios
                     .get(this.$route.meta.apiUrl , {
                         params: {
-                            journal: (this.pmid == null) ? '' : this.pmid,
                             article_title: (this.article_title == null) ? '' : this.article_title,
+                            journal: (this.journal == null) ? '' : this.journal,
                             bp_title: (this.bp_title == null) ? '' : this.bp_title,
                             year: (this.pub_year == null) ? '' : this.pub_year,
                             size: this.per_page,

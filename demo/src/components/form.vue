@@ -229,6 +229,7 @@
                     package: '',
                     platform: '',
                     journal: '',
+                    pub_bp_title: '',
                     pub_year: '',
                     publication_id: '',
                     scientific_name: '',
@@ -265,7 +266,7 @@
                         query: {
                             journal: this.params.journal,
                             article_title: this.params.article_title,
-                            bp_title: this.params.bp_title,
+                            bp_title: this.params.pub_bp_title,
                             pub_year: this.params.pub_year,
                             per_page: this.params.per_page,
                             sort_key: this.params.sort_key,

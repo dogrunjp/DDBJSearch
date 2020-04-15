@@ -105,7 +105,7 @@ const routes = [
         props: (route) => ({
             journal: route.query.journal,
             article_title: route.query.article_title,
-            bp_title: route.query.pub_bp_title,
+            bp_title: route.query.bp_title,
             pub_year: route.query.pub_year,
             per_page: route.query.per_page,
             sort_key: route.query.sort_key,
