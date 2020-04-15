@@ -1,4 +1,4 @@
 module.exports = {
     publicPath: '/advanced/',
-    indexPath : 'advanced.html'
+    indexPath : 'index.html'
 }
