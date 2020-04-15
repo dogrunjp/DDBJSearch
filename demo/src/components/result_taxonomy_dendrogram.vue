@@ -14,7 +14,7 @@
     import '@babel/polyfill'
     import '@webcomponents/webcomponentsjs'
     export default {
-        props: ['scientific_name']
+        props: ['scientific_name'],
     }
 </script>
 <style>
