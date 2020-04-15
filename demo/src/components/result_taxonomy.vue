@@ -68,7 +68,7 @@
                 </template>
             </b-table>
 
-            <dendrogram :scientific_name="targetTxName"></dendrogram>
+            <dendrogram :targetTxName="targetTxName"></dendrogram>
         </div>
     </section>
 </template>
