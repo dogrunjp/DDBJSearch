@@ -14,7 +14,10 @@
     import '@babel/polyfill'
     import '@webcomponents/webcomponentsjs'
     export default {
-        props: ['scientific_name'],
+        name: 'dendrogram',
+        props: {
+            scientific_name:String
+        },
     }
 </script>
 <style>

@@ -256,8 +256,7 @@
                             scientific_name: this.params.scientific_name,
                             per_page: this.params.per_page,
                             sort_key: this.params.sort_key,
-                            order_by: 'asc',
-                            page_no: 1
+                            order_by: 'asc'
                         }
                     })
                 }

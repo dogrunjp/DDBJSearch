@@ -84,7 +84,6 @@ const routes = [
             tx_taxonomy_id: route.query.tx_taxonomy_id,
             scientific_name: route.query.scientific_name,
             per_page: route.query.per_page,
-            page_no: route.query.page_no,
             sort_key: route.query.sort_key,
             order_by: route.query.order_by,
         }),

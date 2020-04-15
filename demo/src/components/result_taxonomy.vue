@@ -7,7 +7,7 @@
             <div class="box is-primary result-box -result">
                 <p>terms : <span>{{ targetTxId }} {{ targetTxName }}</span> <a class="button is-info toDetail" :href="toBilsampleLink"><i class="fas fa-external-link-alt"></i>Show all Taxonomies</a></p>
                 <p>Parents : Total <span>{{ parentData.length }}</span> records</p>
-                <p>Children : Total <span>{{ childData.length }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span> / Page no. <span>{{ page_no }}</span></p>
+                <p>Children : Total <span>{{ childData.length }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span></p>
             </div>
 
             <p class="title is-5">Parents</p>
@@ -93,10 +93,9 @@
         props:{
             tx_taxonomy_id: String,
             scientific_name: String,
-            per_page: String,
+            per_page: Number,
             sort_key: String,
-            order_by: String,
-            page_no: Number
+            order_by: String
         },
         components: {
             dendrogram
@@ -155,14 +154,7 @@
             },
             getData(targetUrl) {
                 axios
-                    .get(targetUrl , {
-                        params: {
-                            size: this.per_page,
-                            sort: this.setTargetSortKey,
-                            order: this.order_by,
-                            page: this.page_no,
-                        }
-                    })
+                    .get(targetUrl)
                     .then(response => {
                         this.parentData = response.data.parent
                         this.childData = response.data.child
