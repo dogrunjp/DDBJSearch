@@ -34,7 +34,7 @@
                     </b-table-column>
                     <b-table-column field="Title" label="Title">{{ props.row.Title }}</b-table-column>
                     <b-table-column field="PMID" label="PMID" sortable>{{ props.row.PMID }}</b-table-column>
-                    <b-table-column field="Journal" label="Journal">
+                    <b-table-column field="Journal" label="Journal" sortable>
                         <template>
                             <router-link :to="{ name: 'publication', query:{
                                 journal: props.row.Journal,
@@ -48,7 +48,7 @@
                         </template>
                     </b-table-column>
                     <b-table-column field="ArticleTitle" label="ArticleTitle">{{ props.row.ArticleTitle }}</b-table-column>
-                    <b-table-column field="Year" label="Year">{{ props.row.Year }}</b-table-column>
+                    <b-table-column field="Year" label="Year" sortable>{{ props.row.Year }}</b-table-column>
                 </template>
             </b-table>
         </div>
