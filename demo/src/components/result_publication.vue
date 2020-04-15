@@ -2,12 +2,12 @@
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-book"></i>Let's search Publication entries!</div>
         <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
-        <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-sad-tear"></i>Sorry caused an error...</div>
+        <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
                 <p>terms : <span>{{ journal }} {{ article_title }} {{ bp_title }} {{ pub_year }}</span></p>
-                <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span> / Page no. <span>{{ page_no }}</span></p>
+                <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ targetSortKey }}</span> / Order <span> {{ targetOrderBy }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
         </div>
         <div v-show="!isStart & !isError" class="search_loaded">
@@ -17,7 +17,7 @@
                     hoverable
 
                     backend-sorting
-                    :default-sort="[sort_key, order_by]"
+                    :default-sort="[targetSortKey, targetOrderBy]"
                     @sort="onSort"
 
                     paginated
@@ -57,6 +57,9 @@
                 isStart: false,
                 isLoading: false,
                 isError: false,
+                page_no: 1,
+                targetSortKey: '',
+                targetOrderBy: ''
             }
         },
         props:{
@@ -64,10 +67,9 @@
             article_title: String,
             bp_title: String,
             pub_year: String,
-            per_page: String,
+            per_page: Number,
             sort_key: String,
-            order_by: String,
-            page_no: Number
+            order_by: String
         },
         mounted: function () {
             this.getData()
@@ -85,20 +87,25 @@
                 }
                 this.isLoading = true
                 this.isError = false
+
+                if (this.targetSortKey === '') this.targetSortKey = this.sort_key
+                if (this.targetOrderBy === '') this.targetOrderBy = this.order_by
+
                 axios
                     .get(this.$route.meta.apiUrl , {
                         params: {
-                            journal: this.pmid,
-                            article_title: this.article_title,
-                            bp_title: this.bp_title,
-                            year: this.pub_year,
+                            journal: (this.pmid == null) ? '' : this.pmid,
+                            article_title: (this.article_title == null) ? '' : this.article_title,
+                            bp_title: (this.bp_title == null) ? '' : this.bp_title,
+                            year: (this.pub_year == null) ? '' : this.pub_year,
                             size: this.per_page,
-                            sort: this.sort_key,
-                            order: this.order_by,
+                            sort: this.targetSortKey,
+                            order: this.targetOrderBy,
                             page: this.page_no,
                         }
                     })
                     .then(response => {
+                        console.log(response)
                         this.pubData = response.data.data
                         this.total = response.data.numfound
                         this.isLoading = false
@@ -115,8 +122,8 @@
                 this.getData()
             },
             onSort(field, order) {
-                this.sort_key = field
-                this.order_by = order
+                this.targetSortKey = field
+                this.targetOrderBy = order
                 this.getData()
             }
         }

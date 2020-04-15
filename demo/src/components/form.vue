@@ -263,16 +263,13 @@
                 if (this.$route.name == 'publication') {
                     this.$router.push({
                         query: {
-                            assesions: this.params.assesions,
-                            keyword: this.params.keyword,
                             journal: this.params.journal,
                             article_title: this.params.article_title,
                             bp_title: this.params.bp_title,
                             pub_year: this.params.pub_year,
                             per_page: this.params.per_page,
                             sort_key: this.params.sort_key,
-                            order_by: 'asc',
-                            page_no: 1
+                            order_by: 'asc'
                         }
                     })
                 }

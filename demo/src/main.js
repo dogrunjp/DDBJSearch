@@ -108,7 +108,6 @@ const routes = [
             bp_title: route.query.pub_bp_title,
             pub_year: route.query.pub_year,
             per_page: route.query.per_page,
-            page_no: route.query.page_no,
             sort_key: route.query.sort_key,
             order_by: route.query.order_by,
         }),
