@@ -1,5 +1,4 @@
 /<template>
-    <!--<form :action="$route.path" method="get">-->
     <form @submit.prevent="goSearch">
         <div class="search-section">
             <section id="search" class="content">
