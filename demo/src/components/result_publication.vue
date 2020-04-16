@@ -1,13 +1,13 @@
 <template>
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-book"></i>Let's search Publication entries!</div>
-        <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
+        <!--<div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>-->
         <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
         <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
                 <p>terms : <span>{{ article_title }} {{ journal }} {{ bp_title }} {{ pub_year }}</span></p>
-                <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ targetSortKey }}</span> / Order <span> {{ targetOrderBy }}</span> / Page no. <span>{{ page_no }}</span></p>
+                <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ targetSortKey }} {{ targetOrderBy }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
         </div>
         <div v-show="!isStart & !isError" class="search_loaded">
@@ -15,6 +15,8 @@
                     :data="pubData"
                     ref="table"
                     hoverable
+
+                    :loading="isLoading"
 
                     backend-sorting
                     :default-sort="[targetSortKey, targetOrderBy]"
@@ -67,7 +69,7 @@
                 isError: false,
                 page_no: 1,
                 targetSortKey: '',
-                targetOrderBy: ''
+                targetOrderBy: 'asc'
             }
         },
         props:{
@@ -80,12 +82,17 @@
             order_by: String
         },
         mounted: function () {
-            this.getData()
+            this.onLoad()
         },
         watch: {
-            '$route': 'getData'
+            '$route': 'onLoad'
         },
         methods: {
+            onLoad() {
+                this.targetSortKey = this.sort_key
+                this.targetOrderBy = this.order_by
+                this.getData()
+            },
             getData() {
                 if(!Object.keys(this.$route.query).length) {
                     this.isStart = true
@@ -96,8 +103,6 @@
                 this.isLoading = true
                 this.isError = false
 
-                if (this.targetSortKey === '') this.targetSortKey = this.sort_key
-                if (this.targetOrderBy === '') this.targetOrderBy = this.order_by
 
                 axios
                     .get(this.$route.meta.apiUrl , {
@@ -107,9 +112,9 @@
                             bp_title: (this.bp_title == null) ? '' : this.bp_title,
                             year: (this.pub_year == null) ? '' : this.pub_year,
                             size: this.per_page,
-                            sort: this.targetSortKey,
+                            sort: (this.targetSortKey == null) ? '' : this.targetSortKey.toLowerCase(),
                             order: this.targetOrderBy,
-                            page: this.page_no,
+                            page: this.page_no
                         }
                     })
                     .then(response => {
@@ -118,12 +123,12 @@
                         this.total = response.data.numfound
                         this.isLoading = false
                     })
-                    .catch(function (error) {
+                    .catch(error => {
                         console.log(error);
                         this.pubData = []
                         this.isLoading = false
                         this.isError = true
-                    }.bind(this))
+                    })
             },
             onPageChange() {
                 this.page_no += 1
