@@ -144,21 +144,7 @@
                         <div class="column">
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal"><label class="label">Article Title</label></div>
-                                <div class="field-body"><div class="field">
-                                    <b-autocomplete
-                                            :data="data"
-                                            v-model="params.article_title"
-                                            placeholder="e.g. LRIG1"
-                                            field="ArticleTitle"
-                                            :loading="isFetching"
-                                            @typing="keywordSearch"
-                                            @select="option => selected = option">
-
-                                        <template slot-scope="props">
-                                            <p>{{ props.option.ArticleTitle }}</p>
-                                        </template>
-                                    </b-autocomplete>
-                                </div></div>
+                                <div class="field-body"><div class="field"><input class="input"  type="text" v-model="params.article_title"></div></div>
                             </div>
                             <div class="field is-horizontal">
                                 <div class="field-label is-normal"><label class="label">BioProject title</label></div>
@@ -199,10 +185,6 @@
     </form>
 </template>
 <script>
-
-    import debounce from 'lodash/debounce'
-    import axios from 'axios'
-
     export default {
         data() {
             return {
@@ -286,27 +268,7 @@
                 this.params = Object.assign(this.params, this.$route.query);
                 this.sortList = this.$route.meta.sortList
                 this.params.sort_key = (this.params.sort_key == '' || this.sortList.indexOf(this.params.sort_key) < 0) ? this.sortList[0] : this.params.sort_key
-            },
-            //TODO サンプルとして残します
-            keywordSearch: debounce(function (name) {
-                if (!name.length) {
-                    this.data = []
-                    return
-                }
-                this.isFetching = true
-                axios.get(`http://dbcls-sra-api.bmu.jp/api/publication/search?article_title=${name}`)
-                    .then(({ data }) => {
-                    this.data = []
-                    data.data.forEach((item) => this.data.push(item))
-                })
-                .catch((error) => {
-                    this.data = []
-                    throw error
-                })
-                .finally(() => {
-                    this.isFetching = false
-                })
-            }, 500)
+            }
         }
     }
 </script>
