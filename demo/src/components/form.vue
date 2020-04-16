@@ -237,8 +237,8 @@
                     studytype_id: '',
                     tx_taxonomy_id: '',
 
-                    per_page: '10',
-                    sort_key: 'Accessions'
+                    per_page: 10,
+                    sort_key: ''
                 }
             }
         },
@@ -285,7 +285,7 @@
             setDefaultValues: function () {
                 this.params = Object.assign(this.params, this.$route.query);
                 this.sortList = this.$route.meta.sortList
-                this.params.sort_key = this.sortList[0]
+                this.params.sort_key = (this.params.sort_key == '' || this.sortList.indexOf(this.params.sort_key) < 0) ? this.sortList[0] : this.params.sort_key
             },
             //TODO サンプルとして残します
             keywordSearch: debounce(function (name) {

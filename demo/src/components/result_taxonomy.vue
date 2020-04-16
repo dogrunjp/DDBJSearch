@@ -1,18 +1,18 @@
 <template>
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-dna"></i>Let's search Taxonomy entries!</div>
-        <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
         <div v-show="isError" class="box is-warning is-light has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
-        <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
+        <div v-show="!isStart & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>terms : <span>{{ targetTxId }} {{ targetTxName }}</span> <a class="button is-info toDetail" :href="toBilsampleLink"><i class="fas fa-external-link-alt"></i>Show all Taxonomies</a></p>
-                <p>Parents : Total <span>{{ parentData.length }}</span> records</p>
-                <p>Children : Total <span>{{ childData.length }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span></p>
+                <p>Parents : Total <span>{{ dataParent.length }}</span> records</p>
+                <p>Children : Total <span>{{ dataChild.length }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }} {{ targetOrderby }}</span></p>
             </div>
 
             <p class="title is-5">Parents</p>
             <b-table
-                    :data="parentData"
+                    :data="dataParent"
+                    :loading="isLoading"
                     ref="table"
                     hoverable
                     class="mb-3">
@@ -25,8 +25,8 @@
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
                                     scientific_name: '',
-                                    sort_key: sort_key,
-                                    order_by: order_by,
+                                    sort_key: targetSortKey,
+                                    order_by: targetOrderby,
                                     per_page: per_page,
                                  }
                              }">{{ props.row.taxid }}</router-link>
@@ -38,15 +38,16 @@
 
             <p class="title is-5">Children</p>
             <b-table
-                    :data="childData"
+                    :data="dataChild"
+                    :loading="isLoading"
                     ref="table"
                     hoverable
                     class="mb-3"
 
-                    :default-sort="[targetSortKey, order_by]"
+                    :default-sort="[targetSortKey, targetOrderby]"
 
                     paginated
-                    :total="childData.length"
+                    :total="dataChild.length"
                     :per-page="per_page">
 
                 <template slot-scope="props">
@@ -57,8 +58,8 @@
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
                                     scientific_name: '',
-                                    sort_key: sort_key,
-                                    order_by: order_by,
+                                    sort_key: targetSortKey,
+                                    order_by: targetOrderby,
                                     per_page: per_page,
                                  }
                              }">{{ props.row.taxid }}</router-link>
@@ -79,12 +80,13 @@
     export default {
         data() {
             return {
-                parentData : [],
-                childData : [],
+                dataParent : [],
+                dataChild : [],
                 toBilsampleLink: '',
                 targetTxId: '',
                 targetTxName: '',
                 targetSortKey : 'taxid',
+                targetOrderby : 'asc',
                 isStart: false,
                 isLoading: false,
                 isError: false,
@@ -101,24 +103,32 @@
             dendrogram
         },
         mounted: function () {
-            this.search()
+            this.onLoad()
         },
         watch: {
-            '$route': 'search'
+            '$route': 'onLoad'
         },
         methods: {
-            search() {
+            onLoad() {
                 if (!Object.keys(this.$route.query).length) {
                     this.isStart = true
                     this.isError = false
                     return
                 } else {
-                    this.isStart = false
+                    if(this.sort_key == 'TaxonomyID') {
+                        this.targetSortKey = 'taxid'
+                    } else if (this.sort_key == 'ScientificName') {
+                        this.targetSortKey = 'field'
+                    }
+                    this.targetOrderBy = this.order_by
+
+                    this.setTargetSettings()
                 }
+            },
+            setTargetSettings() {
+                this.isStart = false
                 this.isLoading = true
                 this.isError = false
-
-                this.setTargetSortKey()
 
                 if(!this.scientific_name === false) {
                     axios
@@ -128,13 +138,13 @@
                             this.targetTxName = this.scientific_name
                             this.getData(this.$route.meta.apiUrl_taxonomy + this.targetTxId)
                         })
-                        .catch(function (error) {
+                        .catch(error => {
                             console.log(error)
                             this.isError = true
-                        }.bind(this))
-                        .finally(function () {
+                        })
+                        .finally(() => {
                             this.isLoading = false
-                        }.bind(this))
+                        })
                 } else {
                     axios
                         .get(this.$route.meta.apiUrl_get_tax_name + this.tx_taxonomy_id)
@@ -143,37 +153,28 @@
                             this.targetTxName = res.data.scientific_name
                             this.getData(this.$route.meta.apiUrl_taxonomy + this.targetTxId)
                         })
-                        .catch(function (error) {
+                        .catch(error => {
                             console.log(error)
                             this.isError = true
-                        }.bind(this))
-                        .finally(function () {
+                        })
+                        .finally(() => {
                             this.isLoading = false
-                        }.bind(this))
+                        })
                 }
             },
             getData(targetUrl) {
                 axios
                     .get(targetUrl)
                     .then(response => {
-                        this.parentData = response.data.parent
-                        this.childData = response.data.child
+                        this.dataParent = response.data.parent
+                        this.dataChild = response.data.child
                         this.toBilsampleLink = this.$route.meta.linkUrl_biosample + this.tx_taxonomy_id
                         Object.keys(response.data.child).map(([value]) => this.toBilsampleLink += "," + response.data.child[value].taxid)
                     })
-                    .catch(function (error) {
+                    .catch(error => {
                         console.log(error)
                         this.isError = true
-                    }.bind(this))
-            },
-            setTargetSortKey() {
-                if(this.sort_key == 'TaxonomyID') {
-                    this.targetSortKey = 'taxid'
-                } else if (this.sort_key == 'ScientificName') {
-                    this.targetSortKey = 'field'
-                } else {
-                    this.targetSortKey = this.sort_key
-                }
+                    })
             }
         }
     }

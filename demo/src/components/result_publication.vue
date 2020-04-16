@@ -1,16 +1,15 @@
 <template>
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-book"></i>Let's search Publication entries!</div>
-        <!--<div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>-->
         <div v-show="isError" class="box is-warning has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
-        <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
+        <div v-show="!isStart & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
                 <p>Results : <span>{{ total }}</span> Publication entries</p>
                 <p>terms : <span>{{ article_title }} {{ journal }} {{ bp_title }} {{ pub_year }}</span></p>
                 <p>Show <span>{{ per_page }}</span> records / Sort by <span>{{ targetSortKey }} {{ targetOrderBy }}</span> / Page no. <span>{{ page_no }}</span></p>
             </div>
         </div>
-        <div v-show="!isStart & !isError" class="search_loaded">
+        <div v-show="!isStart & !isError">
             <b-table
                     :data="pubData"
                     ref="table"
@@ -19,7 +18,8 @@
                     :loading="isLoading"
 
                     backend-sorting
-                    :default-sort="[targetSortKey, targetOrderBy]"
+                    :default-sort="targetSortKey"
+                    :default-sort-direction="targetOrderBy"
                     @sort="onSort"
 
                     paginated
@@ -89,20 +89,19 @@
         },
         methods: {
             onLoad() {
-                this.targetSortKey = this.sort_key
-                this.targetOrderBy = this.order_by
-                this.getData()
-            },
-            getData() {
                 if(!Object.keys(this.$route.query).length) {
                     this.isStart = true
                     return
                 } else {
-                    this.isStart = false
+                    this.targetSortKey = this.sort_key
+                    this.targetOrderBy = this.order_by
+                    this.getData()
                 }
+            },
+            getData() {
+                this.isStart = false
                 this.isLoading = true
                 this.isError = false
-
 
                 axios
                     .get(this.$route.meta.apiUrl , {
@@ -118,16 +117,16 @@
                         }
                     })
                     .then(response => {
-                        console.log(response)
                         this.pubData = response.data.data
                         this.total = response.data.numfound
-                        this.isLoading = false
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.log(error)
                         this.pubData = []
-                        this.isLoading = false
                         this.isError = true
+                    })
+                    .finally(() => {
+                        this.isLoading = false
                     })
             },
             onPageChange() {
