@@ -4,7 +4,7 @@
         <div id="contents">
             <div class="showcase_detail">
                 <div class="showcase_box">
-                    <togostanza-dendrogram v-if="scientific_name" :sparql_api="'http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=' + scientific_name" title="D3 dendrogram"></togostanza-dendrogram>
+                    <togostanza-dendrogram v-if="targetTxName" :sparql_api="'http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=' + targetTxName" title="D3 dendrogram"></togostanza-dendrogram>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
     import '@babel/polyfill'
     import '@webcomponents/webcomponentsjs'
     export default {
-        props: ['scientific_name']
+        props: ['targetTxName']
     }
 </script>
 <style>

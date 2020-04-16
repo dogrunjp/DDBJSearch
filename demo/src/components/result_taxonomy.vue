@@ -1,32 +1,32 @@
 <template>
     <section id="result" class="content">
         <div v-show="isStart" class="box is-primary has-text-centered result-box -start"><i class="fas fa-dna"></i>Let's search Taxonomy entries!</div>
-        <div v-show="isLoading" class="box is-info has-text-centered result-box -search"><i class="fas fa-spinner fa-spin"></i>Now searching...</div>
         <div v-show="isError" class="box is-warning is-light has-text-centered result-box -error"><i class="fas fa-exclamation-triangle"></i>Error / Please Try different search conditions...</div>
-        <div v-show="!isStart & !isLoading & !isError" class="search_loaded">
+        <div v-show="!isStart & !isError" class="search_loaded">
             <div class="box is-primary result-box -result">
-                <p>terms : <span>{{ tx_taxonomy_id }} {{ scientific_name }}</span> <a class="button is-info toDetail" :href="toBilsampleLink"><i class="fas fa-external-link-alt"></i>Show all Taxonomies</a></p>
-                <p>Parents : Total <span>{{ parentTotal }}</span> records</p>
-                <p>Children : Total <span>{{ childTotal }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }}</span> / Order <span> {{ order_by }}</span> / Page no. <span>{{ page_no }}</span></p>
+                <p>terms : <span>{{ targetTxId }} {{ targetTxName }}</span> <a class="button is-info toDetail" :href="toBilsampleLink"><i class="fas fa-external-link-alt"></i>Show all Taxonomies</a></p>
+                <p>Parents : Total <span>{{ dataParent.length }}</span> records</p>
+                <p>Children : Total <span>{{ dataChild.length }}</span> records / <span>{{ per_page }}</span> records / Sort by <span>{{ sort_key }} {{ targetOrderby }}</span></p>
             </div>
 
             <p class="title is-5">Parents</p>
             <b-table
-                    :data="parentData"
+                    :data="dataParent"
+                    :loading="isLoading"
                     ref="table"
                     hoverable
                     class="mb-3">
 
                 <template slot-scope="props">
-                    <b-table-column field="TaxonomyID" label="Taxonomy ID" sortable>
+                    <b-table-column field="TaxonomyID" label="Taxonomy ID">
                         <template>
                             <router-link :to="{
                                 name: 'taxonomy',
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
                                     scientific_name: '',
-                                    sort_key: sort_key,
-                                    order_by: order_by,
+                                    sort_key: targetSortKey,
+                                    order_by: targetOrderby,
                                     per_page: per_page,
                                  }
                              }">{{ props.row.taxid }}</router-link>
@@ -38,37 +38,38 @@
 
             <p class="title is-5">Children</p>
             <b-table
-                    :data="childData"
+                    :data="dataChild"
+                    :loading="isLoading"
                     ref="table"
                     hoverable
                     class="mb-3"
 
-                    :default-sort="[sort_key, order_by]"
+                    :default-sort="[targetSortKey, targetOrderby]"
 
                     paginated
-                    :total="childTotal"
+                    :total="dataChild.length"
                     :per-page="per_page">
 
                 <template slot-scope="props">
-                    <b-table-column field="TaxonomyID" label="Taxonomy ID" sortable>
+                    <b-table-column field="taxid" label="Taxonomy ID" width="180" sortable>
                         <template>
                             <router-link :to="{
                                 name: 'taxonomy',
                                 query:{
                                     tx_taxonomy_id: props.row.taxid,
                                     scientific_name: '',
-                                    sort_key: sort_key,
-                                    order_by: order_by,
+                                    sort_key: targetSortKey,
+                                    order_by: targetOrderby,
                                     per_page: per_page,
                                  }
                              }">{{ props.row.taxid }}</router-link>
                         </template>
                     </b-table-column>
-                    <b-table-column field="ScientificName" label="Scientific Name" sortable>{{ props.row.label }}</b-table-column>
+                    <b-table-column field="label" label="Scientific Name" sortable>{{ props.row.label }}</b-table-column>
                 </template>
             </b-table>
 
-            <dendrogram :scientific_name="scientific_name"></dendrogram>
+            <dendrogram :targetTxName="targetTxName"></dendrogram>
         </div>
     </section>
 </template>
@@ -79,101 +80,101 @@
     export default {
         data() {
             return {
-                parentData : [],
-                childData : [],
-                parentTotal: 0,
-                childTotal: 0,
+                dataParent : [],
+                dataChild : [],
                 toBilsampleLink: '',
+                targetTxId: '',
+                targetTxName: '',
+                targetSortKey : 'taxid',
+                targetOrderby : 'asc',
                 isStart: false,
                 isLoading: false,
                 isError: false,
-                isDendrogramLoading: false,
-                isDendrogramError: false,
             }
         },
         props:{
             tx_taxonomy_id: String,
             scientific_name: String,
-            per_page: String,
+            per_page: Number,
             sort_key: String,
-            order_by: String,
-            page_no: Number
+            order_by: String
         },
         components: {
             dendrogram
         },
         mounted: function () {
-            this.search()
+            this.onLoad()
         },
         watch: {
-            '$route': 'search'
+            '$route': 'onLoad'
         },
         methods: {
-            search() {
+            onLoad() {
                 if (!Object.keys(this.$route.query).length) {
                     this.isStart = true
+                    this.isError = false
                     return
                 } else {
-                    this.isStart = false
+                    if(this.sort_key == 'TaxonomyID') {
+                        this.targetSortKey = 'taxid'
+                    } else if (this.sort_key == 'ScientificName') {
+                        this.targetSortKey = 'field'
+                    }
+                    this.targetOrderBy = this.order_by
+
+                    this.setTargetSettings()
                 }
+            },
+            setTargetSettings() {
+                this.isStart = false
                 this.isLoading = true
                 this.isError = false
-
 
                 if(!this.scientific_name === false) {
                     axios
                         .get(this.$route.meta.apiUrl_get_name_tax + this.scientific_name)
                         .then(res => {
-                            this.tx_taxonomy_id = res.data.taxonomy_id.split("/")[4]
-                            this.getData(this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id)
+                            this.targetTxId = res.data.taxonomy_id.split("/")[4]
+                            this.targetTxName = this.scientific_name
+                            this.getData(this.$route.meta.apiUrl_taxonomy + this.targetTxId)
                         })
-                        .catch(function (error) {
+                        .catch(error => {
                             console.log(error)
                             this.isError = true
-                        }.bind(this))
-                        .finally(function () {
+                        })
+                        .finally(() => {
                             this.isLoading = false
-                        }.bind(this))
+                        })
                 } else {
                     axios
                         .get(this.$route.meta.apiUrl_get_tax_name + this.tx_taxonomy_id)
                         .then(res => {
-                            this.scientific_name = res.data.scientific_name
-                            this.getData(this.$route.meta.apiUrl_taxonomy + this.tx_taxonomy_id)
+                            this.targetTxId = this.tx_taxonomy_id
+                            this.targetTxName = res.data.scientific_name
+                            this.getData(this.$route.meta.apiUrl_taxonomy + this.targetTxId)
                         })
-                        .catch(function (error) {
+                        .catch(error => {
                             console.log(error)
                             this.isError = true
-                        }.bind(this))
-                        .finally(function () {
+                        })
+                        .finally(() => {
                             this.isLoading = false
-                        }.bind(this))
+                        })
                 }
             },
             getData(targetUrl) {
                 axios
-                    .get(targetUrl , {
-                        params: {
-                            size: this.per_page,
-                            sort: this.sort_key,
-                            order: this.order_by,
-                            page: this.page_no,
-                        }
-                    })
+                    .get(targetUrl)
                     .then(response => {
-                        this.parentData = response.data.parent
-                        this.parentTotal = response.data.parent.length
-                        this.childData = response.data.child
-                        this.childTotal = response.data.child.length
+                        this.dataParent = response.data.parent
+                        this.dataChild = response.data.child
                         this.toBilsampleLink = this.$route.meta.linkUrl_biosample + this.tx_taxonomy_id
                         Object.keys(response.data.child).map(([value]) => this.toBilsampleLink += "," + response.data.child[value].taxid)
                     })
-                    .catch(function (error) {
+                    .catch(error => {
                         console.log(error)
-                        this.parentData = []
-                        this.parentTotal = []
                         this.isError = true
-                    }.bind(this))
+                    })
             }
         }
     }
