@@ -16,7 +16,7 @@
                 <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
                 <tr if={publication_id}><td width="180" class="atrb">Publication ID</td><td>{ publication_id }</td></tr>
                 <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
-                <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
+                <tr if={project_datatype}><td width="180" class="atrb">DataType</td><td>{ project_datatype }</td></tr>
             </tbody>
         </table>
 
@@ -149,7 +149,7 @@
                 <tr if={bp_submitted}><td width="180" class="atrb">Submitted</td><td>{ bp_submitted }</td></tr>
                 <tr if={publication_id}><td width="180" class="atrb">Publication ID</td><td>{ publication_id }</td></tr>
                 <tr if={xref_id}><td width="180" class="atrb">ExternalLink ID</td><td>{ external_db } : {xref_id}</td></tr>
-                <tr if={prject_datatype}><td width="180" class="atrb">DataType</td><td>{ prject_datatype }</td></tr>
+                <tr if={project_datatype}><td width="180" class="atrb">DataType</td><td>{ project_datatype }</td></tr>
             </tbody>
         </table>
 
@@ -336,7 +336,6 @@
             });
         }
 
-
         get_data(db, uid)
             .done(function(d){
                 set_show(d);
@@ -370,17 +369,20 @@
                     self.external_db = d.bioproject.db;
                     self.publication_id = d.bioproject.id;
                     self.bp_submitted = d.bioproject.submitted;
+                    self.project_datatype = d.bioproject.DataType;
                 }
 
+                if (d.study){
+                    self.study = d.study._id;
+                    self.study_title = d.study.STUDY_TITLE;
+                    self.study_type =d.study.existing_study_type;
+                    self.abstract = d.study.STUDY_ABSTRACT;
+                    self.center_name = d.study.center_name;
+                    self.center_project_name = d.study.CENTER_PROJECT_NAME;
+                    self.study_link_url = d.study.URL;
+                    self.publication_id = d.study.ID;
 
-                self.study = d.study._id;
-                self.study_title = d.study.STUDY_TITLE;
-                self.study_type =d.study.existing_study_type;
-                self.abstract = d.study.STUDY_ABSTRACT;
-                self.center_name = d.study.center_name;
-                self.center_project_name = d.study.CENTER_PROJECT_NAME;
-                self.study_link_url = d.study.URL;
-                self.publication_id = d.study.ID;
+                }
 
 
                 // 要らないのでは
@@ -428,19 +430,20 @@
                 //experiment_groupのオブジェクトをtype別にまとめる
                 var types = ["experiment", "biosample", "run"];
                 self.er_items = [];
-                d.experiment_group.forEach(function (obj) {
-                    // groupごとの処理
-                    var item = {}
-                    types.forEach(function (t) {
-                        // typeごとの処理
-                        var tmp_d = obj.filter(function (e) {
-                            return e._index == t
+                if (d.experiment_group){
+                    d.experiment_group.forEach(function (obj) {
+                        // groupごとの処理
+                        var item = {}
+                        types.forEach(function (t) {
+                            // typeごとの処理
+                            var tmp_d = obj.filter(function (e) {
+                                return e._index == t
+                            });
+                            item[t] = tmp_d.length == 1 && t != "run" ? tmp_d[0] : tmp_d
                         });
-                        item[t] = tmp_d.length == 1 && t != "run" ? tmp_d[0] : tmp_d
+                        self.er_items.push(item)
                     });
-                    self.er_items.push(item)
-                });
-
+                }
                 //a2str_obj(self.er_items)
                 self.update();
 

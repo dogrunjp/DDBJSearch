@@ -8,7 +8,7 @@
 
         var self = this;
         //var base_url = conf.api_search_base_url;
-        var base_url = conf.api_base + "/search?";
+        var base_url = conf.api_base + "/search/";
         var nfounds;
         var arg = {};
         var q =location.search.substring(1).split('&');
@@ -44,14 +44,14 @@
                 k + "=" + arg[k]
             )});
 
-        var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+        var q = base_url + targetdb + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
         //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
 
 
         var table_conf = {
             sra:{
                 columns:[
-                    {title:"ACCESSION", field:"uid", width:110},
+                    {title:"ACCESSION", field:"_id", width:110},
                     {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
                     {title:"ABSTRACT", field:"study_abstract", width: "20%"},
                     {title:"STUDY_TYPE", field: "study_type", width: "20%"},
@@ -59,17 +59,17 @@
                 ]},
             bioproject:{
                 columns:[
-                    {title:"BioProject", field:"uid", width:100},
-                    {title:"TITLE", field:"title", width: 300, align:"left", headerSort:false},
-                    {title:"ORGANISM NAME", field:"organism_name", width: 160, sorter:"string"},
-                    {title:"ORGANIZATION NAME", field:"organization_name", width: 160, sorter:"string"},
-                    {title:"PROJECT DATATYPE", field:"project_datatype", width: 150, sorter:"string"},
+                    {title:"BioProject", field:"_id", width:100},
+                    {title:"TITLE", field:"Title", width: 300, align:"left", headerSort:false},
+                    {title:"ORGANISM NAME", field:"OrganismName", width: 160, sorter:"string"},
+                    {title:"ORGANIZATION NAME", field:"Name", width: 160, sorter:"string"},
+                    {title:"PROJECT DATATYPE", field:"DataType", width: 150, sorter:"string"},
                     {title:"SUBMISSION DATE", field: "submitted", sorterParams:{format:"DD-MM-YYThh:mm:ssZ"}},
                     {title:"", field:"study", width:0 }
                 ]},
             biosample:{
                 columns:[
-                    {title:"BioSample", field:"uid", width:120},
+                    {title:"BioSample", field:"_id", width:120},
                     {title:"TITLE", field:"title", width: 340, align:"left", sorter:"string"},
                     {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
                     {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
@@ -98,7 +98,8 @@
                 },
                 placeholder: "No Data Available",
                 rowClick:function(e, row){
-                  var accession = row.row.data.uid;
+                    console.log(row)
+                  var accession = row.row.data._id;
                   var study = row.row.data.study;
                   window.open("details.html?db=" + targetdb + "&accession=" + accession + "&_id=" + study)
                 }
