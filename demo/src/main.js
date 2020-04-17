@@ -113,7 +113,7 @@ const routes = [
         }),
         meta: {
             apiUrl: base_api + 'publication/search',
-            sortList: ['BioProject', 'PMID'],
+            sortList: ['BioProject', 'PMID', 'Journal', 'Year'],
         }
     }
 ]
