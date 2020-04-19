@@ -34,7 +34,7 @@
             </tbody>
         </table>
 
-        <div show="{visible.EXPERIMENT_RUN_top}">
+        <div show="{visible.experiment_group_top}">
             <table>
                 <thead>
                 <tr class="table-header">
@@ -45,7 +45,7 @@
                 </thead>
             </table>
 
-            <div show="{visible.EXPERIMENT_RUN_top}" id="er_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
+            <div show="{visible.experiment_group_top}" id="er_table" class="panel-collapse in" role="tabpanel" aria-labelledby="run_table">
                 <table each={er_item in er_items} if={er_item.experiment._id==accession || er_item.run._id==accession || er_item.biosample._id==accession}>
                     <tbody>
                         <tr class="sub-header"><th colspan="2">EXPERIMENT: {er_item.experiment._id}</th></tr>
@@ -214,29 +214,25 @@
             </div>
         </div>
 
-        <!--
+
         <table show="{visible.biosample}">
             <thead>
                 <tr class="table-header">
-                    <th width="110">BioSample</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#bs_table_m" aria-expanded="true" aria-controls="bs_table_m">
-                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
+                    <th colspan="2">BioSample: {biosample}</th>
                 </tr>
             </thead>
         </table>
         <div id="bs_table_m" class="panel-collapse in" role="tabpanel" aria-labelledby="bs_table">
             <table show="{visible.biosample}" >
-                <tbody each={bs_item in bs_items} {bs_item.uid != accession}>
-                    <tr class="sub-header"><th colspan="2">{bs_item.uid}</th></tr>
-                    <tr if={bs_item.title}><td width="180" class="atrb">Title</td><td>{bs_item.title}</td></tr>
-                    <tr if={bs_item.taxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_item.taxonomy_id}</td></tr>
-                    <tr if={bs_item.taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_item.taxonomy_name}</td></tr>
-                    <tr if={bs_item.package}><td width="180" class="atrb">Package</td><td>{bs_item.package}</td></tr>
-                    <tr if={bs_item.env_package}><td width="180" class="atrb">Env Package</td><td>{bs_item.env_package}</td></tr>
+                <tbody>
+                    <tr if={bs_title}><td width="180" class="atrb">Title</td><td>{bs_title}</td></tr>
+                    <tr if={bs_toxonomy_id}><td width="180" class="atrb">Taxonomy ID</td><td>{bs_toxonomy_id}</td></tr>
+                    <tr if={bs_taxonomy_name}><td width="180" class="atrb">Taxonomy Name</td><td>{bs_taxonomy_name}</td></tr>
+                    <tr if={bs_package}><td width="180" class="atrb">Package</td><td>{bs_package}</td></tr>
+                    <tr if={bs_package}><td width="180" class="atrb">Submission date</td><td>{bs_submission_date}</td></tr>
                 </tbody>
             </table>
         </div>
-        -->
 
         <!--
         <table show="{visible.ANALYSIS}">
@@ -247,7 +243,7 @@
             </tr>
             </thead>
         </table>
-        -->
+
         <div id="ana_table" class="panel-collapse in" role="tabpanel" aria-labelledby="ana_table">
             <table show="{visible.ANALYSIS}" >
                 <tbody each={ana_item in ana_items}>
@@ -259,7 +255,6 @@
             </table>
         </div>
 
-        <!--
         <table show="{visible.SAMPLE}">
             <thead>
             <tr class="table-header">
@@ -268,7 +263,6 @@
             </tr>
             </thead>
         </table>
-        -->
 
         <div id="s_table" class="panel-collapse in" role="tabpanel" aria-labelledby="s_table">
             <table show="{visible.SAMPLE}" >
@@ -280,6 +274,7 @@
                 </tbody>
             </table>
         </div>
+        -->
 
     </div>
     <script type="text/javascript">
@@ -381,6 +376,15 @@
                     self.center_project_name = d.study.CENTER_PROJECT_NAME;
                     self.study_link_url = d.study.URL;
                     self.publication_id = d.study.ID;
+
+                }
+                if (d.biosample){
+                    self.biosample = d.biosample._id;
+                    self.bs_title = d.biosample.Title;
+                    self.bs_toxonomy_id = d.biosample.taxonomy_id;
+                    self.bs_taxonomy_name = d.biosample.taxonomy_name;
+                    self.bs_submission_date = d.biosample.submission_date;
+                    self.bs_package = d.biosample.Package;
 
                 }
 
@@ -521,13 +525,19 @@
                 }
                 -->
             };
+            // パラメータdbがbioprojectあるいはbiosampleであった場合、最上部の表示がdbのtypeに変更される
             f["bioproject"] = function () {
                 self.visible.bioproject_top = true;
                 self.visible.bioproject = false
             };
             f["biosample"] = function () {
-                self.visible.EXPERIMENT_RUN_top = true;
-                self.visible.EXPERIMENT_RUN_top = true;
+                // studyを取得でき、experiment_groupが形成される場合はexperiment_groupを上部に表示する
+                if (d.experiment_group){
+                    self.visible.experiment_group_top = true;
+                }else{
+                // expperiment groupがなければBioProjectを個別に表示する
+                    self.visible.biosample = true;
+                }
             };
 
             // 設定を呼ぶ
