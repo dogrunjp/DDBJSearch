@@ -51,10 +51,11 @@
         var table_conf = {
             sra:{
                 columns:[
-                    {title:"ACCESSION", field:"_id", width:110},
+                    {title:"ACCESSION", field:"_id", width:100},
                     {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
                     {title:"ABSTRACT", field:"study_abstract", width: "20%"},
-                    {title:"STUDY_TYPE", field: "study_type", width: "20%"},
+                    {title:"STUDY_TYPE", field: "study_type", width: "10%"},
+                    {title:"UPDATED", field: "updated", width:"10%"},
                     {title:"", field:"study", width:0 }
                 ]},
             bioproject:{

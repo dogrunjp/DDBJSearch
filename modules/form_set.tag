@@ -118,6 +118,7 @@
                 <label for="sra_sort_key">Sort by
                     <select id="sra_sort_key" class="select-box1" name="sort">
                         <option value="Updated" selected>Updated</option>
+                        <option value="Submitted">Submitted</option>
                     </select>
                 </label>
 

@@ -92,7 +92,7 @@ const routes = [
             apiUrl_scientific_name: base_api + 'scientific_name/',
             apiUrl_get_tax_name: base_api + 'scientific_name/',
             apiUrl_get_name_tax: base_api + 'taxonomyid/',
-            linkUrl_biosample: 'http://sra-demo.bmu.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
+            linkUrl_biosample: 'http://sra.bhx.jp/result.html?target_db=biosample&rows=20&taxonomy_id=',
             sortList: ['TaxonomyID', 'ScientificName'],
         }
     },

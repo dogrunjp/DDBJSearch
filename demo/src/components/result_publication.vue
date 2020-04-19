@@ -31,7 +31,7 @@
                 <template slot-scope="props">
                     <b-table-column field="BioProject" label="BioProject" sortable>
                         <template>
-                            <a :href="'http://sra-demo.bmu.jp/bioproject?target_db=bioproject&publication_id=' + props.row.BioProject">{{ props.row.BioProject }}</a>
+                            <a :href="'http://sra.bhx.jp/result.html?target_db=bioproject&publication_id=' + props.row.BioProject">{{ props.row.BioProject }}</a>
                         </template>
                     </b-table-column>
                     <b-table-column field="Title" label="Title">{{ props.row.Title }}</b-table-column>
