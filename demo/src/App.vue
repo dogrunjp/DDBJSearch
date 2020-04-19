@@ -2,7 +2,7 @@
   <main id="app">
     <div class="tabs is-centered">
       <ul>
-        <li><a href="http://sra-demo.bmu.jp/">SRA</a></li>
+        <li><a href="http://sra.bhx.jp/">SRA</a></li>
         <template v-for="(rt, index) in items">
             <li v-show="rt.show" :class="{'is-active': $route.path == rt.path }" :key="index">
                 <router-link :to="rt.path">{{ rt.label }}</router-link>
