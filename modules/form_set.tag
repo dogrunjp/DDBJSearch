@@ -196,7 +196,6 @@
             });
             // Accession検索の場合UIDでヒットするようであれば詳細を表示する
             if(acc){
-                console.log(acc)
                 url = conf.api_base;
                 // Elasticsearch _countから件数を取得する
                 // 検索結果の_idを詳細画面に渡す必要がある

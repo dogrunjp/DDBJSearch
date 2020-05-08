@@ -38,7 +38,7 @@
             <table>
                 <thead>
                 <tr class="table-header">
-                    <th width="110">EXPERIMENT, RUN, and BioSample</th>
+                    <th width="110">EXPERIMENT, RUN and BioSample</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
                         <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>
@@ -171,7 +171,7 @@
             <table>
                 <thead>
                 <tr class="table-header">
-                    <th width="110">EXPERIMENT, RUN, and BioSample</th>
+                    <th width="110">EXPERIMENT, RUN and BioSample</th>
                     <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
                         <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
                 </tr>

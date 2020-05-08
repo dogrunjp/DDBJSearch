@@ -71,10 +71,10 @@
             biosample:{
                 columns:[
                     {title:"BioSample", field:"_id", width:120},
-                    {title:"TITLE", field:"title", width: 340, align:"left", sorter:"string"},
+                    {title:"TITLE", field:"Title", width: 340, align:"left", sorter:"string"},
                     {title:"TAXONOMY NAME", field:"taxonomy_name", width: 180, sorter:"string"},
                     {title:"TAXONOMY ID", field:"taxonomy_id", width: 120, sorter:"number"},
-                    {title:"PACKAGE", field:"package", width: 110, sorter:"string"},
+                    {title:"PACKAGE", field:"Package", width: 110, sorter:"string"},
                     {title:"SUBMISSION DATE", field: "submission_date", sorter:"date", sorterParams:{format:"DD-MM-YY"}},
                     {title:"", field:"study", width:0 }
                 ]
@@ -99,7 +99,6 @@
                 },
                 placeholder: "No Data Available",
                 rowClick:function(e, row){
-                    console.log(row)
                   var accession = row.row.data._id;
                   var study = row.row.data.study;
                   window.open("details.html?db=" + targetdb + "&accession=" + accession + "&_id=" + study)
