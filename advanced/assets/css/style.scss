@@ -1,0 +1,134 @@
+@import "valiables";
+
+.content {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+#header-link {
+  &.navbar-inverse.nav-upper {
+    line-height: 1.4rem;
+    padding: 3px 0;
+    background-color: $primary-darker;
+    .navbar-upper {
+      list-style: none;
+      margin: auto;
+      > li {
+        display: table-cell;
+        > a {
+          color: #FFF;
+          font-size: 0.75rem;
+          margin-right:8px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  margin: 1rem auto;
+  .logo {
+    max-height: 2.4rem;
+    margin: 0 .5rem 0 0;
+  }
+}
+
+.search-section {
+  margin: 0 0 2rem;
+  padding: 2rem 0 1rem;
+  background: #e6dbb6;
+  .button {
+    i {
+      margin-right: .75rem;
+    }
+  }
+  .field {
+    .label:not(.-width-not-set) {
+      white-space: nowrap;
+      width: 170px;
+    }
+    .label.-width-not-set {
+      white-space: nowrap;
+    }
+  }
+  .search-collapse {
+    margin-bottom: 2rem;
+  }
+  .search-collapse-trigger {
+    width: 100%;
+    display: block;
+    text-align: right;
+    margin: .5rem 0;
+  }
+  .search-horizontal-guide {
+    line-height: 2.25rem;
+    margin: 0 .5rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .search-horizontal-submit {
+    margin: 0 1rem;
+  }
+}
+
+#result {
+  .result-box {
+    height: 112px;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    line-height: 3rem;
+    i {
+      margin-right: 1rem;
+    }
+    &.-start {
+      background-color: #d6d6de;
+      padding: 2rem 0;
+    }
+    &.-search {
+      color: #FFF;
+      background-color: #738581;
+      padding: 2rem 0;
+    }
+    &.-error {
+      color: #d48379;
+      background-color: #FFFFFF;
+      padding: 2rem 0;
+    }
+    &.-result {
+      background-color: #d6d6de;
+      p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        margin-bottom: 0;
+        span {
+          font-size: 1.25rem;
+          font-weight: 600;
+          white-space: nowrap;
+          max-width: 90%;
+          display: inline-flex;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+    .toDetail {
+      position: relative;
+      top: -.5rem;
+      margin-left: 1rem;
+      padding: 0 2rem;
+      i {
+        margin-right: 1rem;
+      }
+    }
+  }
+  .pagination {
+    .pagination-list {
+      list-style: none;
+      margin: 0;
+      li+li {
+        margin-top: 0;
+      }
+    }
+  }
+}
