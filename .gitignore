@@ -1,6 +1,14 @@
 .idea/
+.DS_Store
 js/config.js
 /js/config.js
+DDBJSearch.iml
 
 demo/node_modules
 demo/yarn-error.log
+
+memo
+demo
+node_modules
+yarn.lock
+yarn-error.log
