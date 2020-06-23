@@ -16,10 +16,11 @@
             var kv = q[i].split('=');
             arg[kv[0]]=kv[1];
         };
-        var search_ops = ["target_db", "rows", "sort", "order"];
+        var search_ops = ["target_db", "rows", "sort", "order", "data_type"];
         var search_option = [];
         var search_keys = [];
         var targetdb = arg["target_db"];
+        var data_type = arg["data_type"] ? arg["data_type"] : "";
         var rows = arg["rows"] ? arg["rows"] : 20;
         var sort = arg["sort"] ? arg["sort"] : "Updated";
         var order = arg["order"] ? arg["order"] : "desc";
@@ -44,20 +45,63 @@
                 k + "=" + arg[k]
             )});
 
-        var q = base_url + targetdb + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
-        //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
+
+        if (data_type){
+            var q = base_url + targetdb + "/" + data_type + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+        }else {
+            var q = base_url + targetdb + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+            //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
+        }
 
 
         var table_conf = {
             sra:{
                 columns:[
                     {title:"ACCESSION", field:"_id", width:100},
-                    {title:"TITLE", field:"study_title", minWidth: 350, width: "50%", align:"left"},
-                    {title:"ABSTRACT", field:"study_abstract", width: "20%"},
-                    {title:"STUDY_TYPE", field: "study_type", width: "10%"},
-                    {title:"UPDATED", field: "updated", width:"10%"},
+                    {title:"TITLE", field:"STUDY_TITLE", minWidth: 350, width: "50%", align:"left"},
+                    {title:"ABSTRACT", field:"STUDY_ABSTRACT", width: "20%"},
+                    {title:"STUDY_TYPE", field: "existing_study_type", width: "10%"},
+                    {title:"UPDATED", field: "Updated", width:"10%"},
                     {title:"", field:"study", width:0 }
                 ]},
+            study:{
+                columns:[
+                    {title:"ACCESSION", field:"_id", width:100},
+                    {title:"TITLE", field:"STUDY_TITLE", minWidth: 350, width: "50%", align:"left"},
+                    {title:"ABSTRACT", field:"STUDY_ABSTRACT", width: "20%"},
+                    {title:"STUDY_TYPE", field: "existing_study_type", width: "10%"},
+                    {title:"UPDATED", field: "Updated", width:"10%"},
+                    {title:"", field:"study", width:0 }
+                ]},
+            experiment: {
+                columns:[
+                    {title: "ACCESSION", field: "_id", width: 100},
+                    {title:"TITLE", field:"TITLE", minWidth: 300, width: "40%", align:"left"},
+                    {title:"INSTRUMENT MODEL", field:"INSTRUMENT_MODEL", width: "18%"},
+                    {title:"LIBRARY STRATEGY", field: "LIBRARY_STRATEGY"},
+                    {title:"LIBRARY SOURCE", field: "LIBRARY_SOURCE"},
+                    {title:"UPDATED", field: "updated", width:"10%"},
+                    {title:"", field:"study", width:0 },
+            ]},
+            run:{
+                columns:[
+                    {title: "ACCESSION", field: "_id", width: 100},
+                    {title:"TITLE", field:"TITLE", minWidth: 350, width: "50%", align:"left"},
+                    {title:"CENTER NAME", field: "center_name", width: "20%"},
+                    {title:"UPDATED", field: "updated", width:"10%"},
+                    {title:"", field:"study", width:0 }
+                ]
+            },
+            sample:{
+                columns:[
+                    {title: "ACCESSION", field: "_id", width: 100},
+                    {title: "TITLE", field:"TITLE", minWidth: 350, width: "50%", align:"left"},
+                    {title: "SCIENTIFIC NAME", field: "scientific_name", width: "20%"},
+                    {title: "TAXON ID", field: "taxon_id", width: "20%"},
+                    {title: "UPDATED", field: "updated", width:"10%"},
+                    {title:"", field:"study", width:0 }
+                ]
+            },
             bioproject:{
                 columns:[
                     {title:"BioProject", field:"_id", width:100},
@@ -82,12 +126,14 @@
         };
 
         this.on("mount", function(){
+            //var target = targetdb == "sra" ? table_conf[data_type]["columns"] : table_conf[targetdb]["columns"];
+            var target = data_type ? table_conf[data_type]["columns"] : table_conf[targetdb]["columns"];
             $("#rslt-table").tabulator({
                 pagination:"remote",
                 ajaxURL: q,
                 timeout: 5000,
                 paginationSize: rows,
-                columns:table_conf[targetdb]["columns"],
+                columns:target ,
                 dataLoaded: function (datas) {
                     //self.update();
                     nfounds = datas["numfound"] ? datas["numfound"]: nfounds;

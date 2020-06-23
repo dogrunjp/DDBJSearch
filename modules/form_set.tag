@@ -63,6 +63,8 @@
                         <input type="text" class="input-box1" id="instrument_model" name="instrument_model" data-type="experiment" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
 
+
+
                 </div>
             </div>
 
@@ -108,7 +110,7 @@
             <div>
                 <label for="view_count">Show
                     <select id="view_count" class="select-box1" name="rows">
-                        <option value="20">20</option>
+                        <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
@@ -168,11 +170,10 @@
             $.each(forms, function (i, x) {
                 var k = x.name;
                 var v = x.value;
-
+                //var types = x.dataset.type;
 
                 // valueが空で無いformのオブジェクトを取得する
                 if (["", "Search", "Clear"].indexOf(v) == -1) {
-                    console.log(k,v)
                     var obj = [k, v];
                     // accessionが入力された場合のみaccに値を入れる
                     if (obj[0] === "uid"){
@@ -191,10 +192,11 @@
             });
             var t = types.filter(function(s){
                 if(s != undefined) {
-                    q.push("type=" + s)
+                    q.push("data_type=" + s)
                 }
             });
-            // Accession検索の場合UIDでヒットするようであれば詳細を表示する
+
+            // Accession検索の場合UIDでヒットするようであれば詳細を表示する!!
             if(acc){
                 url = conf.api_base;
                 // Elasticsearch _countから件数を取得する
@@ -212,8 +214,6 @@
                     });
             }else{
                 var qs = q.join("&");
-                console.log(focused)
-                console.log(qs)
                 window.location.href = "result.html?" + "target_db=" + focused + "&" + qs;
             };
 
