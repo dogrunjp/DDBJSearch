@@ -18,6 +18,7 @@
                 </div>
 
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <h3>Study</h3>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="study_title">Title :</label></span>
                         <input type="text" class="input-box1" id="study_title" name="study_title" data-type="study" size="50" value="" onkeydown="{enter_go}"/>
@@ -33,6 +34,7 @@
                         <input type="text" class="input-box1" name="study_type" id="study_type" data-type="study" size="50" onkeydown="{enter_go}" />
                     </div>
 
+                    <h3>Experiment</h3>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Library Name :</label></span>
                         <input type="text" class="input-box1" name="library_name" id="library_name" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
@@ -77,9 +79,31 @@
                     </div>
 
                     <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="description">Description :</label></span>
+                        <input type="text" class="input-box1" id="description" name="description" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="publication_id">Publication ID :</label></span>
                         <input type="text" class="input-box1" name="publication_id" id="publication_id" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="organism_name">Organism Name:</label></span>
+                        <input type="text" class="input-box1" name="organism_name" id="organism_name" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="project_datatype">DataType:</label></span>
+                        <input type="text" class="input-box1" name="project_datatype" id="project_datatype" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="external_db">ExternalLink DB:</label></span>
+                        <input type="text" class="input-box1" name="external_db" id="external_db" size="50" value="" onkeydown="{enter_go}"/>
+                    </div>
+
+
                 </div>
 
 

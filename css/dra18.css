@@ -1661,3 +1661,12 @@ tbody.collapse.in {
 #last_update div.row{
     margin-top: 24px
 }
+
+#main form_set h3{
+    font-size: 1.15rem;
+    line-height: 1.2;
+    margin-top: 12px;
+    margin-bottom: 1px;
+    margin-left: 0;
+    font-weight: bold;
+}

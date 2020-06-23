@@ -47,9 +47,9 @@
 
 
         if (data_type){
-            var q = base_url + targetdb + "/" + data_type + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+            var q = base_url + targetdb + "/" + data_type + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort + "&order=" + order;
         }else {
-            var q = base_url + targetdb + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort;
+            var q = base_url + targetdb + "?" + search_keys.join('&') + "&rows=" + rows + "&sort=" + sort + "&order=" + order;
             //var q = base_url + "target_db="+ targetdb + "&" + search_keys.join('&') + "&sort=" + sort;
         }
 
