@@ -77,9 +77,9 @@
                 columns:[
                     {title: "ACCESSION", field: "_id", width: 100},
                     {title:"TITLE", field:"TITLE", minWidth: 300, width: "40%", align:"left"},
-                    {title:"INSTRUMENT MODEL", field:"INSTRUMENT_MODEL", width: "18%"},
-                    {title:"LIBRARY STRATEGY", field: "LIBRARY_STRATEGY"},
-                    {title:"LIBRARY SOURCE", field: "LIBRARY_SOURCE"},
+                    {title:"INSTRUMENT MODEL", field:"INSTRUMENT_MODEL", width: "15%"},
+                    {title:"LIBRARY STRATEGY", field: "LIBRARY_STRATEGY", width: "15%"},
+                    {title:"LIBRARY SOURCE", field: "LIBRARY_SOURCE", width: "15%"},
                     {title:"UPDATED", field: "Updated", width:"10%"},
                     {title:"", field:"study", width:0 },
             ]},
