@@ -315,7 +315,7 @@
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
         if (study){
-            var target_url = base_url + db + "&id=" + uid + "&_id=" + study;
+            var target_url = base_url + db + "&id=" + uid + "&_study=" + study;
             // whole metada を取得するためのapi path
             self.target_url = conf.api_base + "/metadata/" + study;
         }else{

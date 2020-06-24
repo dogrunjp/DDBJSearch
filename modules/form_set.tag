@@ -36,6 +36,21 @@
 
                     <h3>Experiment</h3>
                     <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="title">Experiment Title :</label></span>
+                        <input type="text" class="input-box1" name="title" id="title" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="center_name">Center Name :</label></span>
+                        <input type="text" class="input-box1" name="center_name" id="center_name" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
+                        <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="design_description">Design Desctiption :</label></span>
+                        <input type="text" class="input-box1" name="design_description" id="design_description" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
+                    </div>
+
+                    <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="library_name">Library Name :</label></span>
                         <input type="text" class="input-box1" name="library_name" id="library_name" data-type="experiment" size="50" value=""  onkeydown="{enter_go}"/>
                     </div>
