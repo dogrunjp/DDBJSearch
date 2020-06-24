@@ -80,7 +80,7 @@
                     {title:"INSTRUMENT MODEL", field:"INSTRUMENT_MODEL", width: "18%"},
                     {title:"LIBRARY STRATEGY", field: "LIBRARY_STRATEGY"},
                     {title:"LIBRARY SOURCE", field: "LIBRARY_SOURCE"},
-                    {title:"UPDATED", field: "updated", width:"10%"},
+                    {title:"UPDATED", field: "Updated", width:"10%"},
                     {title:"", field:"study", width:0 },
             ]},
             run:{
@@ -88,7 +88,7 @@
                     {title: "ACCESSION", field: "_id", width: 100},
                     {title:"TITLE", field:"TITLE", minWidth: 350, width: "50%", align:"left"},
                     {title:"CENTER NAME", field: "center_name", width: "20%"},
-                    {title:"UPDATED", field: "updated", width:"10%"},
+                    {title:"UPDATED", field: "Updated", width:"10%"},
                     {title:"", field:"study", width:0 }
                 ]
             },
@@ -98,7 +98,7 @@
                     {title: "TITLE", field:"TITLE", minWidth: 350, width: "50%", align:"left"},
                     {title: "SCIENTIFIC NAME", field: "scientific_name", width: "20%"},
                     {title: "TAXON ID", field: "taxon_id", width: "20%"},
-                    {title: "UPDATED", field: "updated", width:"10%"},
+                    {title: "UPDATED", field: "Updated", width:"10%"},
                     {title:"", field:"study", width:0 }
                 ]
             },
