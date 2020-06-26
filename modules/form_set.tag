@@ -90,7 +90,7 @@
                 <div  id="bp_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bp_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="bp_title" name="title" size="50" value="" onkeydown="{enter_go}"/>
+                        <input type="text" class="input-box1" id="bp_title" name="bp_title" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
 
                     <div>
@@ -137,7 +137,7 @@
                 <div  id="bs_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="bs_title">Title :</label></span>
-                        <input type="text" class="input-box1" id="bs_title" name="title" size="50" value="" onkeydown="{enter_go}"/>
+                        <input type="text" class="input-box1" id="bs_title" name="bs_title" size="50" value="" onkeydown="{enter_go}"/>
                     </div>
                     <div>
                         <span class="col_name"><i class="fa fa-search" aria-hidden="true"></i> <label for="package">Package :</label></span>
