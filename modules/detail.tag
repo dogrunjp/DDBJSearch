@@ -1,7 +1,7 @@
 <detail>
     <div class="details">
 
-        <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={target_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
+        <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={metadata_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
 
         <table show="{visible.bioproject_top}">
             <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
@@ -410,26 +410,7 @@
                  取得したJSONからSTUDY[0]["uid"]を取得し、whole metadata のAPIのパラメータとする
                  /metadata API!
                 */
-                self.target_url = conf.api_base + "/metadata/" + self.study;
-                /*
-                self.ex_items = d.experiment;
-                a2str_obj(self.ex_items);
-
-                self.run_items = d.run;
-                a2str_obj(self.run_items);
-
-                self.bs_items = d.biosample;
-                a2str_obj(self.bs_items);
-
-                self.smp_items = d.sample;
-                a2str_obj(self.smp_items);
-
-                self.ana_items = d.analysis;
-                a2str_obj(self.ana_items);
-
-                self.sb_items = d.submission;
-                a2str_obj(self.sb_items);
-                */
+                self.metadata_url = conf.api_base + "/metadata/" + db + "/" + self.study;
 
                 //experiment_groupのオブジェクトをtype別にまとめる
                 var types = ["experiment", "biosample", "run"];
