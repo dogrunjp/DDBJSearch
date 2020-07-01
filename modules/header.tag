@@ -37,7 +37,7 @@
         };
         // ターゲットのdb名を取得し、heaaderの情報に埋め込む
         var self = this;
-        self.fed = "sra";
+        self.fed = "SRA";
         var args = location.search;
         var props = args.slice(1).split('&');
         var target_db = props[0].split('=');
