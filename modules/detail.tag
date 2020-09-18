@@ -71,7 +71,7 @@
                         <td>{run_item._id}</td>
                         <td class="atrb">
                             <span if={run_item.sra_path} class="file_path"><a href={run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                            <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                            <span if={run_item.fastq_path} class="file_path"><a href={run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
                         </td>
                     </tr>
                     </tbody>
@@ -204,7 +204,7 @@
                             <td>{run_item._id}</td>
                             <td class="atrb">
                                 <span if={run_item.sra_path} class="file_path"><a href={run_item.sra_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> sra</a></span>
-                                <span if={run_item.fastq_path} class="file_path"><a href={base_file_path}{run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
+                                <span if={run_item.fastq_path} class="file_path"><a href={run_item.fastq_path}><i class="fa fa-cloud-download" aria-hidden="true"></i> fastq</a></span>
                             </td>
                         </tr>
 
@@ -312,6 +312,8 @@
         // BioProjectに変換する必要有り
         self.accession = uid;
         var base_url = conf.api_base + "/details?db=";
+
+        // this variable should be include API and not be used in this UI
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
         if (study){
