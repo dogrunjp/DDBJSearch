@@ -45,13 +45,20 @@
         var target_db = props[0].split('=');
         focused = target_db ?  target_db[1]: "sra";
 
-        // headerのdbがクリックされた祭のイベント
+        // headerのターゲットDB名が
+        // クリックされた祭のイベント
+        // 対象DBを指定し
         this.onFocus = function(e){
+            console.log(e)
             focused = sub_title[e.target.dataset.target];
             self.fed = focused;
+            console.log(focused);
+            // chartタグのイベントを呼ぶ
             obs.trigger('menuSelected', focused);
         };
 
+        // コンテンツモジュールからobs.trigger("targetSelected", targetdb)のように
+        // データベースを指定し呼ばれる
         obs.on("targetSelected", function(s){
             focused = sub_title[s];
             self.fed = focused;

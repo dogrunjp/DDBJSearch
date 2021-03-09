@@ -47,7 +47,7 @@
         </div>
     </form>
 
-    <h3>Search Results for {query_params} - {founds} {target} <!-- ex. --></h3>
+    <h3 class="rslt">Search Results for {query_params} - {founds} {target} <!-- ex. --></h3>
     <div id="rslt_table"></div>
 
     <script>
@@ -57,9 +57,9 @@
 
         // tableを描画
         var table_columns = [
-            {title:"BioProject", field:"BioProject", width:120},
+            {title:"BioProject", field:"BioProject", width:120, cellClick:function(e, cell){ if(cell.getValue() != "NA") {window.open("http://sra.dbcls.jp/details.html?db=bioproject&accession=" + cell.getValue())}}},
             {title:"Title", field:"Title", minWidth: 300, width: "25%"},
-            {title:"PMID", field:"PMID", width: 100},
+            {title:"PMID", field:"PMID", width: 100, cellClick:function(e, cell){ if(cell.getValue() != "NA") {window.open("https://pubmed.ncbi.nlm.nih.gov/" + cell.getValue())}}},
             {title:"Journal", field: "Journal", width: 150},
             {title:"ArticleTitle", field: "ArticleTitle", width:"25%"},
             {title:"Year", field:"Year", width:80 }
@@ -68,7 +68,14 @@
         this.on("mount", function () {
             table  = new Tabulator("#rslt_table", {
                 layout: 'fitColumns',
-                columns: table_columns
+                columns: table_columns,
+                placeholder: "No Data Available",
+                rowClick: function (e, row) {
+                    var accession = row.row.data._id;
+                    var study = row.row.data.study;
+                    window.open("details.html?db=" + targetdb + "&accession=" + accession + "&_id=" + study)
+
+                }
             });
 
         });
