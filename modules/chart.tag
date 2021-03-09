@@ -23,7 +23,7 @@
             }
         });
 
-        var target_url = "https://dbcls-sra-dev.bhx.jp/api";
+        var target_url = "http://52.192.124.76/api";
         var self = this;
         function get_data() {
             return $.ajax({

@@ -22,6 +22,8 @@
 
             <div class="box box3">
                 <ul id="target_dbs" onclick={onFocus}>
+                    <li class="target" data-target="taxonomy">Taxonomy</li>
+                    <li class="target" data-target="publication">Publication</li>
                     <li class="target" data-target="biosample">BioSample</li>
                     <li class="target" data-target="bioproject">BioProject</li>
                     <li class="target focused" data-target="sra">SRA</li>

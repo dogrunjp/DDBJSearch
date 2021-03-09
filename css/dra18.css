@@ -82,7 +82,7 @@ div#header-menu{
 }
 #header-menu div.box3{
     float: right;
-    width: 500px;
+    width: 550px;
     margin-top: 31px;
     font-size: 1rem;
 }
@@ -130,7 +130,7 @@ div#header-menu{
 }
 #header-menu.sub .box3 li{
     float: right;
-    margin-left: 35px;
+    margin-left: 30px;
 }
 #header-menu.sub a{
     color: #3e3a3a;
