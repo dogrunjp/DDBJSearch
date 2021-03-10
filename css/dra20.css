@@ -1663,6 +1663,7 @@ tbody.collapse.in {
     border-top: solid 1px #eb6238;
     margin-top: 16px;
     margin-bottom: 2px;
+    padding-top: 4px;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -1683,4 +1684,15 @@ tbody.collapse.in {
 
 #main.result form_set h3 {
     border-top:none;
+}
+
+#rslt_content{
+    height: 1px;
+    opacity: 0;
+    transition: .5s;
+    margin-bottom: 100px;
+}
+
+#view_count {
+    margin-top: 16px;
 }

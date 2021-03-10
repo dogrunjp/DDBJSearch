@@ -22,11 +22,11 @@
 
             <div class="box box3">
                 <ul id="target_dbs" onclick={onFocus}>
-                    <li class="target" data-target="taxonomy">Taxonomy</li>
-                    <li class="target" data-target="publication">Publication</li>
-                    <li class="target" data-target="biosample">BioSample</li>
-                    <li class="target" data-target="bioproject">BioProject</li>
-                    <li class="target focused" data-target="sra">SRA</li>
+                    <li class="target" data-target="taxonomy"><a href="./taxonomy.html">Taxonomy</a></li>
+                    <li class="target" data-target="publication"><a href="./publication">Publication</a></li>
+                    <li class="target" data-target="biosample"><a href="./index.html?target_db=biosample">BioSample</a></li>
+                    <li class="target" data-target="bioproject"><a href="./index.html?target_db=bioproject">BioProject</a></li>
+                    <li class="target" data-target="sra"><a href="./index.html">SRA</a></li>
                 </ul>
             </div>
         </div>
@@ -39,14 +39,14 @@
         };
         // ターゲットのdb名を取得し、heaaderの情報に埋め込む
         var self = this;
-        self.fed = "SRA";
-        var args = location.search;
-        var props = args.slice(1).split('&');
-        // propsのそれぞれの要素をkey, valueに分解し、target_dbの値を取得
 
-        var target_db = props[0].split('=');
-        // defultの値、コンテンツによって変わる
-        focused = target_db ?  target_db[1]: "sra";
+        var args = location.search;
+        // location.pathnameはページことに変数に関わらず一定なためページ判定にpathnameを利用
+        var focused = location.pathname.split(/\.|\//).slice(2,3)[0];
+        self.fed = focused;
+        this.on("mount", function () {
+            $("#target_dbs li[data-target=" + focused + "]").addClass("focused");
+        })
 
         // headerのターゲットDB名が
         // クリックされた祭のイベント

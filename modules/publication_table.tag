@@ -40,19 +40,22 @@
                 </select>
             </label>
 
-
-
             <input type="button" id="search" class="input-box1" value="Search" onclick={keywordsearch} />
             <input type="button" id="clear" class="input-box1" value="Clear" onclick={formrst} />
         </div>
     </form>
 
-    <h3 class="rslt">Search Results for {query_params} - {founds} {target} <!-- ex. --></h3>
-    <div id="rslt_table"></div>
+    <div id="rslt_content">
+        <h3 class="rslt">Search Results for {query_params} - total {founds} entries<!-- ex. --></h3>
+        <div id="rslt_table"></div>
+    </div>
 
     <script>
+        var self = this;
         var vals = [],acc, api, nfounds, table;
         var base_url = conf.api_base + "/publication/search";
+        var search_keys = ["article_title", "journal", "bp_title", "year"];
+        var search_key_names = ["Article Title", "Journal", "BioProject Title", "Year"]
 
 
         // tableを描画
@@ -80,7 +83,6 @@
 
         });
 
-
         keywordsearch()
         {
             // 検索URL生成
@@ -103,18 +105,16 @@
                 }
             });
 
-            var types = [];
+            var kv = {}
             var q = vals.map(function(l){
                 var s = l[0] + "=" +l[1];
-                // 入力されたdata_typeを取得
-                t = types.push($("#"+l[0]).data('type'));
+                if (l[0] in search_keys){
+                    kv[l[0]] = l[1]
+                }
+
                 return s
             });
-            var t = types.filter(function(s){
-                if(s != undefined) {
-                    q.push("data_type=" + s)
-                }
-            });
+
 
             api = base_url + "?" + q.join('&');
 
@@ -123,13 +123,23 @@
                     return r.json();
                 })
                 .then(function(d){
-                    table.setData(d["data"])
-                })
+                    table.setData(d["data"]);
+                    console.log(d)
+                    self.founds = d["numfound"];
+                    self.founds = d["numfound"];
+                    // 検索語を表示する
+                    // {query_params} - {founds} {target}
+                    self.query_params = q[0];
+                    self.update();
 
+                    var elm = document.getElementById("rslt_content");
+                    elm.style.height = '300px';
+                    elm.style.opacity = 1;
+                    elm.style.visibility = visible;
+
+
+                });
         }
-
-
-
 
 
         formrst()
