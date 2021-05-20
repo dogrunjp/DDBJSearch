@@ -43,19 +43,39 @@
         var args = location.search;
         var props = args.slice(1).split('&');
         // propsのそれぞれの要素をkey, valueに分解し、target_dbの値を取得
-
         var target_db = props[0].split('=');
         // defultの値、コンテンツによって変わる
-        focused = target_db ?  target_db[1]: "sra";
+        var focused = target_db[1] ?  target_db[1]: "sra";
+        this.on("mount", function () {
+            if (focused != "sra"){
+                $("#header-menu li.target").removeClass("focused");
+                $("#target_dbs [data-target=" + focused + "]").addClass("focused");
+                self.fed = focused;
+                var tdb = focused;
+                if (sub_title[tdb]){
+                    focused = sub_title[tdb];
+                    self.fed = focused;
+                    // chartタグのイベントを呼ぶ
+                    obs.trigger('menuSelected', focused);
+                }
+                self.update()
+            }
+        });
 
         // headerのターゲットDB名が
         // クリックされた祭のイベント
         // 対象DBを指定し
         this.onFocus = function(e){
-            focused = sub_title[e.target.dataset.target];
-            self.fed = focused;
-            // chartタグのイベントを呼ぶ
-            obs.trigger('menuSelected', focused);
+            var tdb = e.target.dataset.target;
+            if (sub_title[tdb]){
+                focused = sub_title[tdb];
+                self.fed = focused;
+                // chartタグのイベントを呼ぶ
+                obs.trigger('menuSelected', focused);
+            } else {
+                location.href = "./" + tdb + ".html"
+            }
+
         };
 
         // コンテンツモジュールからobs.trigger("targetSelected", targetdb)のように

@@ -20,7 +20,6 @@
             <input type="text" class="input-box1" id="year" name="year" size="50" value=""/>
         </div>
 
-
         <div>
             <label for="view_count">Show
                 <select id="view_count" class="select-box1" name="rows">
@@ -69,7 +68,7 @@
         ];
 
         this.on("mount", function () {
-            table  = new Tabulator("#rslt_table", {
+            table = new Tabulator("#rslt_table", {
                 layout: 'fitColumns',
                 columns: table_columns,
                 placeholder: "No Data Available",
@@ -124,8 +123,6 @@
                 })
                 .then(function(d){
                     table.setData(d["data"]);
-                    console.log(d)
-                    self.founds = d["numfound"];
                     self.founds = d["numfound"];
                     // 検索語を表示する
                     // {query_params} - {founds} {target}

@@ -783,6 +783,13 @@ input.input-box1[type="submit"]:hover{
     display: inline-block;
     width: 170px;
 }
+
+#queryform .flex-item span.col_name{
+    display: inline-block;
+    width: 140px;
+}
+
+
 #queryform .show_more a{
     padding: 2px 6px;
     background-color: #efefef;
@@ -1692,7 +1699,41 @@ tbody.collapse.in {
     transition: .5s;
     margin-bottom: 100px;
 }
+#rslt_content h4 {
+    margin-top: 8px;
+}
 
 #view_count {
     margin-top: 16px;
+}
+
+.flex-row {
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 8px
+}
+
+.flex-row .flex-item {
+    padding-right: 40px;
+}
+
+.flex-row .flex-item:last-child{
+    padding-left: 0px;
+}
+
+#main a.btn-link, #main a.btn-link:visited {
+    color: white;
+    padding: 2px 4px;
+    margin-left: 16px;
+    border-radius: 2px;
+    text-decoration: none;
+    background: #F6AD49;
+}
+#main a.btn-link:hover {
+    color: #f67637;
+    padding: 4px;
+    margin-left: 16px;
+    border-radius: 2px;
+    text-decoration: none;
+    background: #F6AD49;
 }

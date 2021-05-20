@@ -14,7 +14,6 @@
 
                 <div class="show_more">
                     <a href="#" data-target="sra_advanced" data-state="hide" onclick={adv_show}>Advanced search</a>
-                    <a href="./advanced" >Additional features</a>
                 </div>
 
                 <div  id="sra_advanced" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
