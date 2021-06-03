@@ -211,7 +211,7 @@
                 // key: valueを渡す
                 var k = q["key"];
                 var v = q["value"];
-                window.location.href = "result.html?" + k + "=" + v + "&target_db=" + tdb;
+                window.location.href = "result.html?" + "target_db=" + tdb + "&" + k + "=" + v;
             }
         }
 

@@ -23,7 +23,7 @@
             }
         });
 
-        var target_url = "http://52.192.124.76/api";
+        var target_url = "http://sra-api-dev.bhx.jp/api";
         var self = this;
         function get_data() {
             return $.ajax({
