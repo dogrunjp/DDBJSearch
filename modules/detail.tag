@@ -317,7 +317,7 @@
         // this variable should be include API and not be used in this UI
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
-        if (study != "undefined"){
+        if (study != "undefined" && study != null){
             var target_url = base_url + db + "&id=" + uid + "&_study=" + study;
             var featured_id = study;
             // whole metada を取得するためのapi path
