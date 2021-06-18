@@ -1,7 +1,8 @@
 <detail>
     <div class="details">
 
-        <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={metadata_url}> <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
+        <div class="flex-row"> <h2> Details for {accession} </h2> <span class="file_path"><a href={metadata_url}>
+            <i class="fa fa-cloud-download" aria-hidden="true"></i> JSON</a></span> </div>
 
         <table show="{visible.bioproject_top}">
             <thead><tr class="table-header"><th colspan="2">BioProject: {bioproject}</th></tr></thead>
@@ -316,12 +317,14 @@
         // this variable should be include API and not be used in this UI
         self.base_file_path = "ftp://ftp.ddbj.nig.ac.jp";
         // _id（study）を追加
-        if (study){
+        if (study != "undefined"){
             var target_url = base_url + db + "&id=" + uid + "&_study=" + study;
+            var featured_id = study;
             // whole metada を取得するためのapi path
             self.target_url = conf.api_base + "/metadata/" + study;
         }else{
             var target_url = base_url + db + "&id=" + uid;
+            var featured_id = uid;
         }
 
 
@@ -412,7 +415,7 @@
                  取得したJSONからSTUDY[0]["uid"]を取得し、whole metadata のAPIのパラメータとする
                  /metadata API!
                 */
-                self.metadata_url = conf.api_base + "/metadata/" + db + "/" + self.study;
+                self.metadata_url = conf.api_base + "/metadata/" + db + "/" + featured_id;
 
                 //experiment_groupのオブジェクトをtype別にまとめる
                 var types = ["experiment", "biosample", "run"];
