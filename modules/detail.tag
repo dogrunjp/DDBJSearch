@@ -332,7 +332,7 @@
             return $.ajax({
                 type: "GET",
                 url: target_url,
-                timeout: 5000
+                timeout: 30000
             });
         }
 
@@ -393,8 +393,8 @@
 
                 }
 
-
                 // 要らないのでは
+                /*
                 function a2str_obj(obj) {
                     // visbleを設定するため、typeごとのkeyを取得
                     try{
@@ -407,6 +407,7 @@
                         });
                     }catch (d){}
                 }
+                */
 
                 //self.st_item = d.study;
                 //a2str_obj(self.st_items);
@@ -424,11 +425,13 @@
                     d.experiment_group.forEach(function (obj) {
                         // groupごとの処理
                         var item = {}
+                        // experiment, biosample, run ごとにitem[type]にオブジェクトを格納
                         types.forEach(function (t) {
-                            // typeごとの処理
                             var tmp_d = obj.filter(function (e) {
                                 return e._index == t
                             });
+                            // experiment_groupにあるタイプのobjectが１つしか無く、かつrunで無い時tmp_d[0]でなければtmp_dを返す
+                            item[t] = tmp_d.length == 1 && t != "run" ? tmp_d[0] : tmp_d
                             item[t] = tmp_d.length == 1 && t != "run" ? tmp_d[0] : tmp_d
                         });
                         self.er_items.push(item)
