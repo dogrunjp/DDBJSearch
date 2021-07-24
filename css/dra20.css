@@ -1694,10 +1694,9 @@ tbody.collapse.in {
 }
 
 #rslt_content{
-    height: 1px;
     opacity: 0;
     transition: .5s;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 #rslt_content h4 {
     margin-top: 8px;
@@ -1736,4 +1735,15 @@ tbody.collapse.in {
     border-radius: 2px;
     text-decoration: none;
     background: #F6AD49;
+}
+div#graph{
+    margin: 0 auto;
+}
+
+div.chart{
+    width: 1024px;
+    margin: 0 auto;
+}
+canvas {
+    width: 1024px;
 }

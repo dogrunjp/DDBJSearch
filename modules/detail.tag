@@ -40,9 +40,6 @@
                 <thead>
                 <tr class="table-header">
                     <th width="110">EXPERIMENT, RUN and BioSample</th>
-                    <th class="toggle-icon"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#er_table_m" aria-expanded="true" aria-controls="er_table_m">
-                        <i class="fa fa-caret-square-o-up" aria-hidden="true"></i></a></th>
-                </tr>
                 </thead>
             </table>
 
@@ -393,7 +390,7 @@
 
                 }
 
-                // 要らないのでは
+                // 要らない
                 /*
                 function a2str_obj(obj) {
                     // visbleを設定するため、typeごとのkeyを取得
@@ -436,6 +433,8 @@
                         });
                         self.er_items.push(item)
                     });
+                } else if (d.experiment){
+                    self.er_items.push(d)
                 }
                 //a2str_obj(self.er_items)
                 self.update();
@@ -474,8 +473,8 @@
                         },
                         "X": function () {
                             // 配列オブジェクトとなるメタデータはクエリのaccessionと一致するオブジェクトのみ"details"に表示する
-                            self.visible.EXPERIMENT_RUN_top = true;
-                            self.visible.EXPERIMENT_RUN = true;
+                            self.visible.experiment_group_top = true;
+                            //self.visible.experiment_group = true;
                         },
                         "S": function () {
                             self.visible.SAMPLE_top = true;
@@ -483,8 +482,8 @@
                         },
                         "R": function() {
                             // 配列オブジェクトとなるメタデータはクエリのaccessionと一致するオブジェクトのみ"details"に表示する
-                            self.visible.EXPERIMENT_RUN_top = true;
-                            self.visible.EXPERIMENT_RUN = true;
+                            self.visible.experiment_group_top = true;
+                            //self.visible.experiment_group = true;
                         },
                         "Z": function () {
                             self.visible.ANALYSIS_top = true;

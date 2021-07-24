@@ -136,8 +136,13 @@
                         var elm = document.getElementById("rslt_content");
                         elm.style.height = '300px';
                         elm.style.opacity = 1;
-                        elm.style.visibility = visible;
+                        elm.style.visibility = "visible";
                         self.update()
+                        return d
+                    }).then(function(d){
+                        // showTreeにorganism nameを渡す
+                        root_node = d.parent[0].label
+                        showTree(root_node)
                     });
 
 
@@ -163,9 +168,11 @@
                         var elm = document.getElementById("rslt_content");
                         elm.style.height = '300px';
                         elm.style.opacity = 1;
-                        elm.style.visibility = visible;
+                        elm.style.visibility = "visible";
                         self.update()
-                })
+                        showTree(name)
+                        
+                    })
 
             }
 
@@ -181,9 +188,217 @@
             document.queryform.reset()
         }
 
+        // taxonomy tree描画
+        let result = {
+            "head": {
+                "link": [],
+                "vars": [
+                "root_name",
+                "parent_name",
+                "child_name"
+                ]
+            },
+            "results": {
+                "distinct": false,
+                "ordered": true,
+                "bindings": [
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "Homo heidelbergensis"
+                    }
+                },
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens"
+                    }
+                },
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "environmental samples"
+                    }
+                },
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens neanderthalensis"
+                    }
+                },
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens subsp. 'Denisova'"
+                    }
+                },
+                {
+                    "root_name": {
+                    "type": "literal",
+                    "value": "Homo"
+                    },
+                    "parent_name": {
+                    "type": "literal",
+                    "value": "environmental samples"
+                    },
+                    "child_name": {
+                    "type": "literal",
+                    "value": "Homo sapiens environmental sample"
+                    }
+                }
+                ]
+            }
+        };
+
+        let taxonomy_api = "http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism="
+        let organism = ""
+
+        let pg_json;
+        function unique_name(value, index, self){
+            return self.indexOf(value) === index
+        }
+
+        let nodeIdSet = new Set();
+        let pg = {nodes: [], edges: []};
+        let edgeSet = new Set();
+        for (let binding of result.results.bindings) {
+        nodeIdSet.add(binding.parent_name.value);
+        nodeIdSet.add(binding.child_name.value);
+        pg.edges.push({from: binding.parent_name.value, to: binding.child_name.value, properties: {}, labels: []});
+        }
+
+        for (let nodeId of nodeIdSet) {
+        pg.nodes.push({id: nodeId, properties: {}, labels: []});
+        }
+
+
+        let helloGraph;
+        function showTree(d) {
+            let container = document.getElementById('graph');
+            helloGraph = new HelloGraph(container);
+            let ncbi_taxonomy = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name="
+
+            let config =
+            {
+                // nodeとedgeを埋め込む
+            
+            node: {
+                caption: ['id'],
+                icon: {
+                person: 'f3a0',
+                graph: 'f341',
+                },
+                onClick: (node) => {
+                    window.open(ncbi_taxonomy + node.id, '_blank');
+                },
+                saturation: '100%',
+                brightness: '37%',
+            },
+            edge: {
+                caption: ['label', 'date'],
+                length: {
+                distance: 'value',
+                },
+                width: {
+                flow: 'throughput',
+                },
+                saturation: '100%',
+                brightness: '50%',
+            },
+
+
+            layout: 'hierarchical',
+            layoutSettings: {
+                enabled: true,
+                levelSeparation: 250,
+                nodeSpacing: 50,
+                treeSpacing: 200,
+                blockShifting: true,
+                edgeMinimization: true,
+                parentCentralization: true,
+                direction: 'LR',        // UD, DU, LR, RL
+                sortMethod: 'directed',  // hubsize, directed
+                shakeTowards: 'leaves'  // roots, leaves
+            },
+            /*  layout: 'custom',
+                layoutSettings: {
+                x: 'x',
+                y: 'y'
+                },*/
+            }
+
+            // taxonomy treeを取得し、config.node, config.edgeをアプデート
+            let url = taxonomy_api + d
+        
+            fetch(url)
+            .then(res => {
+                if (res.ok){
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error('Error!'))
+                }
+            })
+            .then(result => {
+                let nodeIdSet = new Set();
+                let pg = {nodes: [], edges: []};
+                let edgeSet = new Set();
+                for (let binding of result.results.bindings) {
+                nodeIdSet.add(binding.parent_name.value);
+                nodeIdSet.add(binding.child_name.value);
+                pg.edges.push({from: binding.parent_name.value, to: binding.child_name.value, properties: {}, labels: []});
+                }
+
+                for (let nodeId of nodeIdSet) {
+                pg.nodes.push({id: nodeId, properties: {}, labels: []});
+                }
+
+                helloGraph.updateGraph(pg, config);
+            })
+            
+
+            
+        };
 
     </script>
-
-
 
 </taxonomy-table>
