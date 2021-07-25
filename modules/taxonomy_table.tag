@@ -315,7 +315,7 @@
         let helloGraph;
         function showTree(d) {
             let container = document.getElementById('graph');
-            helloGraph = new HelloGraph(container);
+            helloGraph = new Blitzboard(container);
             let ncbi_taxonomy = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name="
 
             let config =
@@ -325,7 +325,7 @@
             node: {
                 caption: ['id'],
                 icon: {
-                person: 'f3a0',
+                icon: 'f1fd',
                 graph: 'f341',
                 },
                 onClick: (node) => {
@@ -342,9 +342,13 @@
                 width: {
                 flow: 'throughput',
                 },
-                saturation: '100%',
+                saturation: '0%',
                 brightness: '50%',
             },
+              zoom: {
+                    max: 3.0,
+                    min: 0.25,
+                },
 
 
             layout: 'hierarchical',
@@ -389,7 +393,7 @@
                 }
 
                 for (let nodeId of nodeIdSet) {
-                pg.nodes.push({id: nodeId, properties: {}, labels: []});
+                pg.nodes.push({id: nodeId, properties: {}, labels: ["icon"]});
                 }
 
                 helloGraph.updateGraph(pg, config);
