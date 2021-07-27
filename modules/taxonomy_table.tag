@@ -53,7 +53,7 @@
     </div>
 
     <div class="chart">
-        <div style="width:100%; height: 600px;" id='graph'></div>
+        <div style="width:100%; height:800px;" id='graph'></div>
     </div>
 
     <script>
@@ -294,8 +294,8 @@
             }
         };
 
-        let taxonomy_api = "http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism="
-        let organism = ""
+        let taxonomy_api = "http://togostanza.org/sparqlist/api/d3sparql_dendrogram?organism=";
+        let organism = "";
 
         let pg_json;
         function unique_name(value, index, self){
@@ -321,7 +321,8 @@
             
             let container = document.getElementById('graph');
             helloGraph = new Blitzboard(container);
-            let ncbi_taxonomy = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name="
+            //let ncbi_taxonomy = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name="
+            let taxonomy_result = "https://sra.dbcls.jp/result.html?target_db=biosample&taxonomy_name="
 
             let config =
             {
@@ -334,7 +335,7 @@
                 graph: 'f341',
                 },
                 onClick: (node) => {
-                    window.open(ncbi_taxonomy + node.id, '_blank');
+                    window.open(taxonomy_result + node.id, '_blank');
                 },
                 saturation: '100%',
                 brightness: '37%',
