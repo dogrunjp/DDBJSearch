@@ -52,6 +52,10 @@
         <div id="c_table"></div>
     </div>
 
+    <div class="chart">
+        <div style="width:100%; height: 600px;" id='graph'></div>
+    </div>
+
     <script>
         var self = this;
         var vals = [],acc, api, nfounds, parent_table, child_table, taxonomy, name;
@@ -314,6 +318,7 @@
 
         let helloGraph;
         function showTree(d) {
+            
             let container = document.getElementById('graph');
             helloGraph = new Blitzboard(container);
             let ncbi_taxonomy = "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name="
@@ -395,8 +400,10 @@
                 for (let nodeId of nodeIdSet) {
                 pg.nodes.push({id: nodeId, properties: {}, labels: ["icon"]});
                 }
-
+                
                 helloGraph.updateGraph(pg, config);
+                let chart_content = document.getElementById("rslt_content");
+                chart_content.style.display = "inline";
             })
             
 
