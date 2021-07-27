@@ -66,7 +66,7 @@
 
         // tableを描画
         var table_columns = [
-            {title:"Taxonomy ID", field:"taxid", width:"15%", cellClick:function(e, cell){ if(cell.getValue() != "NA") {window.open("http://sra.dbcls.jp/details.html?db=bioproject&accession=" + cell.getValue())}}},
+            {title:"Taxonomy ID", field:"taxid", width:"15%", cellClick:function(e, cell){ if(cell.getValue() != "NA") {window.open("http://sra.dbcls.jp/result.html?target_db=biosample&taxonomy_id=" + cell.getValue())}}},
             {title:"Scientific Name", field:"label", minWidth: 300, width: "85%"},
         ];
 
