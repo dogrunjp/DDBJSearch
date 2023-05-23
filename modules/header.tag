@@ -1,4 +1,12 @@
 <header>
+    <div class="navbar">
+        <div>
+            <p>
+                DBCLS SRA は更新を停止しています。<a href="https://ddbj.nig.ac.jp/search">DDBJ Search https://ddbj.nig.ac.jp/search</a> をお使いください
+            </p>
+        </div>
+
+    </div>
     <div id="header-link" class="navbar-inverse nav-upper">
         <div class="container-fluid content">
             <ul class="nav navbar-upper">
@@ -12,6 +20,7 @@
         <div class="content">
             <!-- Header section -->
             <div class="box box1">
+
                 <h1>
                     <a href="./index.html">
                         <img src="images/ddbj_logo.png" class="logo" alt="DRA Search"/>
