@@ -1,4 +1,5 @@
 <header>
+    
     <div id="header-link" class="navbar-inverse nav-upper">
         <div class="container-fluid content">
             <ul class="nav navbar-upper">
@@ -6,15 +7,13 @@
                 <li><a href="http://getentry.ddbj.nig.ac.jp/top-e.html"><i class="fa fa-external-link" aria-hidden="true"></i> DDBJ flat file search</a></li>
             </ul>
         </div>
-    <div class="navbar-inverse nav-upper">
-        <p>
-            DBCLS SRA は更新を停止しています。<a href="https://ddbj.nig.ac.jp/search">DDBJ Search https://ddbj.nig.ac.jp/search</a>をお使いください
-        </p>
     </div>
+
     <div id="header-menu" class="sub">
         <div class="content">
             <!-- Header section -->
             <div class="box box1">
+
                 <h1>
                     <a href="./index.html">
                         <img src="images/ddbj_logo.png" class="logo" alt="DRA Search"/>
@@ -45,44 +44,16 @@
         self.fed = "SRA";
         var args = location.search;
         var props = args.slice(1).split('&');
-        // propsのそれぞれの要素をkey, valueに分解し、target_dbの値を取得
         var target_db = props[0].split('=');
-        // defultの値、コンテンツによって変わる
-        var focused = target_db[1] ?  target_db[1]: "sra";
-        this.on("mount", function () {
-            if (focused != "sra"){
-                $("#header-menu li.target").removeClass("focused");
-                $("#target_dbs [data-target=" + focused + "]").addClass("focused");
-                self.fed = focused;
-                var tdb = focused;
-                if (sub_title[tdb]){
-                    focused = sub_title[tdb];
-                    self.fed = focused;
-                    // chartタグのイベントを呼ぶ
-                    obs.trigger('menuSelected', focused);
-                }
-                self.update()
-            }
-        });
+        focused = target_db ?  target_db[1]: "sra";
 
-        // headerのターゲットDB名が
-        // クリックされた祭のイベント
-        // 対象DBを指定し
+        // headerのdbがクリックされた祭のイベント
         this.onFocus = function(e){
-            var tdb = e.target.dataset.target;
-            if (sub_title[tdb]){
-                focused = sub_title[tdb];
-                self.fed = focused;
-                // chartタグのイベントを呼ぶ
-                obs.trigger('menuSelected', focused);
-            } else {
-                location.href = "./" + tdb + ".html"
-            }
-
+            focused = sub_title[e.target.dataset.target];
+            self.fed = focused;
+            obs.trigger('menuSelected', focused);
         };
 
-        // コンテンツモジュールからobs.trigger("targetSelected", targetdb)のように
-        // データベースを指定し呼ばれる
         obs.on("targetSelected", function(s){
             focused = sub_title[s];
             self.fed = focused;
