@@ -6,8 +6,11 @@
                 <li><a href="http://getentry.ddbj.nig.ac.jp/top-e.html"><i class="fa fa-external-link" aria-hidden="true"></i> DDBJ flat file search</a></li>
             </ul>
         </div>
+    <div class="navbar-inverse nav-upper">
+        <p>
+            DBCLS SRA は更新を停止しています。<a href="https://ddbj.nig.ac.jp/search">DDBJ Search https://ddbj.nig.ac.jp/search</a>をお使いください
+        </p>
     </div>
-
     <div id="header-menu" class="sub">
         <div class="content">
             <!-- Header section -->
